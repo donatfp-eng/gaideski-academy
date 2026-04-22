@@ -621,10 +621,7 @@ body::before {
         <span class="ni-text">Minhas Dúvidas</span>
         <span class="ni-badge new" id="badge-doubts" style="display:none">!</span>
       </div>
-      <div class="nav-item" onclick="showView('view-achievements')">
-        <span class="ni-icon">🏆</span>
-        <span class="ni-text">Conquistas</span>
-      </div>
+ 
       <div class="nav-item" onclick="showView('view-rules')">
         <span class="ni-icon">📋</span>
         <span class="ni-text">Regras do Escritório</span>
@@ -695,13 +692,7 @@ body::before {
             <h4>🎤 Roteiro do Vídeo</h4>
             <div class="roteiro-text" id="vv-roteiro"></div>
           </div>
-          <div class="quiz-box" id="quiz-area" style="display:none">
-            <h3>📝 Avaliação</h3>
-            <p>Responda as perguntas abaixo para concluir este módulo.</p>
-            <div id="quiz-questions"></div>
-            <button class="quiz-submit" onclick="submitQuiz()">Enviar Avaliação →</button>
-            <div class="quiz-result" id="quiz-result"></div>
-          </div>
+ 
         </div>
       </div>
     </div>
@@ -719,11 +710,9 @@ body::before {
               <div class="field">
                 <label>Módulo relacionado</label>
                 <select id="doubt-module">
-                  <option value="Módulo 01">Módulo 01 — O que é o Gestta</option>
-                  <option value="Módulo 02">Módulo 02 — Visualizar tarefas</option>
-                  <option value="Módulo 03">Módulo 03 — Dar andamento</option>
-                  <option value="Módulo 04">Módulo 04 — Concluir tarefas</option>
-                  <option value="Módulo 05">Módulo 05 — Regras do escritório</option>
+                  <option value="Módulo 01">Módulo 01 — Tarefas: configuração, conclusão e notificações</option>
+                  <option value="Módulo 02">Módulo 02 — Dashboard, integração e rotina</option>
+                  <option value="Módulo 03">Módulo 03 — Configurações, novidades e usabilidade</option>
                   <option value="Geral">Dúvida geral</option>
                 </select>
               </div>
@@ -745,14 +734,6 @@ body::before {
             <p style="color:var(--text3);font-size:13px">Nenhuma dúvida enviada ainda.</p>
           </div>
         </div>
-      </div>
-    </div>
- 
-    <!-- VIEW: CONQUISTAS -->
-    <div id="view-achievements" class="view">
-      <div class="content-header"><div><h1>🏆 Conquistas</h1><p>Complete módulos e avaliações para desbloquear medalhas.</p></div></div>
-      <div class="content-body">
-        <div class="achievements-grid" id="ach-grid"></div>
       </div>
     </div>
  
@@ -795,128 +776,64 @@ const MODULES = [
   {
     id: 0,
     title: 'Tarefas: configuração, conclusão e notificações',
-    desc: 'Tipos de tarefas, criação, conclusão, notificações, Express e geração em lote.',
+    desc: 'Tipos de tarefas, criação passo a passo, conclusão por integração/manual/Express, notificações e geração em lote.',
     tag: 'Módulo 01 · Tarefas e Conclusão',
     videoId: 'WiqYKfWwSK8',
-    duration: '~5 min',
-    roteiro: `Pessoal, a partir de agora o Gestta é a nossa ferramenta oficial de trabalho.
+    duration: '1h 24min',
+    roteiro: `Treinamento focado nas tarefas do Domínio Processos.
  
-Isso significa que toda tarefa, todo andamento e todo controle precisa estar dentro do sistema.
+Você vai aprender:
+→ Diferença entre Tarefas Recorrentes e Ordens de Serviço
+→ Como configurar campos: Data Legal, Data Meta, Postergar, Dia Útil
+→ Como concluir atividades pelo sistema Domínio, manualmente e via Express
+→ Notificações ao cliente por e-mail e WhatsApp
+→ Como resolver erros comuns de template e e-mail
+→ Geração e exclusão de tarefas em lote
  
-O objetivo não é burocratizar — é organizar, dar clareza e evitar retrabalho.
- 
-Hoje o nosso maior desafio não é falta de trabalho. É falta de visibilidade sobre o que está acontecendo.
- 
-O Gestta resolve exatamente isso.
- 
-A regra é simples:
-👉 Se não está no Gestta, não existe.
- 
-Nos próximos módulos vou mostrar exatamente como usar no dia a dia.`,
-    quiz: [
-      { q: 'Qual é o principal objetivo do Gestta na Gaideski?', opts: ['Substituir o e-mail da equipe','Organizar e controlar tarefas do escritório','Emitir notas fiscais dos clientes','Fazer backup dos arquivos'], ans: 1 },
-      { q: 'O que acontece com uma tarefa feita fora do Gestta?', opts: ['Ela é registrada automaticamente','Ela é aceita se comunicada ao gestor','Ela não existe para a gestão do escritório','Ela aparece no relatório semanal'], ans: 2 },
-    ]
+Use o índice abaixo para pular direto ao tema que precisa.`
   },
   {
     id: 1,
     title: 'Domínio Processos: integração, dashboard e rotina',
-    desc: 'O que é o Domínio Processos, integração com Domínio, dashboard, calendário e conclusão de atividades.',
+    desc: 'O que é o Domínio Processos, integração com Domínio, dashboard, calendário e conclusão de atividades na prática.',
     tag: 'Módulo 02 · Dashboard e Rotina',
     videoId: 'PsAs62SDTfc',
-    duration: '~4 min',
-    roteiro: `Dentro do Gestta, você tem todas as suas tarefas do dia.
+    duration: '1h 27min',
+    roteiro: `Treinamento completo sobre integração e rotina diária no Domínio Processos.
  
-Cada tarefa tem: responsável, prazo e status.
+Você vai aprender:
+→ O que é o Domínio Processos e qual o objetivo
+→ Como funciona a integração com o sistema Domínio
+→ Como usar o dashboard, filtros e calendário
+→ Diferença entre Data Meta e Data Legal
+→ Como concluir atividades com e sem anexo na prática
+→ Configuração de notificações por e-mail e WhatsApp
+→ Status de integração e como resolver erros
  
-Você deve começar seu dia olhando o sistema.
- 
-Não é mais: "O que tenho que fazer hoje?"
-É: 👉 "O que está no Gestta com vencimento hoje?"
- 
-Filtre por responsável — você vai ver exatamente sua fila.
-Priorize pelo prazo mais próximo.
- 
-Se uma tarefa não estiver aqui, fale com seu gestor — pode estar faltando configuração.`,
-    quiz: [
-      { q: 'Como você deve começar seu dia de trabalho?', opts: ['Verificando e-mails primeiro','Abrindo o Gestta e verificando tarefas do dia','Perguntando ao gestor o que fazer','Verificando o WhatsApp'], ans: 1 },
-      { q: 'Qual filtro usar para encontrar suas tarefas?', opts: ['Filtrar por cliente','Filtrar por responsável','Filtrar por data de criação','Filtrar por tipo de serviço'], ans: 1 },
-    ]
+Use o índice abaixo para pular direto ao tema que precisa.`
   },
   {
     id: 2,
     title: 'Configurações, novidades e usabilidade do sistema',
-    desc: 'Treinamento para iniciantes: configurações, novidades de 2025, tarefas e fluxo completo de uso.',
-    tag: 'Módulo 03 · Operação',
+    desc: 'Treinamento para iniciantes: novidades de 2025, configuração de tarefas, checklist, Express e fluxo completo de uso.',
+    tag: 'Módulo 03 · Configurações e Novidades',
     videoId: 'vjqMU2kJ74Q',
-    duration: '~4 min',
-    roteiro: `Sempre que você iniciar ou avançar em uma tarefa, você precisa atualizar dentro do sistema.
+    duration: '2h 08min',
+    roteiro: `Treinamento para quem está começando ou quer se atualizar.
  
-Não acumule para depois. Registre na hora.
+Você vai aprender:
+→ Novidade: tarefas vinculadas automaticamente pelo regime federal
+→ Novidade: botão de novas funcionalidades no dashboard
+→ Visão do dashboard por perfil: admin, gerente e usuário
+→ Como usar filtros, calendário e lista detalhada
+→ Checklist dentro das tarefas — como configurar
+→ Como desconsiderar tarefa sem movimentação
+→ Express: upload em lote e configuração de templates
+→ Rotinas automáticas para concluir atividades em lote
  
-Isso evita:
-- Dúvidas dos colegas e gestores
-- Retrabalho por falta de informação
-- Perguntas desnecessárias sobre "onde está essa tarefa?"
- 
-O sistema é o ponto único de informação. Se você avançou, registre.
- 
-Se tiver algum impedimento — registre também. Isso é fundamental para a gestão poder ajudar.`,
-    quiz: [
-      { q: 'Quando você deve atualizar o status de uma tarefa?', opts: ['Uma vez ao dia, no final do expediente','Apenas quando concluir','Sempre que houver progresso, na hora','Uma vez por semana'], ans: 2 },
-      { q: 'O que fazer se houver um impedimento em uma tarefa?', opts: ['Ignorar e passar para a próxima','Registrar o impedimento no Gestta','Enviar e-mail para o gestor sem registrar','Deixar a tarefa parada sem aviso'], ans: 1 },
-    ]
-  },
-  {
-    id: 3,
-    title: 'Como concluir tarefas no Gestta',
-    desc: 'Saiba quando e como marcar uma tarefa como concluída — manual ou automaticamente.',
-    tag: 'Módulo 04 · Operação',
-    videoId: '69eY2G6ve1k',
-    duration: '~3 min',
-    roteiro: `Quando você finalizar uma tarefa, você deve concluí-la no sistema imediatamente.
- 
-Em alguns casos — quando você anexa um documento — o próprio Gestta conclui automaticamente.
- 
-Mas se isso não acontecer, você deve alterar manualmente o status para "Concluída".
- 
-Não deixe tarefa concluída com status errado.
-Isso distorce os relatórios e causa retrabalho para toda a equipe.
- 
-Lembre-se: a tarefa só está pronta quando o sistema confirma que está pronta.`,
-    quiz: [
-      { q: 'Quando uma tarefa pode ser concluída automaticamente?', opts: ['Quando passa do prazo','Quando você anexa o documento correto','Quando o cliente confirma recebimento','Toda semana automaticamente'], ans: 1 },
-      { q: 'O que fazer se o Gestta não concluir a tarefa automaticamente?', opts: ['Deixar como está — o sistema resolve','Alterar manualmente o status para Concluída','Criar uma nova tarefa no lugar','Avisar o gestor por WhatsApp'], ans: 1 },
-    ]
-  },
-  {
-    id: 4,
-    title: 'Regras e padrões do escritório',
-    desc: 'As regras específicas da Gaideski: o que é obrigatório, proibido e como funciona o controle.',
-    tag: 'Módulo 05 · Padrão Gaideski',
-    videoId: 'yGVJKiSjT4U',
-    duration: '~5 min',
-    roteiro: `Aqui vão as regras específicas da Gaideski Contabilidade:
- 
-❌ NÃO usamos planilhas paralelas
-❌ NÃO controlamos tarefas fora do sistema
-❌ NÃO fazemos tarefa sem registrar
- 
-✅ Tudo acontece dentro do Gestta
-✅ Todo documento do cliente entra pelo portal
-✅ Todo andamento é registrado em tempo real
- 
-Isso não é opcional. É o padrão do escritório.
- 
-Por quê? Porque quando todos registram no mesmo lugar, a gestão consegue enxergar, cobrar e apoiar de forma justa.
- 
-Sem controle centralizado, todo mundo perde tempo — inclusive você.`,
-    quiz: [
-      { q: 'É permitido usar planilha paralela para controlar tarefas?', opts: ['Sim, se for mais rápido','Sim, desde que seja informado ao gestor','Não — tudo deve ser no Gestta','Depende do tipo de tarefa'], ans: 2 },
-      { q: 'Como os documentos dos clientes devem ser recebidos?', opts: ['Por qualquer canal conveniente','Exclusivamente pelo portal do Gestta','Por e-mail e depois registrado','Via WhatsApp e planilha'], ans: 1 },
-    ]
+Use o índice abaixo para pular direto ao tema que precisa.`
   }
-];
+]];
  
 const RULES = [
   { type:'do', icon:'✅', title:'DEVE fazer', text:'Registrar toda tarefa no Gestta antes de executar' },
@@ -931,12 +848,10 @@ const RULES = [
  
 const ACHIEVEMENTS = [
   { id:'first_login', icon:'🚀', title:'Primeiro acesso', desc:'Entrou na plataforma pela primeira vez', cond: u => true },
-  { id:'mod1', icon:'📖', title:'Fundamentos', desc:'Concluiu o Módulo 01', cond: u => u.completed.includes(0) },
-  { id:'mod3', icon:'⚙️', title:'Operador', desc:'Concluiu 3 módulos', cond: u => u.completed.length >= 3 },
-  { id:'all_mods', icon:'🎓', title:'Graduado', desc:'Concluiu todos os 5 módulos', cond: u => u.completed.length >= 5 },
+  { id:'mod1', icon:'📖', title:'Módulo 1 concluído', desc:'Assistiu o primeiro módulo completo', cond: u => u.completed.includes(0) },
+  { id:'all_mods', icon:'🎓', title:'Treinamento completo', desc:'Concluiu os 3 módulos', cond: u => u.completed.length >= 3 },
   { id:'first_doubt', icon:'💬', title:'Curioso(a)', desc:'Enviou sua primeira dúvida', cond: u => u.doubts && u.doubts.length > 0 },
-  { id:'quiz_ace', icon:'🏅', title:'Destaque', desc:'Acertou 100% em um quiz', cond: u => u.quizAce },
-];
+]];
  
 // CHAPTERS baseados nas transcrições reais dos 3 vídeos oficiais
 const CHAPTERS = {
@@ -1117,7 +1032,7 @@ function renderAdminUsers() {
   const tbody = document.getElementById('admin-user-body');
   tbody.innerHTML = USERS.map(u => {
     const ud = storage[u.user] || { completed:[], quizScores:{} };
-    const pct = Math.round((ud.completed||[]).length / MODULES.length * 100);
+    const pct = Math.round((ud.completed||[]).length / 3 * 100);
     const quizAvg = Object.values(ud.quizScores||{}).length ? Math.round(Object.values(ud.quizScores).reduce((a,b)=>a+b,0) / Object.values(ud.quizScores).length) : '—';
     const last = ud.lastSeen ? new Date(ud.lastSeen).toLocaleDateString('pt-BR') : 'Nunca';
     const statusClass = pct===100?'done':pct>0?'partial':'none';
@@ -1182,7 +1097,7 @@ function exportCSV() {
   const rows = [['Colaborador','Cargo','Módulos concluídos','% progresso','Último acesso']];
   USERS.forEach(u => {
     const ud = storage[u.user] || { completed:[] };
-    const pct = Math.round((ud.completed||[]).length / MODULES.length * 100);
+    const pct = Math.round((ud.completed||[]).length / 3 * 100);
     rows.push([u.name, u.role, (ud.completed||[]).length, pct+'%', ud.lastSeen ? new Date(ud.lastSeen).toLocaleDateString('pt-BR') : 'Nunca']);
   });
   const csv = rows.map(r => r.map(c => `"${c}"`).join(',')).join('\n');
@@ -1220,7 +1135,7 @@ function initStudent() {
  
 function updateProgress() {
   const ud = getUserData(currentUser.user);
-  const pct = Math.round(ud.completed.length / MODULES.length * 100);
+  const pct = Math.round(ud.completed.length / 3 * 100);
   document.getElementById('s-bar').style.width = pct + '%';
   document.getElementById('s-pct').textContent = pct + '%';
 }
@@ -1292,17 +1207,7 @@ function openModule(idx) {
   btnComp.disabled = done;
   btnComp.textContent = done ? '✓ Já concluído' : '✓ Marcar como concluído';
  
-  // Quiz
-  const quizArea = document.getElementById('quiz-area');
-  const alreadyPassed = ud.quizScores[idx] >= 50;
-  if (!done || !alreadyPassed) {
-    quizArea.style.display = 'block';
-    renderQuiz(m.quiz);
-    document.getElementById('quiz-result').style.display = 'none';
-    document.getElementById('quiz-result').className = 'quiz-result';
-  } else {
-    quizArea.style.display = 'none';
-  }
+ 
  
   showView('view-video');
   document.querySelector('.main-content').scrollTop = 0;
@@ -1402,12 +1307,12 @@ function completeModule() {
   renderModulesGrid();
   renderAchievements();
   updateProgress();
-  showToast(`✅ Módulo ${currentModIdx+1} concluído! Ótimo trabalho.`, 'success');
+  showToast(`✅ Módulo concluído! Ótimo trabalho.`, 'success');
 }
  
 function goNextModule() {
   const next = currentModIdx + 1;
-  if (next < MODULES.length) openModule(next);
+  if (next < 3) openModule(next);
   else { showView('view-home'); showToast('🎓 Você completou todos os módulos!','success'); }
 }
  
