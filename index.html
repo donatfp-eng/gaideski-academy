@@ -21,18 +21,18 @@
 * { margin:0; padding:0; box-sizing:border-box; }
 html { scroll-behavior: smooth; }
 body { font-family:'Bricolage Grotesque',sans-serif; background:var(--bg); color:var(--text); min-height:100vh; overflow-x:hidden; }
-
+ 
 /* ─── NOISE TEXTURE ─── */
 body::before {
   content:''; position:fixed; inset:0; pointer-events:none; z-index:0;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
   opacity:.4;
 }
-
+ 
 /* ─── PAGES ─── */
 .page { display:none; min-height:100vh; position:relative; z-index:1; }
 .page.active { display:flex; flex-direction:column; }
-
+ 
 /* ═══════════════════════════════
    LOGIN PAGE
 ═══════════════════════════════ */
@@ -89,7 +89,7 @@ body::before {
 }
 .btn-admin:hover { border-color:var(--navy2); color:var(--text); background:var(--surface2); }
 .error-msg { background:rgba(166,28,35,.15); border:1px solid rgba(166,28,35,.3); border-radius:var(--radius-sm); padding:10px 14px; color:#ff8080; font-size:13px; margin-top:16px; display:none; }
-
+ 
 /* ═══════════════════════════════
    ADMIN PAGE
 ═══════════════════════════════ */
@@ -183,12 +183,12 @@ body::before {
 .btn-toggle-reply:hover { border-color:var(--navy2); color:var(--text); }
 .tag-unanswered { background:rgba(166,28,35,.15); color:#ff8080; font-size:10px; font-weight:700; padding:2px 7px; border-radius:4px; letter-spacing:.5px; }
 .tag-answered { background:var(--green-bg); color:var(--green); font-size:10px; font-weight:700; padding:2px 7px; border-radius:4px; letter-spacing:.5px; }
-
+ 
 /* ═══════════════════════════════
    STUDENT PLATFORM
 ═══════════════════════════════ */
 #page-student { background:var(--bg); flex-direction:row; }
-
+ 
 /* SIDEBAR */
 .sidebar {
   width:260px; min-height:100vh; background:var(--surface);
@@ -247,7 +247,7 @@ body::before {
   font-family:inherit; cursor:pointer; transition:.2s;
 }
 .btn-logout:hover { border-color:rgba(166,28,35,.4); color:#ff8080; }
-
+ 
 /* MAIN CONTENT */
 .main-content { flex:1; min-width:0; overflow-y:auto; }
 .content-header {
@@ -256,11 +256,11 @@ body::before {
 .content-header h1 { font-size:24px; font-weight:800; letter-spacing:-.5px; }
 .content-header p { color:var(--text2); font-size:14px; margin-top:4px; }
 .content-body { padding:24px 36px 48px; }
-
+ 
 /* ─── VIEWS ─── */
 .view { display:none; }
 .view.active { display:block; }
-
+ 
 /* MÓDULOS GRID */
 .modules-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:18px; margin-top:8px; }
 .mod-card {
@@ -289,7 +289,7 @@ body::before {
   background:var(--green); color:#fff; font-size:10px; font-weight:700;
   width:24px; height:24px; border-radius:50%; display:flex; align-items:center; justify-content:center;
 }
-
+ 
 /* VIDEO VIEW */
 .video-view-wrap { max-width:900px; }
 .breadcrumb { font-size:12px; color:var(--text3); margin-bottom:16px; display:flex; align-items:center; gap:6px; }
@@ -318,7 +318,7 @@ body::before {
   cursor:pointer; transition:.2s;
 }
 .btn-next-mod:hover { background:var(--surface3); }
-
+ 
 /* QUIZ */
 .quiz-box {
   background:var(--surface); border:1px solid var(--border); border-radius:var(--radius);
@@ -352,7 +352,7 @@ body::before {
 }
 .quiz-result.pass { background:var(--green-bg); border:1px solid rgba(34,197,94,.3); color:var(--green); }
 .quiz-result.fail { background:var(--red-glow); border:1px solid rgba(166,28,35,.3); color:#ff8080; }
-
+ 
 /* ROTEIRO */
 .roteiro-box {
   background:var(--bg2); border:1px solid var(--border); border-left:3px solid var(--red);
@@ -360,7 +360,7 @@ body::before {
 }
 .roteiro-box h4 { font-size:11px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:var(--red); margin-bottom:10px; }
 .roteiro-text { font-size:13px; line-height:1.8; color:var(--text2); white-space:pre-line; font-style:italic; }
-
+ 
 /* VIDEO TABS */
 .vid-tabs {
   display:flex; gap:0; margin-bottom:0; border-bottom:1px solid var(--border);
@@ -375,7 +375,7 @@ body::before {
 .vid-tab.active { color:var(--text); border-bottom-color:var(--red); }
 .vid-tab-panel { display:none; }
 .vid-tab-panel.active { display:block; }
-
+ 
 /* CHAPTERS */
 .chapters-box {
   background:var(--bg2); border:1px solid var(--border); border-radius:var(--radius);
@@ -418,7 +418,7 @@ body::before {
 .ch-tag.pule { background:rgba(255,255,255,.04); color:var(--text3); }
 .ch-arrow { color:var(--text3); font-size:12px; margin-top:2px; flex-shrink:0; transition:.15s; }
 .chapter-item:hover .ch-arrow { color:var(--red); transform:translateX(2px); }
-
+ 
 /* QUICK SUMMARY (aba versão rápida) */
 .quick-summary {
   background:var(--bg2); border:1px solid var(--border); border-radius:var(--radius);
@@ -442,7 +442,7 @@ body::before {
 }
 .qs-cta span { color:var(--red); font-weight:700; cursor:pointer; }
 .qs-cta span:hover { text-decoration:underline; }
-
+ 
 /* DÚVIDAS VIEW */
 .doubts-view { max-width:720px; }
 .doubt-form-card {
@@ -475,7 +475,7 @@ body::before {
 .typing-dots span:nth-child(2) { animation-delay:.15s; }
 .typing-dots span:nth-child(3) { animation-delay:.3s; }
 @keyframes dot { 0%,80%,100%{transform:scale(.8);opacity:.4} 40%{transform:scale(1);opacity:1} }
-
+ 
 .my-doubts-list { display:flex; flex-direction:column; gap:14px; }
 .my-doubt-card {
   background:var(--surface); border:1px solid var(--border); border-radius:var(--radius);
@@ -490,7 +490,7 @@ body::before {
 .official-answer .oa-label { font-size:11px; font-weight:700; color:var(--navy2); margin-bottom:4px; }
 .official-answer p { font-size:13px; color:var(--text2); line-height:1.6; }
 .pending-answer { font-size:12px; color:var(--text3); font-style:italic; }
-
+ 
 /* CONQUISTAS */
 .achievements-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(160px,1fr)); gap:14px; margin-top:8px; }
 .ach-card {
@@ -502,14 +502,14 @@ body::before {
 .ach-icon { font-size:32px; margin-bottom:10px; display:block; }
 .ach-card h4 { font-size:13px; font-weight:700; margin-bottom:4px; }
 .ach-card p { font-size:11px; color:var(--text2); }
-
+ 
 /* LOADING SPINNER */
 .spinner {
   width:20px; height:20px; border:2px solid rgba(255,255,255,.2);
   border-top-color:#fff; border-radius:50%; animation:spin .7s linear infinite; display:inline-block;
 }
 @keyframes spin { to{transform:rotate(360deg)} }
-
+ 
 /* TOAST */
 .toast {
   position:fixed; bottom:24px; right:24px; z-index:999;
@@ -521,7 +521,7 @@ body::before {
 .toast.show { transform:translateY(0); opacity:1; }
 .toast.success { border-color:rgba(34,197,94,.4); }
 .toast.error { border-color:rgba(166,28,35,.4); }
-
+ 
 /* RESPONSIVE */
 @media(max-width:768px){
   .sidebar{ width:100%; min-height:auto; height:auto; position:relative; flex-direction:row; flex-wrap:wrap; border-right:none; border-bottom:1px solid var(--border); }
@@ -530,14 +530,14 @@ body::before {
   .content-header, .content-body { padding-left:20px; padding-right:20px; }
   .field-inline { grid-template-columns:1fr; }
 }
-
+ 
 /* GLOW PULSE ANIMATION */
 @keyframes glow-pulse { 0%,100%{box-shadow:0 0 20px var(--red-glow)} 50%{box-shadow:0 0 40px rgba(166,28,35,.3)} }
 .mod-card.active-now { animation:glow-pulse 2s infinite; border-color:rgba(166,28,35,.4); }
 </style>
 </head>
 <body>
-
+ 
 <!-- ═══ LOGIN PAGE ═══ -->
 <div id="page-login" class="page active">
   <div class="login-wrap">
@@ -564,7 +564,7 @@ body::before {
     </div>
   </div>
 </div>
-
+ 
 <!-- ═══ ADMIN PAGE ═══ -->
 <div id="page-admin" class="page">
   <div class="admin-header">
@@ -590,7 +590,7 @@ body::before {
     </div>
   </div>
 </div>
-
+ 
 <!-- ═══ STUDENT PAGE ═══ -->
 <div id="page-student" class="page">
   <!-- SIDEBAR -->
@@ -634,7 +634,7 @@ body::before {
       <button class="btn-logout" onclick="goLogin()">← Sair</button>
     </div>
   </div>
-
+ 
   <!-- MAIN -->
   <div class="main-content">
     <!-- VIEW: MÓDULOS HOME -->
@@ -652,7 +652,7 @@ body::before {
         <div class="modules-grid" id="modules-grid-home"></div>
       </div>
     </div>
-
+ 
     <!-- VIEW: VIDEO PLAYER -->
     <div id="view-video" class="view">
       <div class="content-header">
@@ -690,7 +690,7 @@ body::before {
               <button class="btn-next-mod" onclick="goNextModule()">Próximo módulo →</button>
             </div>
           </div>
-
+ 
           <div class="roteiro-box">
             <h4>🎤 Roteiro do Vídeo</h4>
             <div class="roteiro-text" id="vv-roteiro"></div>
@@ -705,7 +705,7 @@ body::before {
         </div>
       </div>
     </div>
-
+ 
     <!-- VIEW: DÚVIDAS -->
     <div id="view-doubts" class="view">
       <div class="content-header">
@@ -747,7 +747,7 @@ body::before {
         </div>
       </div>
     </div>
-
+ 
     <!-- VIEW: CONQUISTAS -->
     <div id="view-achievements" class="view">
       <div class="content-header"><div><h1>🏆 Conquistas</h1><p>Complete módulos e avaliações para desbloquear medalhas.</p></div></div>
@@ -755,7 +755,7 @@ body::before {
         <div class="achievements-grid" id="ach-grid"></div>
       </div>
     </div>
-
+ 
     <!-- VIEW: REGRAS -->
     <div id="view-rules" class="view">
       <div class="content-header"><div><h1>📋 Regras do Escritório</h1><p>Diretrizes obrigatórias para uso do Gestta na Gaideski Contabilidade.</p></div></div>
@@ -765,15 +765,15 @@ body::before {
     </div>
   </div>
 </div>
-
+ 
 <!-- TOAST -->
 <div class="toast" id="toast"></div>
-
+ 
 <script>
 // ══════════════════════════════════════════════
 // CONFIG — EDITE AQUI PARA PERSONALIZAR
 // ══════════════════════════════════════════════
-
+ 
 // USUÁRIOS DA EQUIPE — adicione/remova conforme necessário
 // formato: { user: 'login', pass: 'senha', name: 'Nome Completo', role: 'Cargo' }
 const USERS = [
@@ -786,10 +786,10 @@ const USERS = [
   // Adicione mais colaboradores aqui
   // { user: 'nome', pass: 'senha123', name: 'Nome Completo', role: 'Cargo' },
 ];
-
+ 
 // ADMIN
 const ADMIN = { user: 'admin', pass: 'GaideskiAdmin2026!' };
-
+ 
 // MÓDULOS DE TREINAMENTO
 const MODULES = [
   {
@@ -800,18 +800,18 @@ const MODULES = [
     videoId: 'IZtkjVfeWK0',
     duration: '~5 min',
     roteiro: `Pessoal, a partir de agora o Gestta é a nossa ferramenta oficial de trabalho.
-
+ 
 Isso significa que toda tarefa, todo andamento e todo controle precisa estar dentro do sistema.
-
+ 
 O objetivo não é burocratizar — é organizar, dar clareza e evitar retrabalho.
-
+ 
 Hoje o nosso maior desafio não é falta de trabalho. É falta de visibilidade sobre o que está acontecendo.
-
+ 
 O Gestta resolve exatamente isso.
-
+ 
 A regra é simples:
 👉 Se não está no Gestta, não existe.
-
+ 
 Nos próximos módulos vou mostrar exatamente como usar no dia a dia.`,
     quiz: [
       { q: 'Qual é o principal objetivo do Gestta na Gaideski?', opts: ['Substituir o e-mail da equipe','Organizar e controlar tarefas do escritório','Emitir notas fiscais dos clientes','Fazer backup dos arquivos'], ans: 1 },
@@ -826,17 +826,17 @@ Nos próximos módulos vou mostrar exatamente como usar no dia a dia.`,
     videoId: '011Rl-cn7t8',
     duration: '~4 min',
     roteiro: `Dentro do Gestta, você tem todas as suas tarefas do dia.
-
+ 
 Cada tarefa tem: responsável, prazo e status.
-
+ 
 Você deve começar seu dia olhando o sistema.
-
+ 
 Não é mais: "O que tenho que fazer hoje?"
 É: 👉 "O que está no Gestta com vencimento hoje?"
-
+ 
 Filtre por responsável — você vai ver exatamente sua fila.
 Priorize pelo prazo mais próximo.
-
+ 
 Se uma tarefa não estiver aqui, fale com seu gestor — pode estar faltando configuração.`,
     quiz: [
       { q: 'Como você deve começar seu dia de trabalho?', opts: ['Verificando e-mails primeiro','Abrindo o Gestta e verificando tarefas do dia','Perguntando ao gestor o que fazer','Verificando o WhatsApp'], ans: 1 },
@@ -851,16 +851,16 @@ Se uma tarefa não estiver aqui, fale com seu gestor — pode estar faltando con
     videoId: 'nBgP413OkT8',
     duration: '~4 min',
     roteiro: `Sempre que você iniciar ou avançar em uma tarefa, você precisa atualizar dentro do sistema.
-
+ 
 Não acumule para depois. Registre na hora.
-
+ 
 Isso evita:
 - Dúvidas dos colegas e gestores
 - Retrabalho por falta de informação
 - Perguntas desnecessárias sobre "onde está essa tarefa?"
-
+ 
 O sistema é o ponto único de informação. Se você avançou, registre.
-
+ 
 Se tiver algum impedimento — registre também. Isso é fundamental para a gestão poder ajudar.`,
     quiz: [
       { q: 'Quando você deve atualizar o status de uma tarefa?', opts: ['Uma vez ao dia, no final do expediente','Apenas quando concluir','Sempre que houver progresso, na hora','Uma vez por semana'], ans: 2 },
@@ -875,14 +875,14 @@ Se tiver algum impedimento — registre também. Isso é fundamental para a gest
     videoId: '69eY2G6ve1k',
     duration: '~3 min',
     roteiro: `Quando você finalizar uma tarefa, você deve concluí-la no sistema imediatamente.
-
+ 
 Em alguns casos — quando você anexa um documento — o próprio Gestta conclui automaticamente.
-
+ 
 Mas se isso não acontecer, você deve alterar manualmente o status para "Concluída".
-
+ 
 Não deixe tarefa concluída com status errado.
 Isso distorce os relatórios e causa retrabalho para toda a equipe.
-
+ 
 Lembre-se: a tarefa só está pronta quando o sistema confirma que está pronta.`,
     quiz: [
       { q: 'Quando uma tarefa pode ser concluída automaticamente?', opts: ['Quando passa do prazo','Quando você anexa o documento correto','Quando o cliente confirma recebimento','Toda semana automaticamente'], ans: 1 },
@@ -897,19 +897,19 @@ Lembre-se: a tarefa só está pronta quando o sistema confirma que está pronta.
     videoId: 'yGVJKiSjT4U',
     duration: '~5 min',
     roteiro: `Aqui vão as regras específicas da Gaideski Contabilidade:
-
+ 
 ❌ NÃO usamos planilhas paralelas
 ❌ NÃO controlamos tarefas fora do sistema
 ❌ NÃO fazemos tarefa sem registrar
-
+ 
 ✅ Tudo acontece dentro do Gestta
 ✅ Todo documento do cliente entra pelo portal
 ✅ Todo andamento é registrado em tempo real
-
+ 
 Isso não é opcional. É o padrão do escritório.
-
+ 
 Por quê? Porque quando todos registram no mesmo lugar, a gestão consegue enxergar, cobrar e apoiar de forma justa.
-
+ 
 Sem controle centralizado, todo mundo perde tempo — inclusive você.`,
     quiz: [
       { q: 'É permitido usar planilha paralela para controlar tarefas?', opts: ['Sim, se for mais rápido','Sim, desde que seja informado ao gestor','Não — tudo deve ser no Gestta','Depende do tipo de tarefa'], ans: 2 },
@@ -917,7 +917,7 @@ Sem controle centralizado, todo mundo perde tempo — inclusive você.`,
     ]
   }
 ];
-
+ 
 const RULES = [
   { type:'do', icon:'✅', title:'DEVE fazer', text:'Registrar toda tarefa no Gestta antes de executar' },
   { type:'dont', icon:'❌', title:'NÃO deve fazer', text:'Controlar tarefas em planilha paralela ou caderno' },
@@ -928,7 +928,7 @@ const RULES = [
   { type:'do', icon:'✅', title:'DEVE fazer', text:'Concluir a tarefa no sistema ao finalizá-la' },
   { type:'dont', icon:'❌', title:'NÃO deve fazer', text:'Receber documentos de clientes fora do portal' },
 ];
-
+ 
 const ACHIEVEMENTS = [
   { id:'first_login', icon:'🚀', title:'Primeiro acesso', desc:'Entrou na plataforma pela primeira vez', cond: u => true },
   { id:'mod1', icon:'📖', title:'Fundamentos', desc:'Concluiu o Módulo 01', cond: u => u.completed.includes(0) },
@@ -937,7 +937,7 @@ const ACHIEVEMENTS = [
   { id:'first_doubt', icon:'💬', title:'Curioso(a)', desc:'Enviou sua primeira dúvida', cond: u => u.doubts && u.doubts.length > 0 },
   { id:'quiz_ace', icon:'🏅', title:'Destaque', desc:'Acertou 100% em um quiz', cond: u => u.quizAce },
 ];
-
+ 
 // CHAPTERS — baseados nas transcrições reais dos vídeos
 const CHAPTERS = {
   0: { duration: '57 min', chapters: [
@@ -1068,7 +1068,25 @@ const CHAPTERS = {
     { time: 2763, label: '46:03', title: 'Funcionalidades futuras que podem ser lançadas em breve', desc: 'O time compartilha o que está sendo avaliado para os próximos lançamentos', tag: 'pule' },
   ]}
 };
-
+ 
+// ══════════════════════════════════════════════
+// STATE
+// ══════════════════════════════════════════════
+let currentUser = null;
+let currentModIdx = 0;
+let storage = {};
+ 
+function loadStorage() {
+  try { storage = JSON.parse(localStorage.getItem('gaideski_lms') || '{}'); } catch(e) { storage = {}; }
+}
+function saveStorage() {
+  try { localStorage.setItem('gaideski_lms', JSON.stringify(storage)); } catch(e) {}
+}
+function getUserData(username) {
+  if (!storage[username]) storage[username] = { completed:[], quizScores:{}, doubts:[], lastSeen: new Date().toISOString(), quizAce:false };
+  return storage[username];
+}
+ 
 // ══════════════════════════════════════════════
 // AUTH
 // ══════════════════════════════════════════════
@@ -1101,7 +1119,7 @@ function goLogin() {
 }
 document.getElementById('login-pass').addEventListener('keypress', e => { if(e.key==='Enter') doLogin(); });
 document.getElementById('login-user').addEventListener('keypress', e => { if(e.key==='Enter') doLogin(); });
-
+ 
 // ══════════════════════════════════════════════
 // PAGES
 // ══════════════════════════════════════════════
@@ -1109,7 +1127,7 @@ function showPage(id) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.getElementById(id).classList.add('active');
 }
-
+ 
 // ══════════════════════════════════════════════
 // ADMIN
 // ══════════════════════════════════════════════
@@ -1125,7 +1143,7 @@ function renderAdminKPIs() {
   const totalUsers = USERS.length;
   const completedAll = USERS.filter(u => (storage[u.user]?.completed||[]).length >= MODULES.length).length;
   const avgProgress = USERS.reduce((s,u) => s + (storage[u.user]?.completed||[]).length, 0) / (totalUsers * MODULES.length) * 100;
-
+ 
   document.getElementById('admin-kpis').innerHTML = `
     <div class="kpi-card"><div class="kpi-num">${totalUsers}</div><div class="kpi-label">Colaboradores cadastrados</div></div>
     <div class="kpi-card"><div class="kpi-num">${completedAll}</div><div class="kpi-label">Treinamento 100% concluído</div></div>
@@ -1210,25 +1228,25 @@ function exportCSV() {
   const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
   a.download = `gaideski_treinamento_${new Date().toISOString().slice(0,10)}.csv`; a.click();
 }
-
+ 
 // ══════════════════════════════════════════════
 // STUDENT PLATFORM
 // ══════════════════════════════════════════════
 function initStudent() {
   showPage('page-student');
   const ud = getUserData(currentUser.user);
-
+ 
   // sidebar user
   document.getElementById('s-avatar').textContent = currentUser.name.charAt(0).toUpperCase();
   document.getElementById('s-name').textContent = currentUser.name;
   document.getElementById('s-role').textContent = currentUser.role;
   document.getElementById('welcome-name').textContent = currentUser.name.split(' ')[0] + '! 👋';
-
+ 
   // check for answered doubts
   const hasAnswered = (ud.doubts||[]).some(d => d.officialAnswer && !d.seenAnswer);
   document.getElementById('home-alert').style.display = hasAnswered ? 'block' : 'none';
   document.getElementById('badge-doubts').style.display = hasAnswered ? 'inline-flex' : 'none';
-
+ 
   renderSidebar();
   renderModulesGrid();
   renderAchievements();
@@ -1237,14 +1255,14 @@ function initStudent() {
   updateProgress();
   showView('view-home');
 }
-
+ 
 function updateProgress() {
   const ud = getUserData(currentUser.user);
   const pct = Math.round(ud.completed.length / MODULES.length * 100);
   document.getElementById('s-bar').style.width = pct + '%';
   document.getElementById('s-pct').textContent = pct + '%';
 }
-
+ 
 function renderSidebar() {
   const ud = getUserData(currentUser.user);
   document.getElementById('sidebar-modules').innerHTML = MODULES.map(m => {
@@ -1264,7 +1282,7 @@ function renderSidebar() {
     </div>`;
   }).join('');
 }
-
+ 
 function renderModulesGrid() {
   const ud = getUserData(currentUser.user);
   document.getElementById('modules-grid-home').innerHTML = MODULES.map(m => {
@@ -1286,13 +1304,13 @@ function renderModulesGrid() {
     </div>`;
   }).join('');
 }
-
+ 
 function openModule(idx) {
   currentModIdx = idx;
   const m = MODULES[idx];
   const ud = getUserData(currentUser.user);
   const done = ud.completed.includes(idx);
-
+ 
   document.getElementById('vv-breadcrumb').textContent = m.tag;
   document.getElementById('vv-title').textContent = m.title;
   document.getElementById('vv-desc').textContent = m.desc;
@@ -1300,18 +1318,18 @@ function openModule(idx) {
   document.getElementById('vv-tag').textContent = m.tag;
   document.getElementById('vv-iframe').src = `https://www.youtube.com/embed/${m.videoId}?rel=0&enablejsapi=1`;
   document.getElementById('vv-roteiro').textContent = m.roteiro;
-
+ 
   // Render chapters
   renderChapters(idx, m.videoId);
-
+ 
   // Render quick summary
-
+ 
   // Default: abrir na versão rápida
-
+ 
   const btnComp = document.getElementById('btn-complete-mod');
   btnComp.disabled = done;
   btnComp.textContent = done ? '✓ Já concluído' : '✓ Marcar como concluído';
-
+ 
   // Quiz
   const quizArea = document.getElementById('quiz-area');
   const alreadyPassed = ud.quizScores[idx] >= 50;
@@ -1323,12 +1341,12 @@ function openModule(idx) {
   } else {
     quizArea.style.display = 'none';
   }
-
+ 
   showView('view-video');
   document.querySelector('.main-content').scrollTop = 0;
 }
-
-
+ 
+ 
 function renderChapters(idx, videoId) {
   const data = CHAPTERS[idx];
   if (!data) return;
@@ -1354,15 +1372,15 @@ function renderChapters(idx, videoId) {
     </div>`;
   }).join('');
 }
-
+ 
 function seekVideo(seconds) {
   const iframe = document.getElementById('vv-iframe');
   const m = MODULES[currentModIdx];
   iframe.src = `https://www.youtube.com/embed/${m.videoId}?rel=0&start=${seconds}&autoplay=1`;
   setTimeout(() => { iframe.scrollIntoView({ behavior:'smooth', block:'start' }); }, 150);
 }
-
-
+ 
+ 
 function renderQuiz(questions) {
   document.getElementById('quiz-questions').innerHTML = questions.map((q,qi) => `
     <div class="quiz-q">
@@ -1378,7 +1396,7 @@ function renderQuiz(questions) {
     </div>
   `).join('');
 }
-
+ 
 function submitQuiz() {
   const m = MODULES[currentModIdx];
   let correct = 0;
@@ -1411,7 +1429,7 @@ function submitQuiz() {
     res.innerHTML = `❌ Você acertou ${correct}/${m.quiz.length} (${pct}%). Veja as respostas corretas acima e revise o vídeo.`;
   }
 }
-
+ 
 function completeModule() {
   const ud = getUserData(currentUser.user);
   if (!ud.completed.includes(currentModIdx)) ud.completed.push(currentModIdx);
@@ -1424,13 +1442,13 @@ function completeModule() {
   updateProgress();
   showToast(`✅ Módulo ${currentModIdx+1} concluído! Ótimo trabalho.`, 'success');
 }
-
+ 
 function goNextModule() {
   const next = currentModIdx + 1;
   if (next < MODULES.length) openModule(next);
   else { showView('view-home'); showToast('🎓 Você completou todos os módulos!','success'); }
 }
-
+ 
 // ── VIEWS ──
 function showView(id) {
   document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
@@ -1439,19 +1457,19 @@ function showView(id) {
   if (id==='view-doubts') renderMyDoubts();
   document.querySelector('.main-content').scrollTop = 0;
 }
-
+ 
 // ── DÚVIDAS ──
 async function sendDoubt() {
   const text = document.getElementById('doubt-text').value.trim();
   const mod = document.getElementById('doubt-module').value;
   if (!text) { showToast('Escreva sua dúvida antes de enviar.','error'); return; }
-
+ 
   const ud = getUserData(currentUser.user);
   const doubt = { id: Date.now().toString(), module: mod, text, time: new Date().toISOString(), aiAnswer: null, officialAnswer: null };
   ud.doubts = ud.doubts || [];
   ud.doubts.push(doubt);
   saveStorage();
-
+ 
   // Show AI answer box
   const aiBox = document.getElementById('ai-answer-box');
   const aiText = document.getElementById('ai-text');
@@ -1459,10 +1477,10 @@ async function sendDoubt() {
   aiBox.style.display = 'block';
   aiText.textContent = '';
   typingDots.style.display = 'inline-flex';
-
+ 
   try {
     const systemPrompt = `Você é um assistente especializado no Gestta (sistema de gestão de tarefas para escritórios de contabilidade) e nas práticas da Gaideski Contabilidade, localizada em Santa Felicidade, Curitiba, PR. Responda dúvidas dos colaboradores sobre o uso do Gestta de forma clara, prática e direta, em português. Mantenha respostas em 2-4 parágrafos. Se não souber a resposta exata, oriente o colaborador a registrar a dúvida para o gestor responder pessoalmente.`;
-
+ 
     const resp = await fetch('https://api.anthropic.com/v1/messages', {
       method:'POST',
       headers:{ 'Content-Type':'application/json' },
@@ -1484,11 +1502,11 @@ async function sendDoubt() {
     typingDots.style.display = 'none';
     aiText.textContent = 'Resposta automática indisponível no momento. O gestor responderá em breve.';
   }
-
+ 
   document.getElementById('doubt-text').value = '';
   renderMyDoubts();
 }
-
+ 
 function renderMyDoubts() {
   const ud = getUserData(currentUser.user);
   const list = document.getElementById('my-doubts-list');
@@ -1513,7 +1531,7 @@ function renderMyDoubts() {
   sorted.forEach(d => { if(d.officialAnswer) d.seenAnswer = true; });
   saveStorage();
 }
-
+ 
 // ── CONQUISTAS ──
 function renderAchievements() {
   const ud = getUserData(currentUser.user);
@@ -1527,7 +1545,7 @@ function renderAchievements() {
     </div>`;
   }).join('');
 }
-
+ 
 // ── REGRAS ──
 function renderRules() {
   document.getElementById('rules-grid').innerHTML = RULES.map(r => `
@@ -1540,14 +1558,14 @@ function renderRules() {
     </div>
   `).join('');
 }
-
+ 
 // ── TOAST ──
 function showToast(msg, type='success') {
   const t = document.getElementById('toast');
   t.textContent = msg; t.className = 'toast show ' + type;
   setTimeout(() => t.classList.remove('show'), 3500);
 }
-
+ 
 // Init
 loadStorage();
 </script>
