@@ -21,18 +21,18 @@
 * { margin:0; padding:0; box-sizing:border-box; }
 html { scroll-behavior: smooth; }
 body { font-family:'Bricolage Grotesque',sans-serif; background:var(--bg); color:var(--text); min-height:100vh; overflow-x:hidden; }
- 
+
 /* ─── NOISE TEXTURE ─── */
 body::before {
   content:''; position:fixed; inset:0; pointer-events:none; z-index:0;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
   opacity:.4;
 }
- 
+
 /* ─── PAGES ─── */
 .page { display:none; min-height:100vh; position:relative; z-index:1; }
 .page.active { display:flex; flex-direction:column; }
- 
+
 /* ═══════════════════════════════
    LOGIN PAGE
 ═══════════════════════════════ */
@@ -89,7 +89,7 @@ body::before {
 }
 .btn-admin:hover { border-color:var(--navy2); color:var(--text); background:var(--surface2); }
 .error-msg { background:rgba(166,28,35,.15); border:1px solid rgba(166,28,35,.3); border-radius:var(--radius-sm); padding:10px 14px; color:#ff8080; font-size:13px; margin-top:16px; display:none; }
- 
+
 /* ═══════════════════════════════
    ADMIN PAGE
 ═══════════════════════════════ */
@@ -183,12 +183,12 @@ body::before {
 .btn-toggle-reply:hover { border-color:var(--navy2); color:var(--text); }
 .tag-unanswered { background:rgba(166,28,35,.15); color:#ff8080; font-size:10px; font-weight:700; padding:2px 7px; border-radius:4px; letter-spacing:.5px; }
 .tag-answered { background:var(--green-bg); color:var(--green); font-size:10px; font-weight:700; padding:2px 7px; border-radius:4px; letter-spacing:.5px; }
- 
+
 /* ═══════════════════════════════
    STUDENT PLATFORM
 ═══════════════════════════════ */
 #page-student { background:var(--bg); flex-direction:row; }
- 
+
 /* SIDEBAR */
 .sidebar {
   width:260px; min-height:100vh; background:var(--surface);
@@ -247,7 +247,7 @@ body::before {
   font-family:inherit; cursor:pointer; transition:.2s;
 }
 .btn-logout:hover { border-color:rgba(166,28,35,.4); color:#ff8080; }
- 
+
 /* MAIN CONTENT */
 .main-content { flex:1; min-width:0; overflow-y:auto; }
 .content-header {
@@ -256,11 +256,11 @@ body::before {
 .content-header h1 { font-size:24px; font-weight:800; letter-spacing:-.5px; }
 .content-header p { color:var(--text2); font-size:14px; margin-top:4px; }
 .content-body { padding:24px 36px 48px; }
- 
+
 /* ─── VIEWS ─── */
 .view { display:none; }
 .view.active { display:block; }
- 
+
 /* MÓDULOS GRID */
 .modules-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:18px; margin-top:8px; }
 .mod-card {
@@ -289,7 +289,7 @@ body::before {
   background:var(--green); color:#fff; font-size:10px; font-weight:700;
   width:24px; height:24px; border-radius:50%; display:flex; align-items:center; justify-content:center;
 }
- 
+
 /* VIDEO VIEW */
 .video-view-wrap { max-width:900px; }
 .breadcrumb { font-size:12px; color:var(--text3); margin-bottom:16px; display:flex; align-items:center; gap:6px; }
@@ -318,7 +318,7 @@ body::before {
   cursor:pointer; transition:.2s;
 }
 .btn-next-mod:hover { background:var(--surface3); }
- 
+
 /* QUIZ */
 .quiz-box {
   background:var(--surface); border:1px solid var(--border); border-radius:var(--radius);
@@ -352,7 +352,7 @@ body::before {
 }
 .quiz-result.pass { background:var(--green-bg); border:1px solid rgba(34,197,94,.3); color:var(--green); }
 .quiz-result.fail { background:var(--red-glow); border:1px solid rgba(166,28,35,.3); color:#ff8080; }
- 
+
 /* ROTEIRO */
 .roteiro-box {
   background:var(--bg2); border:1px solid var(--border); border-left:3px solid var(--red);
@@ -360,7 +360,7 @@ body::before {
 }
 .roteiro-box h4 { font-size:11px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:var(--red); margin-bottom:10px; }
 .roteiro-text { font-size:13px; line-height:1.8; color:var(--text2); white-space:pre-line; font-style:italic; }
- 
+
 /* VIDEO TABS */
 .vid-tabs {
   display:flex; gap:0; margin-bottom:0; border-bottom:1px solid var(--border);
@@ -375,7 +375,7 @@ body::before {
 .vid-tab.active { color:var(--text); border-bottom-color:var(--red); }
 .vid-tab-panel { display:none; }
 .vid-tab-panel.active { display:block; }
- 
+
 /* CHAPTERS */
 .chapters-box {
   background:var(--bg2); border:1px solid var(--border); border-radius:var(--radius);
@@ -418,7 +418,7 @@ body::before {
 .ch-tag.pule { background:rgba(255,255,255,.04); color:var(--text3); }
 .ch-arrow { color:var(--text3); font-size:12px; margin-top:2px; flex-shrink:0; transition:.15s; }
 .chapter-item:hover .ch-arrow { color:var(--red); transform:translateX(2px); }
- 
+
 /* QUICK SUMMARY (aba versão rápida) */
 .quick-summary {
   background:var(--bg2); border:1px solid var(--border); border-radius:var(--radius);
@@ -442,7 +442,7 @@ body::before {
 }
 .qs-cta span { color:var(--red); font-weight:700; cursor:pointer; }
 .qs-cta span:hover { text-decoration:underline; }
- 
+
 /* DÚVIDAS VIEW */
 .doubts-view { max-width:720px; }
 .doubt-form-card {
@@ -475,7 +475,7 @@ body::before {
 .typing-dots span:nth-child(2) { animation-delay:.15s; }
 .typing-dots span:nth-child(3) { animation-delay:.3s; }
 @keyframes dot { 0%,80%,100%{transform:scale(.8);opacity:.4} 40%{transform:scale(1);opacity:1} }
- 
+
 .my-doubts-list { display:flex; flex-direction:column; gap:14px; }
 .my-doubt-card {
   background:var(--surface); border:1px solid var(--border); border-radius:var(--radius);
@@ -490,7 +490,7 @@ body::before {
 .official-answer .oa-label { font-size:11px; font-weight:700; color:var(--navy2); margin-bottom:4px; }
 .official-answer p { font-size:13px; color:var(--text2); line-height:1.6; }
 .pending-answer { font-size:12px; color:var(--text3); font-style:italic; }
- 
+
 /* CONQUISTAS */
 .achievements-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(160px,1fr)); gap:14px; margin-top:8px; }
 .ach-card {
@@ -502,14 +502,14 @@ body::before {
 .ach-icon { font-size:32px; margin-bottom:10px; display:block; }
 .ach-card h4 { font-size:13px; font-weight:700; margin-bottom:4px; }
 .ach-card p { font-size:11px; color:var(--text2); }
- 
+
 /* LOADING SPINNER */
 .spinner {
   width:20px; height:20px; border:2px solid rgba(255,255,255,.2);
   border-top-color:#fff; border-radius:50%; animation:spin .7s linear infinite; display:inline-block;
 }
 @keyframes spin { to{transform:rotate(360deg)} }
- 
+
 /* TOAST */
 .toast {
   position:fixed; bottom:24px; right:24px; z-index:999;
@@ -521,7 +521,7 @@ body::before {
 .toast.show { transform:translateY(0); opacity:1; }
 .toast.success { border-color:rgba(34,197,94,.4); }
 .toast.error { border-color:rgba(166,28,35,.4); }
- 
+
 /* RESPONSIVE */
 @media(max-width:768px){
   .sidebar{ width:100%; min-height:auto; height:auto; position:relative; flex-direction:row; flex-wrap:wrap; border-right:none; border-bottom:1px solid var(--border); }
@@ -530,14 +530,14 @@ body::before {
   .content-header, .content-body { padding-left:20px; padding-right:20px; }
   .field-inline { grid-template-columns:1fr; }
 }
- 
+
 /* GLOW PULSE ANIMATION */
 @keyframes glow-pulse { 0%,100%{box-shadow:0 0 20px var(--red-glow)} 50%{box-shadow:0 0 40px rgba(166,28,35,.3)} }
 .mod-card.active-now { animation:glow-pulse 2s infinite; border-color:rgba(166,28,35,.4); }
 </style>
 </head>
 <body>
- 
+
 <!-- ═══ LOGIN PAGE ═══ -->
 <div id="page-login" class="page active">
   <div class="login-wrap">
@@ -564,7 +564,7 @@ body::before {
     </div>
   </div>
 </div>
- 
+
 <!-- ═══ ADMIN PAGE ═══ -->
 <div id="page-admin" class="page">
   <div class="admin-header">
@@ -590,7 +590,7 @@ body::before {
     </div>
   </div>
 </div>
- 
+
 <!-- ═══ STUDENT PAGE ═══ -->
 <div id="page-student" class="page">
   <!-- SIDEBAR -->
@@ -634,7 +634,7 @@ body::before {
       <button class="btn-logout" onclick="goLogin()">← Sair</button>
     </div>
   </div>
- 
+
   <!-- MAIN -->
   <div class="main-content">
     <!-- VIEW: MÓDULOS HOME -->
@@ -652,7 +652,7 @@ body::before {
         <div class="modules-grid" id="modules-grid-home"></div>
       </div>
     </div>
- 
+
     <!-- VIEW: VIDEO PLAYER -->
     <div id="view-video" class="view">
       <div class="content-header">
@@ -674,42 +674,23 @@ body::before {
               <h2 id="vv-h2">Título do Vídeo</h2>
               <span class="mod-tag" id="vv-tag">Módulo 01</span>
             </div>
-            <!-- TAB BUTTONS -->
-            <div class="vid-tabs">
-              <button class="vid-tab active" id="tab-btn-quick" onclick="switchTab('quick')">⚡ Versão Rápida</button>
-              <button class="vid-tab" id="tab-btn-full" onclick="switchTab('full')">🎬 Versão Completa</button>
+            <div class="video-embed">
+              <iframe id="vv-iframe" src="" allowfullscreen></iframe>
             </div>
- 
-            <!-- VERSÃO RÁPIDA -->
-            <div class="vid-tab-panel active" id="tab-quick">
-              <div style="padding:20px 22px">
-                <div class="quick-summary" id="quick-summary-content">
-                  <!-- preenchido via JS -->
-                </div>
+            <!-- CHAPTERS -->
+            <div class="chapters-box" id="chapters-box">
+              <div class="chapters-header">
+                <h4>📍 Índice do vídeo — clique no tempo para pular direto ao tema</h4>
+                <span class="chapters-tip">⭐ Essencial = assista este trecho</span>
               </div>
+              <div id="chapters-list"><!-- preenchido via JS --></div>
             </div>
- 
-            <!-- VERSÃO COMPLETA -->
-            <div class="vid-tab-panel" id="tab-full">
-              <div class="video-embed">
-                <iframe id="vv-iframe" src="" allowfullscreen></iframe>
-              </div>
-              <!-- CHAPTERS -->
-              <div class="chapters-box" id="chapters-box">
-                <div class="chapters-header">
-                  <h4>📍 Índice do vídeo — clique para pular direto ao tema</h4>
-                  <span class="chapters-tip">💡 ⭐ Essencial = o que você precisa assistir</span>
-                </div>
-                <div id="chapters-list"><!-- preenchido via JS --></div>
-              </div>
-            </div>
- 
             <div class="video-footer">
               <button class="btn-complete" id="btn-complete-mod" onclick="completeModule()">✓ Marcar como concluído</button>
               <button class="btn-next-mod" onclick="goNextModule()">Próximo módulo →</button>
             </div>
           </div>
- 
+
           <div class="roteiro-box">
             <h4>🎤 Roteiro do Vídeo</h4>
             <div class="roteiro-text" id="vv-roteiro"></div>
@@ -724,7 +705,7 @@ body::before {
         </div>
       </div>
     </div>
- 
+
     <!-- VIEW: DÚVIDAS -->
     <div id="view-doubts" class="view">
       <div class="content-header">
@@ -766,7 +747,7 @@ body::before {
         </div>
       </div>
     </div>
- 
+
     <!-- VIEW: CONQUISTAS -->
     <div id="view-achievements" class="view">
       <div class="content-header"><div><h1>🏆 Conquistas</h1><p>Complete módulos e avaliações para desbloquear medalhas.</p></div></div>
@@ -774,7 +755,7 @@ body::before {
         <div class="achievements-grid" id="ach-grid"></div>
       </div>
     </div>
- 
+
     <!-- VIEW: REGRAS -->
     <div id="view-rules" class="view">
       <div class="content-header"><div><h1>📋 Regras do Escritório</h1><p>Diretrizes obrigatórias para uso do Gestta na Gaideski Contabilidade.</p></div></div>
@@ -784,15 +765,15 @@ body::before {
     </div>
   </div>
 </div>
- 
+
 <!-- TOAST -->
 <div class="toast" id="toast"></div>
- 
+
 <script>
 // ══════════════════════════════════════════════
 // CONFIG — EDITE AQUI PARA PERSONALIZAR
 // ══════════════════════════════════════════════
- 
+
 // USUÁRIOS DA EQUIPE — adicione/remova conforme necessário
 // formato: { user: 'login', pass: 'senha', name: 'Nome Completo', role: 'Cargo' }
 const USERS = [
@@ -805,10 +786,10 @@ const USERS = [
   // Adicione mais colaboradores aqui
   // { user: 'nome', pass: 'senha123', name: 'Nome Completo', role: 'Cargo' },
 ];
- 
+
 // ADMIN
 const ADMIN = { user: 'admin', pass: 'GaideskiAdmin2026!' };
- 
+
 // MÓDULOS DE TREINAMENTO
 const MODULES = [
   {
@@ -819,18 +800,18 @@ const MODULES = [
     videoId: 'IZtkjVfeWK0',
     duration: '~5 min',
     roteiro: `Pessoal, a partir de agora o Gestta é a nossa ferramenta oficial de trabalho.
- 
+
 Isso significa que toda tarefa, todo andamento e todo controle precisa estar dentro do sistema.
- 
+
 O objetivo não é burocratizar — é organizar, dar clareza e evitar retrabalho.
- 
+
 Hoje o nosso maior desafio não é falta de trabalho. É falta de visibilidade sobre o que está acontecendo.
- 
+
 O Gestta resolve exatamente isso.
- 
+
 A regra é simples:
 👉 Se não está no Gestta, não existe.
- 
+
 Nos próximos módulos vou mostrar exatamente como usar no dia a dia.`,
     quiz: [
       { q: 'Qual é o principal objetivo do Gestta na Gaideski?', opts: ['Substituir o e-mail da equipe','Organizar e controlar tarefas do escritório','Emitir notas fiscais dos clientes','Fazer backup dos arquivos'], ans: 1 },
@@ -845,17 +826,17 @@ Nos próximos módulos vou mostrar exatamente como usar no dia a dia.`,
     videoId: '011Rl-cn7t8',
     duration: '~4 min',
     roteiro: `Dentro do Gestta, você tem todas as suas tarefas do dia.
- 
+
 Cada tarefa tem: responsável, prazo e status.
- 
+
 Você deve começar seu dia olhando o sistema.
- 
+
 Não é mais: "O que tenho que fazer hoje?"
 É: 👉 "O que está no Gestta com vencimento hoje?"
- 
+
 Filtre por responsável — você vai ver exatamente sua fila.
 Priorize pelo prazo mais próximo.
- 
+
 Se uma tarefa não estiver aqui, fale com seu gestor — pode estar faltando configuração.`,
     quiz: [
       { q: 'Como você deve começar seu dia de trabalho?', opts: ['Verificando e-mails primeiro','Abrindo o Gestta e verificando tarefas do dia','Perguntando ao gestor o que fazer','Verificando o WhatsApp'], ans: 1 },
@@ -870,16 +851,16 @@ Se uma tarefa não estiver aqui, fale com seu gestor — pode estar faltando con
     videoId: 'Os6pXtqlNCg',
     duration: '~4 min',
     roteiro: `Sempre que você iniciar ou avançar em uma tarefa, você precisa atualizar dentro do sistema.
- 
+
 Não acumule para depois. Registre na hora.
- 
+
 Isso evita:
 - Dúvidas dos colegas e gestores
 - Retrabalho por falta de informação
 - Perguntas desnecessárias sobre "onde está essa tarefa?"
- 
+
 O sistema é o ponto único de informação. Se você avançou, registre.
- 
+
 Se tiver algum impedimento — registre também. Isso é fundamental para a gestão poder ajudar.`,
     quiz: [
       { q: 'Quando você deve atualizar o status de uma tarefa?', opts: ['Uma vez ao dia, no final do expediente','Apenas quando concluir','Sempre que houver progresso, na hora','Uma vez por semana'], ans: 2 },
@@ -894,14 +875,14 @@ Se tiver algum impedimento — registre também. Isso é fundamental para a gest
     videoId: '69eY2G6ve1k',
     duration: '~3 min',
     roteiro: `Quando você finalizar uma tarefa, você deve concluí-la no sistema imediatamente.
- 
+
 Em alguns casos — quando você anexa um documento — o próprio Gestta conclui automaticamente.
- 
+
 Mas se isso não acontecer, você deve alterar manualmente o status para "Concluída".
- 
+
 Não deixe tarefa concluída com status errado.
 Isso distorce os relatórios e causa retrabalho para toda a equipe.
- 
+
 Lembre-se: a tarefa só está pronta quando o sistema confirma que está pronta.`,
     quiz: [
       { q: 'Quando uma tarefa pode ser concluída automaticamente?', opts: ['Quando passa do prazo','Quando você anexa o documento correto','Quando o cliente confirma recebimento','Toda semana automaticamente'], ans: 1 },
@@ -916,19 +897,19 @@ Lembre-se: a tarefa só está pronta quando o sistema confirma que está pronta.
     videoId: 'yGVJKiSjT4U',
     duration: '~5 min',
     roteiro: `Aqui vão as regras específicas da Gaideski Contabilidade:
- 
+
 ❌ NÃO usamos planilhas paralelas
 ❌ NÃO controlamos tarefas fora do sistema
 ❌ NÃO fazemos tarefa sem registrar
- 
+
 ✅ Tudo acontece dentro do Gestta
 ✅ Todo documento do cliente entra pelo portal
 ✅ Todo andamento é registrado em tempo real
- 
+
 Isso não é opcional. É o padrão do escritório.
- 
+
 Por quê? Porque quando todos registram no mesmo lugar, a gestão consegue enxergar, cobrar e apoiar de forma justa.
- 
+
 Sem controle centralizado, todo mundo perde tempo — inclusive você.`,
     quiz: [
       { q: 'É permitido usar planilha paralela para controlar tarefas?', opts: ['Sim, se for mais rápido','Sim, desde que seja informado ao gestor','Não — tudo deve ser no Gestta','Depende do tipo de tarefa'], ans: 2 },
@@ -936,7 +917,7 @@ Sem controle centralizado, todo mundo perde tempo — inclusive você.`,
     ]
   }
 ];
- 
+
 const RULES = [
   { type:'do', icon:'✅', title:'DEVE fazer', text:'Registrar toda tarefa no Gestta antes de executar' },
   { type:'dont', icon:'❌', title:'NÃO deve fazer', text:'Controlar tarefas em planilha paralela ou caderno' },
@@ -947,7 +928,7 @@ const RULES = [
   { type:'do', icon:'✅', title:'DEVE fazer', text:'Concluir a tarefa no sistema ao finalizá-la' },
   { type:'dont', icon:'❌', title:'NÃO deve fazer', text:'Receber documentos de clientes fora do portal' },
 ];
- 
+
 const ACHIEVEMENTS = [
   { id:'first_login', icon:'🚀', title:'Primeiro acesso', desc:'Entrou na plataforma pela primeira vez', cond: u => true },
   { id:'mod1', icon:'📖', title:'Fundamentos', desc:'Concluiu o Módulo 01', cond: u => u.completed.includes(0) },
@@ -956,98 +937,118 @@ const ACHIEVEMENTS = [
   { id:'first_doubt', icon:'💬', title:'Curioso(a)', desc:'Enviou sua primeira dúvida', cond: u => u.doubts && u.doubts.length > 0 },
   { id:'quiz_ace', icon:'🏅', title:'Destaque', desc:'Acertou 100% em um quiz', cond: u => u.quizAce },
 ];
- 
-// CHAPTERS — índice clicável de cada vídeo
+
+// CHAPTERS ultra-detalhados — índice clicável
 const CHAPTERS = {
-  0: { duration: '~57 min', chapters: [
-    { time: 508,  label: '08:21', title: 'Boas-vindas e apresentação', desc: 'Contexto sobre gestão de tarefas em escritórios contábeis', tag: 'intro' },
-    { time: 588,  label: '09:48', title: 'O que é o Gestta Processos', desc: 'Visão geral: o que o sistema resolve e como funciona', tag: 'essencial' },
-    { time: 863,  label: '14:23', title: 'Demonstração ao vivo — navegação real no sistema', desc: 'Telas, menus, fluxo de tarefas e funcionalidades principais', tag: 'essencial' },
-    { time: 3127, label: '52:07', title: 'Perguntas e respostas da equipe', desc: 'Dúvidas reais de usuários — pode conter situações parecidas com a sua', tag: 'util' },
+  0: { duration: '57 min', chapters: [
+    { time: 0,    label: '00:00', title: 'Abertura da live — apresentações iniciais', desc: 'Interação com participantes e boas-vindas', tag: 'pule' },
+    { time: 508,  label: '08:21', title: 'Boas-vindas oficiais — início do conteúdo', desc: 'Quem vai apresentar e o que será coberto na demonstração', tag: 'intro' },
+    { time: 588,  label: '09:48', title: 'O que é o Gestta Processos', desc: 'Definição do sistema: para que serve e qual problema resolve em escritórios contábeis', tag: 'essencial' },
+    { time: 740,  label: '12:20', title: 'Por que usar sistema de tarefas vs. planilha', desc: 'Diferença entre gerenciar no papel/planilha vs. sistema — impacto na produtividade', tag: 'essencial' },
+    { time: 863,  label: '14:23', title: '▶ INÍCIO DA DEMONSTRAÇÃO — tela real do sistema', desc: 'Acesso ao Gestta: login, dashboard inicial e visão geral das telas', tag: 'essencial' },
+    { time: 960,  label: '16:00', title: 'Dashboard — visão geral das tarefas na tela inicial', desc: 'O que aparece ao entrar: tarefas do dia, pendências e alertas de prazo', tag: 'essencial' },
+    { time: 1080, label: '18:00', title: 'Como as tarefas são organizadas por cliente', desc: 'Estrutura: cada cliente tem suas tarefas vinculadas automaticamente', tag: 'essencial' },
+    { time: 1200, label: '20:00', title: 'Filtros — como encontrar SUA fila de trabalho', desc: 'Filtrar por responsável, prazo e status para ver só o que é seu', tag: 'essencial' },
+    { time: 1320, label: '22:00', title: 'Status das tarefas: aberta, em andamento, concluída', desc: 'O que cada status significa e quando trocar para cada um', tag: 'essencial' },
+    { time: 1440, label: '24:00', title: 'Abrindo uma tarefa — o que tem dentro', desc: 'Detalhes: responsável, prazo, documentos exigidos e histórico', tag: 'essencial' },
+    { time: 1560, label: '26:00', title: 'Como registrar andamento em uma tarefa', desc: 'Atualizar o status e adicionar observações no histórico', tag: 'essencial' },
+    { time: 1680, label: '28:00', title: 'Anexar documentos dentro da tarefa', desc: 'Upload de arquivo diretamente na tarefa e notificação ao cliente', tag: 'essencial' },
+    { time: 1800, label: '30:00', title: '⭐ Conclusão automática ao anexar documento', desc: 'Configuração que fecha a tarefa sozinha quando o arquivo é inserido', tag: 'essencial' },
+    { time: 1920, label: '32:00', title: 'Tarefas recorrentes — criação e configuração', desc: 'Como criar tarefas que se repetem mensalmente: IRPJ, folha, SPED etc.', tag: 'essencial' },
+    { time: 2040, label: '34:00', title: 'Campos: frequência, data meta e dia útil', desc: 'Diferença entre data legal e data meta, e o que significa "dia útil"', tag: 'essencial' },
+    { time: 2160, label: '36:00', title: 'Postergar — tarefas em feriados e fins de semana', desc: 'Como o sistema move automaticamente para o próximo dia útil', tag: 'util' },
+    { time: 2280, label: '38:00', title: 'Vinculando tarefas recorrentes a clientes', desc: 'Como associar um tipo de tarefa a um ou vários clientes de uma vez', tag: 'util' },
+    { time: 2400, label: '40:00', title: 'Departamentos e responsáveis', desc: 'Como distribuir tarefas por área: fiscal, contábil, RH, administrativo', tag: 'util' },
+    { time: 2520, label: '42:00', title: 'Notificação por e-mail ao cliente', desc: 'E-mail automático ao cliente quando a tarefa for concluída', tag: 'avancado' },
+    { time: 2640, label: '44:00', title: 'Relatório de produtividade — visão do gestor', desc: 'Como o gestor acompanha desempenho da equipe: tarefas por pessoa, atrasos', tag: 'gestor' },
+    { time: 2760, label: '46:00', title: 'Painel de alertas — tarefas atrasadas e em aberto', desc: 'O que o gestor monitora diariamente para não deixar prazo passar', tag: 'gestor' },
+    { time: 2880, label: '48:00', title: 'Histórico de atividades por cliente', desc: 'Rastreabilidade: tudo que foi feito para um cliente fica registrado', tag: 'util' },
+    { time: 3000, label: '50:00', title: 'Portal do cliente — acesso e permissões', desc: 'Como o cliente acessa documentos e acompanha entregas pelo portal', tag: 'avancado' },
+    { time: 3127, label: '52:07', title: '💬 PERGUNTAS E RESPOSTAS — dúvidas reais', desc: 'Equipe pergunta ao vivo — muito provavelmente sua dúvida está aqui', tag: 'util' },
     { time: 3463, label: '57:43', title: 'Encerramento', desc: 'Resumo final e próximos passos', tag: 'pule' },
   ]},
-  1: { duration: '~60 min', chapters: [
-    { time: 0,    label: '00:00', title: 'Apresentação — integração Domínio + Gestta', desc: 'Por que os dois sistemas trabalham juntos e o que isso muda', tag: 'intro' },
-    { time: 600,  label: '10:00', title: 'Configuração inicial — usuários e departamentos', desc: 'Primeiros passos: como o gestor configura o sistema para a equipe', tag: 'gestor' },
-    { time: 1200, label: '20:00', title: 'Como visualizar suas tarefas do dia', desc: 'Filtros, organização e priorização da fila de trabalho diária', tag: 'essencial' },
-    { time: 1800, label: '30:00', title: 'Fluxo completo de uma tarefa — do início à conclusão', desc: 'Passo a passo real no sistema: abrir, avançar e concluir', tag: 'essencial' },
-    { time: 2700, label: '45:00', title: 'Relatórios e indicadores de produtividade', desc: 'O que gestores enxergam: atrasos, produtividade e alertas', tag: 'gestor' },
+  1: { duration: '60 min', chapters: [
+    { time: 0,    label: '00:00', title: 'Apresentação — parceria Domínio + Gestta', desc: 'Por que os dois sistemas foram integrados e o que muda no dia a dia', tag: 'intro' },
+    { time: 360,  label: '06:00', title: 'Como funciona a integração entre os sistemas', desc: 'Dados que trafegam automaticamente — sem redigitação entre Domínio e Gestta', tag: 'essencial' },
+    { time: 600,  label: '10:00', title: 'Configuração inicial — o que o gestor precisa fazer', desc: 'Antes de liberar para a equipe: configurações obrigatórias', tag: 'gestor' },
+    { time: 720,  label: '12:00', title: 'Criando usuários e definindo permissões', desc: 'Como cadastrar cada colaborador e o que cada um pode ver e fazer', tag: 'gestor' },
+    { time: 840,  label: '14:00', title: 'Organizando departamentos no Gestta', desc: 'Fiscal, contábil, pessoal, administrativo — estrutura da equipe', tag: 'gestor' },
+    { time: 960,  label: '16:00', title: 'Importando clientes do Domínio automaticamente', desc: 'Sincronização da base de clientes — sem cadastro manual', tag: 'essencial' },
+    { time: 1080, label: '18:00', title: 'Vinculando obrigações fiscais aos clientes', desc: 'Como o sistema sabe quais tarefas gerar para cada cliente automaticamente', tag: 'essencial' },
+    { time: 1200, label: '20:00', title: '▶ COMO VER SUAS TAREFAS DO DIA', desc: 'Tela principal: filtrar por responsável, ver prazos e organizar sua fila', tag: 'essencial' },
+    { time: 1320, label: '22:00', title: 'Priorização — o que fazer primeiro', desc: 'Lógica de prioridade por data de vencimento: como não perder prazo', tag: 'essencial' },
+    { time: 1440, label: '24:00', title: 'Abrindo uma tarefa e registrando início', desc: 'Como sinalizar que você começou a trabalhar em uma tarefa', tag: 'essencial' },
+    { time: 1560, label: '26:00', title: 'Adicionando comentários e observações', desc: 'Como comunicar andamento para colegas e gestores sem sair do sistema', tag: 'essencial' },
+    { time: 1680, label: '28:00', title: 'Impedimentos — o que fazer quando a tarefa trava', desc: 'Como registrar bloqueio e o motivo para o gestor tomar providência', tag: 'util' },
+    { time: 1800, label: '30:00', title: '▶ FLUXO COMPLETO — do início à conclusão', desc: 'Demonstração real passo a passo: tarefa abrindo, avançando e sendo concluída', tag: 'essencial' },
+    { time: 1980, label: '33:00', title: 'Conclusão manual vs. automática', desc: 'Quando o sistema fecha sozinho e quando você precisa fechar na mão', tag: 'essencial' },
+    { time: 2100, label: '35:00', title: 'Erros comuns — o que NÃO fazer', desc: 'Status errado, tarefa esquecida aberta, duplicidade — como evitar', tag: 'essencial' },
+    { time: 2280, label: '38:00', title: 'Recebendo documentos dos clientes no portal', desc: 'Como o cliente envia e como a tarefa é atualizada automaticamente', tag: 'util' },
+    { time: 2400, label: '40:00', title: 'Notificações de prazo que chegam por e-mail', desc: 'Alertas automáticos de vencimento que o sistema envia para você', tag: 'util' },
+    { time: 2520, label: '42:00', title: 'Dashboard do gestor — acompanhamento em tempo real', desc: 'Quem está atrasado, quem concluiu, taxa de produtividade da equipe', tag: 'gestor' },
+    { time: 2700, label: '45:00', title: 'Relatório de produtividade por colaborador', desc: 'Como gerar relatório de tarefas por pessoa e por período', tag: 'gestor' },
+    { time: 2880, label: '48:00', title: 'Tarefas vencidas — como cobrar a equipe com dados', desc: 'Quem está atrasado e há quantos dias — tela de cobrança com evidência', tag: 'gestor' },
+    { time: 3060, label: '51:00', title: '💬 Perguntas e respostas ao vivo', desc: 'Dúvidas da equipe respondidas na hora — muito prático', tag: 'util' },
   ]},
-  2: { duration: '~8 min', chapters: [
-    { time: 0,   label: '00:00', title: 'O que são tarefas recorrentes', desc: 'Conceito e por que automatizar tarefas que se repetem todo mês', tag: 'essencial' },
-    { time: 60,  label: '01:00', title: 'Caminho no sistema: Menu > Configure > Tarefas', desc: 'Onde criar e editar tarefas recorrentes dentro do Gestta', tag: 'essencial' },
-    { time: 120, label: '02:00', title: 'Campos obrigatórios: nome, frequência e data', desc: 'O que preencher em cada campo e o que significa "Dia Útil"', tag: 'essencial' },
-    { time: 240, label: '04:00', title: '⭐ Conclusão automática ao inserir documento', desc: 'Como ativar para que o sistema conclua a tarefa sozinho ao anexar arquivo', tag: 'essencial' },
-    { time: 360, label: '06:00', title: 'Postergar — tarefas que vencem em fins de semana', desc: 'Como o Gestta lida com vencimentos em feriados e sábados/domingos', tag: 'util' },
-    { time: 420, label: '07:00', title: 'Notificar cliente e gerar multa', desc: 'Configurações avançadas — não obrigatório para uso básico', tag: 'avancado' },
+  2: { duration: '8 min', chapters: [
+    { time: 0,   label: '00:00', title: 'O que são tarefas recorrentes', desc: 'Conceito: tarefas que se repetem automaticamente todo mês, trimestre ou ano', tag: 'essencial' },
+    { time: 45,  label: '00:45', title: 'Caminho no sistema: Menu → Configure → Tarefas Recorrentes → Novo', desc: 'Onde criar e editar — clique em "Novo" para começar', tag: 'essencial' },
+    { time: 90,  label: '01:30', title: 'Campo NOME — como nomear corretamente', desc: 'Use o nome da obrigação: ex. "SPED Fiscal", "IRPJ Trimestral", "Folha de Pagamento"', tag: 'essencial' },
+    { time: 135, label: '02:15', title: 'Campo ESFERA — federal, estadual ou municipal', desc: 'Classificação da obrigação fiscal — define filtros e relatórios do sistema', tag: 'essencial' },
+    { time: 180, label: '03:00', title: 'Campo FREQUÊNCIA — mensal, trimestral, anual', desc: 'Com que frequência a tarefa se repete. "Mensal" é o mais comum na contabilidade', tag: 'essencial' },
+    { time: 225, label: '03:45', title: 'Campo DIA ÚTIL — contagem em dias úteis', desc: 'Se marcado: "5" significa 5º dia útil do mês, não o dia 5 do calendário', tag: 'essencial' },
+    { time: 270, label: '04:30', title: '⭐ CONCLUIR AO INSERIR DOCUMENTO — mais importante do vídeo', desc: 'Com esta opção ativa, ao anexar o arquivo a tarefa fecha sozinha automaticamente', tag: 'essencial' },
+    { time: 330, label: '05:30', title: 'DATA META vs. DATA LEGAL — diferença crítica', desc: 'Data meta = entrega interna planejada. Data legal = vencimento oficial. Use os dois', tag: 'essencial' },
+    { time: 390, label: '06:30', title: 'POSTERGAR — como tratar fins de semana e feriados', desc: 'Postergar ativo: sábado vai para segunda. Sem postergar: vai para sexta anterior', tag: 'util' },
+    { time: 435, label: '07:15', title: 'Notificar cliente e Gerar multa', desc: 'E-mail automático ao cliente e flag de tarefa com penalidade por atraso', tag: 'avancado' },
+    { time: 465, label: '07:45', title: 'Salvar e conferir a tarefa criada', desc: 'Como verificar se a tarefa recorrente foi criada corretamente no sistema', tag: 'essencial' },
   ]},
-  3: { duration: '~45 min', chapters: [
-    { time: 0,    label: '00:00', title: 'Apresentação das novidades do Gestta', desc: 'O que mudou no sistema e como isso afeta o dia a dia', tag: 'intro' },
-    { time: 480,  label: '08:00', title: 'Novo fluxo de conclusão de tarefas', desc: 'Como concluir manualmente e automaticamente com documentos', tag: 'essencial' },
-    { time: 900,  label: '15:00', title: 'Verificação de status em tempo real', desc: 'Como acompanhar andamento sem precisar perguntar para colegas', tag: 'essencial' },
-    { time: 1500, label: '25:00', title: 'Integração com Domínio e Onvio', desc: 'Sincronização automática entre os sistemas — reduz retrabalho manual', tag: 'avancado' },
-    { time: 2100, label: '35:00', title: 'Dúvidas práticas respondidas ao vivo', desc: 'Perguntas frequentes da equipe sobre o uso no dia a dia', tag: 'util' },
+  3: { duration: '45 min', chapters: [
+    { time: 0,    label: '00:00', title: 'Abertura — novidades da versão atual do Gestta', desc: 'O que mudou no sistema recentemente e como afeta o uso diário', tag: 'intro' },
+    { time: 300,  label: '05:00', title: 'Nova interface — diferenças visuais e de navegação', desc: 'O que mudou nas telas em relação à versão anterior', tag: 'util' },
+    { time: 480,  label: '08:00', title: '▶ NOVO FLUXO DE CONCLUSÃO — como funciona agora', desc: 'Passo a passo atualizado para concluir uma tarefa corretamente', tag: 'essencial' },
+    { time: 600,  label: '10:00', title: 'Conclusão manual — quando e como usar', desc: 'Situações onde você precisa concluir na mão e o caminho exato no sistema', tag: 'essencial' },
+    { time: 720,  label: '12:00', title: 'Conclusão automática com documento — como ativar', desc: 'Configuração que fecha a tarefa automaticamente ao anexar o arquivo correto', tag: 'essencial' },
+    { time: 840,  label: '14:00', title: 'Impacto do status errado — por que é grave', desc: 'Tarefa concluída com status aberto: relatórios errados, cobrança errada, retrabalho', tag: 'essencial' },
+    { time: 960,  label: '16:00', title: '▶ VERIFICAÇÃO DE STATUS em tempo real', desc: 'Como acompanhar o andamento de tarefas sem precisar perguntar para colegas', tag: 'essencial' },
+    { time: 1080, label: '18:00', title: 'Histórico da tarefa — rastreabilidade completa', desc: 'Tudo que aconteceu numa tarefa fica gravado: quem fez, quando, o quê', tag: 'util' },
+    { time: 1200, label: '20:00', title: 'Notificações internas entre colaboradores', desc: 'Como avisar um colega sobre uma tarefa diretamente no sistema', tag: 'util' },
+    { time: 1380, label: '23:00', title: 'Painel de tarefas atrasadas — novo visual', desc: 'Visão consolidada de tudo vencido — por colaborador e por cliente', tag: 'gestor' },
+    { time: 1500, label: '25:00', title: 'Integração Domínio → Gestta — sincronização automática', desc: 'Obrigações geradas no Domínio viram tarefas no Gestta sem lançamento manual', tag: 'avancado' },
+    { time: 1680, label: '28:00', title: 'Integração Gestta → Onvio — envio de documentos', desc: 'Documentos concluídos no Gestta sincronizando com o portal Onvio do cliente', tag: 'avancado' },
+    { time: 1860, label: '31:00', title: 'Eliminando retrabalho com as integrações', desc: 'Antes: 3 sistemas separados. Agora: um fluxo único sem digitação dupla', tag: 'avancado' },
+    { time: 2100, label: '35:00', title: '💬 PERGUNTAS — casos reais do dia a dia', desc: 'Tarefa duplicada, prazo errado, documento no lugar errado — como resolver', tag: 'util' },
+    { time: 2400, label: '40:00', title: 'Como abrir chamado de suporte no Gestta', desc: 'Canal oficial de suporte e como descrever o problema corretamente', tag: 'util' },
+    { time: 2580, label: '43:00', title: 'Próximas funcionalidades previstas', desc: 'O que vem por aí no Gestta — roadmap de atualizações', tag: 'pule' },
   ]},
-  4: { duration: '~50 min', chapters: [
-    { time: 0,    label: '00:00', title: 'Abertura do webinar', desc: 'Contexto e pauta — pode pular se quiser ir direto ao conteúdo', tag: 'pule' },
-    { time: 600,  label: '10:00', title: 'Padronização de processos para a equipe', desc: 'Como criar padrões que toda a equipe segue — regras do escritório', tag: 'essencial' },
-    { time: 1200, label: '20:00', title: 'Controle de documentos recebidos dos clientes', desc: 'Organização de arquivos dentro do sistema e evitar duplicidade', tag: 'essencial' },
-    { time: 1800, label: '30:00', title: 'Dashboard do gestor — o que ele vê', desc: 'Produtividade, atrasos, alertas e visão geral da equipe', tag: 'gestor' },
-    { time: 2400, label: '40:00', title: 'Boas práticas — o que escritórios de sucesso fazem', desc: 'Diferenças entre quem usa bem e quem usa mal o Gestta', tag: 'essencial' },
+  4: { duration: '50 min', chapters: [
+    { time: 0,    label: '00:00', title: 'Abertura — pauta do webinar', desc: 'Pode pular se quiser ir direto ao conteúdo', tag: 'pule' },
+    { time: 360,  label: '06:00', title: 'Por que escritórios falham na adoção do Gestta', desc: 'Os 3 erros mais comuns: falta de padrão, uso paralelo e falta de cobrança', tag: 'essencial' },
+    { time: 540,  label: '09:00', title: 'O que diferencia escritórios que usam bem', desc: 'Boas práticas observadas — o que quem tem alta adoção faz diferente', tag: 'essencial' },
+    { time: 600,  label: '10:00', title: '▶ PADRONIZAÇÃO — criando regras para a equipe', desc: 'Como definir o que é obrigatório, o que é proibido e como cobrar cumprimento', tag: 'essencial' },
+    { time: 780,  label: '13:00', title: 'Mapeando os processos do escritório no Gestta', desc: 'Como transformar cada serviço prestado em uma tarefa recorrente padronizada', tag: 'essencial' },
+    { time: 960,  label: '16:00', title: 'Nomeação padrão das tarefas — por que importa', desc: 'Quando todos nomeiam igual, os filtros e relatórios funcionam corretamente', tag: 'util' },
+    { time: 1080, label: '18:00', title: 'Como treinar a equipe que resiste ao sistema', desc: 'Estratégia para engajar colaboradores que ainda usam planilha ou caderno', tag: 'essencial' },
+    { time: 1200, label: '20:00', title: '▶ CONTROLE DE DOCUMENTOS — portal como canal único', desc: 'Por que centralizar 100% do recebimento de documentos dos clientes pelo portal', tag: 'essencial' },
+    { time: 1380, label: '23:00', title: 'Protocolo de transição — migrando clientes para o portal', desc: 'Como migrar gradualmente clientes que ainda enviam por e-mail e WhatsApp', tag: 'essencial' },
+    { time: 1500, label: '25:00', title: 'Estrutura de pastas por cliente no Gestta', desc: 'Organização recomendada para facilitar localização e evitar duplicidade', tag: 'util' },
+    { time: 1680, label: '28:00', title: 'Permissões do cliente no portal', desc: 'O que o cliente consegue ver, enviar e baixar — como configurar por perfil', tag: 'avancado' },
+    { time: 1800, label: '30:00', title: '▶ DASHBOARD DO GESTOR — visão completa', desc: 'O que monitorar: produtividade, atrasos, volume de tarefas por colaborador', tag: 'gestor' },
+    { time: 1980, label: '33:00', title: 'Como cobrar a equipe usando dados do sistema', desc: 'Usando relatórios do Gestta para embasar conversas de performance com evidência', tag: 'gestor' },
+    { time: 2160, label: '36:00', title: 'Rotina de acompanhamento semanal — o que o gestor faz', desc: 'Quais relatórios verificar toda semana e o que fazer com as informações', tag: 'gestor' },
+    { time: 2400, label: '40:00', title: '▶ BOAS PRÁTICAS — lista consolidada', desc: 'O que os melhores escritórios fazem: práticas que aumentam produtividade e reduzem retrabalho', tag: 'essencial' },
+    { time: 2580, label: '43:00', title: 'Métricas de sucesso — como saber se está funcionando', desc: 'Indicadores: % de conclusão no prazo, taxa de atraso, tempo médio por tarefa', tag: 'gestor' },
+    { time: 2760, label: '46:00', title: '💬 Perguntas e casos reais', desc: 'Situações específicas de escritórios — muito prático e aplicável', tag: 'util' },
+    { time: 2940, label: '49:00', title: 'Encerramento e recursos de suporte', desc: 'Documentação, suporte e próximos passos', tag: 'pule' },
   ]}
 };
- 
-// QUICK SUMMARIES — resumo visual para versão rápida
-const QUICK_SUMMARIES = {
-  0: {
-    points: [
-      { icon:'🎯', title:'O Gestta é o sistema oficial da Gaideski', text:'Toda tarefa, andamento e controle passa por ele. Sem exceção.' },
-      { icon:'📋', title:'Se não está no Gestta, não existe', text:'Tarefas feitas fora do sistema não são contabilizadas e causam retrabalho para todos.' },
-      { icon:'👁️', title:'O sistema dá visibilidade para o gestor', text:'Ele consegue ver quem está fazendo o quê, sem precisar perguntar.' },
-      { icon:'⏱️', title:'Quer ver o essencial? Pule para 09:48', text:'A demonstração real começa em 14:23 e vai até 52:07.' },
-    ]
-  },
-  1: {
-    points: [
-      { icon:'🌅', title:'Comece o dia abrindo o Gestta', text:'Não é mais "o que tenho para fazer?" — é "o que está no sistema hoje?"' },
-      { icon:'🔍', title:'Filtre por responsável para ver só suas tarefas', text:'Cada colaborador tem sua própria fila. Use o filtro para focar.' },
-      { icon:'📅', title:'Priorize pelo prazo mais próximo', text:'O Gestta mostra os vencimentos — comece sempre pelos mais urgentes.' },
-      { icon:'⏱️', title:'Quer ver o essencial? Pule para 20:00', text:'A parte de visualizar tarefas começa ali e vai até 30:00.' },
-    ]
-  },
-  2: {
-    points: [
-      { icon:'🔁', title:'Tarefas recorrentes são automáticas', text:'IRPJ, CSLL, folha — configure uma vez e o Gestta gera todo mês.' },
-      { icon:'📎', title:'Ative "Concluir ao inserir documento"', text:'Com essa opção ativa, ao anexar o arquivo a tarefa fecha sozinha. Economiza tempo.' },
-      { icon:'📅', title:'Use "Postergar" para datas em fins de semana', text:'O sistema move automaticamente para o próximo dia útil.' },
-      { icon:'⏱️', title:'Este vídeo é curto — 8 minutos no total', text:'O ponto mais importante está em 04:00 (conclusão automática).' },
-    ]
-  },
-  3: {
-    points: [
-      { icon:'✅', title:'Conclua a tarefa imediatamente ao terminar', text:'Não deixe para depois. Tarefa concluída = status atualizado na hora.' },
-      { icon:'📎', title:'Ao anexar documento → tarefa fecha automaticamente', text:'Se não fechar, mude o status manualmente para "Concluída".' },
-      { icon:'🚫', title:'Status errado distorce os relatórios', text:'O gestor vê o que está no sistema. Status desatualizado = informação errada.' },
-      { icon:'⏱️', title:'Quer ver o essencial? Pule para 08:00', text:'O fluxo de conclusão começa ali. Em 15min você já sabe o que precisa.' },
-    ]
-  },
-  4: {
-    points: [
-      { icon:'📐', title:'Padronização é o segredo do uso correto', text:'Escritórios que usam bem o Gestta têm processos definidos para todos seguirem.' },
-      { icon:'📁', title:'Documentos de clientes só pelo portal', text:'Elimina retrabalho de organizar arquivos recebidos por e-mail ou WhatsApp.' },
-      { icon:'🚫', title:'Proibido: planilha paralela, caderno, controle fora do sistema', text:'Quando alguém faz fora, toda a visibilidade do escritório é prejudicada.' },
-      { icon:'⏱️', title:'Quer ver o essencial? Pule para 10:00', text:'Padronização de processos começa ali. É o trecho mais importante do vídeo.' },
-    ]
-  }
-};
- 
 // ══════════════════════════════════════════════
 // STATE
 // ══════════════════════════════════════════════
 let currentUser = null;
 let currentModIdx = 0;
 let storage = {};
- 
+
 function loadStorage() {
   try { storage = JSON.parse(localStorage.getItem('gaideski_lms') || '{}'); } catch(e) { storage = {}; }
 }
@@ -1058,7 +1059,7 @@ function getUserData(username) {
   if (!storage[username]) storage[username] = { completed:[], quizScores:{}, doubts:[], lastSeen: new Date().toISOString(), quizAce:false };
   return storage[username];
 }
- 
+
 // ══════════════════════════════════════════════
 // AUTH
 // ══════════════════════════════════════════════
@@ -1091,7 +1092,7 @@ function goLogin() {
 }
 document.getElementById('login-pass').addEventListener('keypress', e => { if(e.key==='Enter') doLogin(); });
 document.getElementById('login-user').addEventListener('keypress', e => { if(e.key==='Enter') doLogin(); });
- 
+
 // ══════════════════════════════════════════════
 // PAGES
 // ══════════════════════════════════════════════
@@ -1099,7 +1100,7 @@ function showPage(id) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.getElementById(id).classList.add('active');
 }
- 
+
 // ══════════════════════════════════════════════
 // ADMIN
 // ══════════════════════════════════════════════
@@ -1115,7 +1116,7 @@ function renderAdminKPIs() {
   const totalUsers = USERS.length;
   const completedAll = USERS.filter(u => (storage[u.user]?.completed||[]).length >= MODULES.length).length;
   const avgProgress = USERS.reduce((s,u) => s + (storage[u.user]?.completed||[]).length, 0) / (totalUsers * MODULES.length) * 100;
- 
+
   document.getElementById('admin-kpis').innerHTML = `
     <div class="kpi-card"><div class="kpi-num">${totalUsers}</div><div class="kpi-label">Colaboradores cadastrados</div></div>
     <div class="kpi-card"><div class="kpi-num">${completedAll}</div><div class="kpi-label">Treinamento 100% concluído</div></div>
@@ -1200,25 +1201,25 @@ function exportCSV() {
   const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
   a.download = `gaideski_treinamento_${new Date().toISOString().slice(0,10)}.csv`; a.click();
 }
- 
+
 // ══════════════════════════════════════════════
 // STUDENT PLATFORM
 // ══════════════════════════════════════════════
 function initStudent() {
   showPage('page-student');
   const ud = getUserData(currentUser.user);
- 
+
   // sidebar user
   document.getElementById('s-avatar').textContent = currentUser.name.charAt(0).toUpperCase();
   document.getElementById('s-name').textContent = currentUser.name;
   document.getElementById('s-role').textContent = currentUser.role;
   document.getElementById('welcome-name').textContent = currentUser.name.split(' ')[0] + '! 👋';
- 
+
   // check for answered doubts
   const hasAnswered = (ud.doubts||[]).some(d => d.officialAnswer && !d.seenAnswer);
   document.getElementById('home-alert').style.display = hasAnswered ? 'block' : 'none';
   document.getElementById('badge-doubts').style.display = hasAnswered ? 'inline-flex' : 'none';
- 
+
   renderSidebar();
   renderModulesGrid();
   renderAchievements();
@@ -1227,26 +1228,34 @@ function initStudent() {
   updateProgress();
   showView('view-home');
 }
- 
+
 function updateProgress() {
   const ud = getUserData(currentUser.user);
   const pct = Math.round(ud.completed.length / MODULES.length * 100);
   document.getElementById('s-bar').style.width = pct + '%';
   document.getElementById('s-pct').textContent = pct + '%';
 }
- 
+
 function renderSidebar() {
   const ud = getUserData(currentUser.user);
   document.getElementById('sidebar-modules').innerHTML = MODULES.map(m => {
     const done = ud.completed.includes(m.id);
-    return `<div class="nav-item" onclick="openModule(${m.id})">
-      <span class="ni-icon">${done ? '✅' : '▶️'}</span>
-      <span class="ni-text" style="font-size:12px">${m.tag.split('·')[0].trim()}</span>
-      ${done ? '<span class="ni-badge done">✓</span>' : ''}
+    const modNum = m.tag.split('·')[0].trim();
+    const modCat = m.tag.split('·')[1] ? m.tag.split('·')[1].trim() : '';
+    return `<div class="nav-item" style="flex-direction:column;align-items:flex-start;padding:10px 10px;gap:2px" onclick="openModule(${m.id})">
+      <div style="display:flex;align-items:center;gap:8px;width:100%">
+        <span class="ni-icon" style="font-size:13px">${done ? '✅' : '▶️'}</span>
+        <span style="font-size:11px;font-weight:700;color:var(--text3);letter-spacing:.5px;text-transform:uppercase">${modNum}</span>
+        ${done ? '<span class="ni-badge done" style="margin-left:auto">✓</span>' : ''}
+      </div>
+      <div style="padding-left:21px">
+        <div style="font-size:12px;font-weight:600;color:var(--text);line-height:1.3;margin-bottom:2px">${m.title}</div>
+        <div style="font-size:11px;color:var(--text3)">${modCat}</div>
+      </div>
     </div>`;
   }).join('');
 }
- 
+
 function renderModulesGrid() {
   const ud = getUserData(currentUser.user);
   document.getElementById('modules-grid-home').innerHTML = MODULES.map(m => {
@@ -1268,13 +1277,13 @@ function renderModulesGrid() {
     </div>`;
   }).join('');
 }
- 
+
 function openModule(idx) {
   currentModIdx = idx;
   const m = MODULES[idx];
   const ud = getUserData(currentUser.user);
   const done = ud.completed.includes(idx);
- 
+
   document.getElementById('vv-breadcrumb').textContent = m.tag;
   document.getElementById('vv-title').textContent = m.title;
   document.getElementById('vv-desc').textContent = m.desc;
@@ -1282,20 +1291,18 @@ function openModule(idx) {
   document.getElementById('vv-tag').textContent = m.tag;
   document.getElementById('vv-iframe').src = `https://www.youtube.com/embed/${m.videoId}?rel=0&enablejsapi=1`;
   document.getElementById('vv-roteiro').textContent = m.roteiro;
- 
+
   // Render chapters
   renderChapters(idx, m.videoId);
- 
+
   // Render quick summary
-  renderQuickSummary(idx);
- 
+
   // Default: abrir na versão rápida
-  switchTab('quick');
- 
+
   const btnComp = document.getElementById('btn-complete-mod');
   btnComp.disabled = done;
   btnComp.textContent = done ? '✓ Já concluído' : '✓ Marcar como concluído';
- 
+
   // Quiz
   const quizArea = document.getElementById('quiz-area');
   const alreadyPassed = ud.quizScores[idx] >= 50;
@@ -1307,19 +1314,12 @@ function openModule(idx) {
   } else {
     quizArea.style.display = 'none';
   }
- 
+
   showView('view-video');
   document.querySelector('.main-content').scrollTop = 0;
 }
- 
-function switchTab(tab) {
-  const isQuick = tab === 'quick';
-  document.getElementById('tab-quick').classList.toggle('active', isQuick);
-  document.getElementById('tab-full').classList.toggle('active', !isQuick);
-  document.getElementById('tab-btn-quick').classList.toggle('active', isQuick);
-  document.getElementById('tab-btn-full').classList.toggle('active', !isQuick);
-}
- 
+
+
 function renderChapters(idx, videoId) {
   const data = CHAPTERS[idx];
   if (!data) return;
@@ -1345,7 +1345,7 @@ function renderChapters(idx, videoId) {
     </div>`;
   }).join('');
 }
- 
+
 function seekVideo(seconds) {
   // Abre a aba completa e pula para o tempo
   switchTab('full');
@@ -1354,41 +1354,8 @@ function seekVideo(seconds) {
   iframe.src = `https://www.youtube.com/embed/${m.videoId}?rel=0&start=${seconds}&autoplay=1`;
   setTimeout(() => { iframe.scrollIntoView({ behavior:'smooth', block:'center' }); }, 200);
 }
- 
-function renderQuickSummary(idx) {
-  const qs = QUICK_SUMMARIES[idx];
-  if (!qs) return;
-  const m = MODULES[idx];
-  const ch = CHAPTERS[idx];
-  const essenciais = ch ? ch.chapters.filter(c => c.tag === 'essencial') : [];
-  const firstEssencial = essenciais[0];
- 
-  document.getElementById('quick-summary-content').innerHTML = `
-    <div class="qs-header">
-      <h4>📌 ${m.title}</h4>
-      <span class="qs-badge">RESUMO RÁPIDO</span>
-    </div>
-    <div style="font-size:12px;color:var(--text3);margin-bottom:16px;display:flex;align-items:center;gap:6px">
-      <span>⏱ Duração total do vídeo: <strong style="color:var(--text2)">${ch ? ch.duration : ''}</strong></span>
-      ${firstEssencial ? `<span style="margin-left:8px">·</span><span>Ponto essencial: <strong style="color:var(--red);cursor:pointer" onclick="seekVideo(${firstEssencial.time});switchTab('full')">${firstEssencial.label} →</strong></span>` : ''}
-    </div>
-    <div class="qs-points">
-      ${qs.points.map(p => `
-        <div class="qs-point">
-          <span class="qp-icon">${p.icon}</span>
-          <div class="qp-text">
-            <strong>${p.title}</strong>
-            <span>${p.text}</span>
-          </div>
-        </div>
-      `).join('')}
-    </div>
-    <div class="qs-cta">
-      💡 Quer ver na prática? <span onclick="switchTab('full')">Abra o vídeo completo →</span> e use o índice abaixo para pular direto ao que precisa.
-    </div>
-  `;
-}
- 
+
+
 function renderQuiz(questions) {
   document.getElementById('quiz-questions').innerHTML = questions.map((q,qi) => `
     <div class="quiz-q">
@@ -1404,7 +1371,7 @@ function renderQuiz(questions) {
     </div>
   `).join('');
 }
- 
+
 function submitQuiz() {
   const m = MODULES[currentModIdx];
   let correct = 0;
@@ -1437,7 +1404,7 @@ function submitQuiz() {
     res.innerHTML = `❌ Você acertou ${correct}/${m.quiz.length} (${pct}%). Veja as respostas corretas acima e revise o vídeo.`;
   }
 }
- 
+
 function completeModule() {
   const ud = getUserData(currentUser.user);
   if (!ud.completed.includes(currentModIdx)) ud.completed.push(currentModIdx);
@@ -1450,13 +1417,13 @@ function completeModule() {
   updateProgress();
   showToast(`✅ Módulo ${currentModIdx+1} concluído! Ótimo trabalho.`, 'success');
 }
- 
+
 function goNextModule() {
   const next = currentModIdx + 1;
   if (next < MODULES.length) openModule(next);
   else { showView('view-home'); showToast('🎓 Você completou todos os módulos!','success'); }
 }
- 
+
 // ── VIEWS ──
 function showView(id) {
   document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
@@ -1465,19 +1432,19 @@ function showView(id) {
   if (id==='view-doubts') renderMyDoubts();
   document.querySelector('.main-content').scrollTop = 0;
 }
- 
+
 // ── DÚVIDAS ──
 async function sendDoubt() {
   const text = document.getElementById('doubt-text').value.trim();
   const mod = document.getElementById('doubt-module').value;
   if (!text) { showToast('Escreva sua dúvida antes de enviar.','error'); return; }
- 
+
   const ud = getUserData(currentUser.user);
   const doubt = { id: Date.now().toString(), module: mod, text, time: new Date().toISOString(), aiAnswer: null, officialAnswer: null };
   ud.doubts = ud.doubts || [];
   ud.doubts.push(doubt);
   saveStorage();
- 
+
   // Show AI answer box
   const aiBox = document.getElementById('ai-answer-box');
   const aiText = document.getElementById('ai-text');
@@ -1485,10 +1452,10 @@ async function sendDoubt() {
   aiBox.style.display = 'block';
   aiText.textContent = '';
   typingDots.style.display = 'inline-flex';
- 
+
   try {
     const systemPrompt = `Você é um assistente especializado no Gestta (sistema de gestão de tarefas para escritórios de contabilidade) e nas práticas da Gaideski Contabilidade, localizada em Santa Felicidade, Curitiba, PR. Responda dúvidas dos colaboradores sobre o uso do Gestta de forma clara, prática e direta, em português. Mantenha respostas em 2-4 parágrafos. Se não souber a resposta exata, oriente o colaborador a registrar a dúvida para o gestor responder pessoalmente.`;
- 
+
     const resp = await fetch('https://api.anthropic.com/v1/messages', {
       method:'POST',
       headers:{ 'Content-Type':'application/json' },
@@ -1510,11 +1477,11 @@ async function sendDoubt() {
     typingDots.style.display = 'none';
     aiText.textContent = 'Resposta automática indisponível no momento. O gestor responderá em breve.';
   }
- 
+
   document.getElementById('doubt-text').value = '';
   renderMyDoubts();
 }
- 
+
 function renderMyDoubts() {
   const ud = getUserData(currentUser.user);
   const list = document.getElementById('my-doubts-list');
@@ -1539,7 +1506,7 @@ function renderMyDoubts() {
   sorted.forEach(d => { if(d.officialAnswer) d.seenAnswer = true; });
   saveStorage();
 }
- 
+
 // ── CONQUISTAS ──
 function renderAchievements() {
   const ud = getUserData(currentUser.user);
@@ -1553,7 +1520,7 @@ function renderAchievements() {
     </div>`;
   }).join('');
 }
- 
+
 // ── REGRAS ──
 function renderRules() {
   document.getElementById('rules-grid').innerHTML = RULES.map(r => `
@@ -1566,14 +1533,14 @@ function renderRules() {
     </div>
   `).join('');
 }
- 
+
 // ── TOAST ──
 function showToast(msg, type='success') {
   const t = document.getElementById('toast');
   t.textContent = msg; t.className = 'toast show ' + type;
   setTimeout(() => t.classList.remove('show'), 3500);
 }
- 
+
 // Init
 loadStorage();
 </script>
