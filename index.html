@@ -848,7 +848,7 @@ Se uma tarefa não estiver aqui, fale com seu gestor — pode estar faltando con
     title: 'Como dar andamento corretamente',
     desc: 'Registre o progresso de uma tarefa e mantenha todos atualizados em tempo real.',
     tag: 'Módulo 03 · Operação',
-    videoId: 'Os6pXtqlNCg',
+    videoId: 'nBgP413OkT8',
     duration: '~4 min',
     roteiro: `Sempre que você iniciar ou avançar em uma tarefa, você precisa atualizar dentro do sistema.
 
@@ -938,127 +938,136 @@ const ACHIEVEMENTS = [
   { id:'quiz_ace', icon:'🏅', title:'Destaque', desc:'Acertou 100% em um quiz', cond: u => u.quizAce },
 ];
 
-// CHAPTERS ultra-detalhados — índice clicável
+// CHAPTERS — baseados nas transcrições reais dos vídeos
 const CHAPTERS = {
   0: { duration: '57 min', chapters: [
-    { time: 0,    label: '00:00', title: 'Abertura da live — apresentações iniciais', desc: 'Interação com participantes e boas-vindas', tag: 'pule' },
-    { time: 508,  label: '08:21', title: 'Boas-vindas oficiais — início do conteúdo', desc: 'Quem vai apresentar e o que será coberto na demonstração', tag: 'intro' },
-    { time: 588,  label: '09:48', title: 'O que é o Gestta Processos', desc: 'Definição do sistema: para que serve e qual problema resolve em escritórios contábeis', tag: 'essencial' },
-    { time: 740,  label: '12:20', title: 'Por que usar sistema de tarefas vs. planilha', desc: 'Diferença entre gerenciar no papel/planilha vs. sistema — impacto na produtividade', tag: 'essencial' },
-    { time: 863,  label: '14:23', title: '▶ INÍCIO DA DEMONSTRAÇÃO — tela real do sistema', desc: 'Acesso ao Gestta: login, dashboard inicial e visão geral das telas', tag: 'essencial' },
-    { time: 960,  label: '16:00', title: 'Dashboard — visão geral das tarefas na tela inicial', desc: 'O que aparece ao entrar: tarefas do dia, pendências e alertas de prazo', tag: 'essencial' },
-    { time: 1080, label: '18:00', title: 'Como as tarefas são organizadas por cliente', desc: 'Estrutura: cada cliente tem suas tarefas vinculadas automaticamente', tag: 'essencial' },
-    { time: 1200, label: '20:00', title: 'Filtros — como encontrar SUA fila de trabalho', desc: 'Filtrar por responsável, prazo e status para ver só o que é seu', tag: 'essencial' },
-    { time: 1320, label: '22:00', title: 'Status das tarefas: aberta, em andamento, concluída', desc: 'O que cada status significa e quando trocar para cada um', tag: 'essencial' },
-    { time: 1440, label: '24:00', title: 'Abrindo uma tarefa — o que tem dentro', desc: 'Detalhes: responsável, prazo, documentos exigidos e histórico', tag: 'essencial' },
-    { time: 1560, label: '26:00', title: 'Como registrar andamento em uma tarefa', desc: 'Atualizar o status e adicionar observações no histórico', tag: 'essencial' },
-    { time: 1680, label: '28:00', title: 'Anexar documentos dentro da tarefa', desc: 'Upload de arquivo diretamente na tarefa e notificação ao cliente', tag: 'essencial' },
-    { time: 1800, label: '30:00', title: '⭐ Conclusão automática ao anexar documento', desc: 'Configuração que fecha a tarefa sozinha quando o arquivo é inserido', tag: 'essencial' },
-    { time: 1920, label: '32:00', title: 'Tarefas recorrentes — criação e configuração', desc: 'Como criar tarefas que se repetem mensalmente: IRPJ, folha, SPED etc.', tag: 'essencial' },
-    { time: 2040, label: '34:00', title: 'Campos: frequência, data meta e dia útil', desc: 'Diferença entre data legal e data meta, e o que significa "dia útil"', tag: 'essencial' },
-    { time: 2160, label: '36:00', title: 'Postergar — tarefas em feriados e fins de semana', desc: 'Como o sistema move automaticamente para o próximo dia útil', tag: 'util' },
-    { time: 2280, label: '38:00', title: 'Vinculando tarefas recorrentes a clientes', desc: 'Como associar um tipo de tarefa a um ou vários clientes de uma vez', tag: 'util' },
-    { time: 2400, label: '40:00', title: 'Departamentos e responsáveis', desc: 'Como distribuir tarefas por área: fiscal, contábil, RH, administrativo', tag: 'util' },
-    { time: 2520, label: '42:00', title: 'Notificação por e-mail ao cliente', desc: 'E-mail automático ao cliente quando a tarefa for concluída', tag: 'avancado' },
-    { time: 2640, label: '44:00', title: 'Relatório de produtividade — visão do gestor', desc: 'Como o gestor acompanha desempenho da equipe: tarefas por pessoa, atrasos', tag: 'gestor' },
-    { time: 2760, label: '46:00', title: 'Painel de alertas — tarefas atrasadas e em aberto', desc: 'O que o gestor monitora diariamente para não deixar prazo passar', tag: 'gestor' },
-    { time: 2880, label: '48:00', title: 'Histórico de atividades por cliente', desc: 'Rastreabilidade: tudo que foi feito para um cliente fica registrado', tag: 'util' },
-    { time: 3000, label: '50:00', title: 'Portal do cliente — acesso e permissões', desc: 'Como o cliente acessa documentos e acompanha entregas pelo portal', tag: 'avancado' },
-    { time: 3127, label: '52:07', title: '💬 PERGUNTAS E RESPOSTAS — dúvidas reais', desc: 'Equipe pergunta ao vivo — muito provavelmente sua dúvida está aqui', tag: 'util' },
-    { time: 3463, label: '57:43', title: 'Encerramento', desc: 'Resumo final e próximos passos', tag: 'pule' },
+    { time: 0,    label: '00:00', title: 'Bastidores ao vivo — aguardando início', desc: 'Apresentações no chat, boas-vindas. Conteúdo começa em 08:21', tag: 'pule' },
+    { time: 484,  label: '08:04', title: 'Problema raiz: como você controla as atividades do escritório?', desc: 'Reflexão sobre as dores reais da gestão: o que mais toma tempo e cria confusão', tag: 'essencial' },
+    { time: 604,  label: '10:04', title: 'A pergunta que todo escritório precisa responder', desc: 'Como garantir que cada atividade está sendo feita no prazo certo pelo responsável certo?', tag: 'essencial' },
+    { time: 726,  label: '12:06', title: 'Apresentação do Gestta Processos', desc: 'Plataforma 100% em nuvem focada exclusivamente na gestão de tarefas contábeis', tag: 'essencial' },
+    { time: 847,  label: '14:07', title: '▶ INÍCIO DA DEMONSTRAÇÃO — tela real do sistema', desc: 'Compartilhamento de tela: dashboard, visão geral e navegação inicial', tag: 'essencial' },
+    { time: 1020, label: '17:00', title: 'Dashboard — visão geral: setor contábil, financeiro, departamento pessoal', desc: 'Cada setor tem suas tarefas. Você vê prazos, responsáveis e status em tempo real', tag: 'essencial' },
+    { time: 1080, label: '18:00', title: 'Lendo os gráficos do dashboard — o que cada indicador significa', desc: 'Tarefa entregue no prazo vs. fora do prazo. Como avaliar o "por quê" do atraso', tag: 'essencial' },
+    { time: 1200, label: '20:00', title: 'Três tarefas abertas dentro do prazo — como visualizar', desc: 'Demonstração prática: filtrando tarefas por status e prazo na tela', tag: 'essencial' },
+    { time: 1324, label: '22:04', title: 'O foco do Gestta: trabalhar com atividades/tarefas', desc: 'Conceito central: cada obrigação do escritório vira uma tarefa gerenciável', tag: 'essencial' },
+    { time: 1442, label: '24:02', title: 'Validação ao concluir — o sistema confirma antes de fechar', desc: 'O Gestta faz validação (não bloqueia) — garante que você está consciente ao concluir', tag: 'essencial' },
+    { time: 1564, label: '26:04', title: '⭐ Anexar documento = tarefa concluída automaticamente', desc: 'Ao subir o arquivo na tarefa, ela fecha sozinha. Demonstração ao vivo com comprovante', tag: 'essencial' },
+    { time: 1683, label: '28:03', title: 'Outras formas de dar andamento: checklist e transferência', desc: 'Checklist de etapas antes de concluir. Transferir tarefa para outro responsável', tag: 'essencial' },
+    { time: 1806, label: '30:06', title: 'Tarefa com DARF — conclusão automática ao subir o arquivo', desc: 'Exemplo real: subindo DARF → tarefa conclui sozinha no mesmo instante', tag: 'essencial' },
+    { time: 1920, label: '32:00', title: 'Atividade livre — criando tarefa manual fora das recorrentes', desc: 'Como criar uma tarefa avulsa: cartório, serviço especial, demanda do cliente', tag: 'util' },
+    { time: 2046, label: '34:06', title: 'Integração financeira — tarefa gera cobrança automaticamente', desc: 'Ao concluir, o financeiro é notificado e uma tarefa de cobrança é criada automaticamente', tag: 'avancado' },
+    { time: 2160, label: '36:00', title: 'Definindo etapas dentro de uma tarefa complexa', desc: 'Tarefas com múltiplas etapas: definir o que deve ser feito em cada fase', tag: 'util' },
+    { time: 2281, label: '38:01', title: 'Fluxo do Imposto de Renda — 5 etapas configuradas', desc: 'Exemplo real: preparação, coleta, validação, declaração e entrega ao cliente', tag: 'essencial' },
+    { time: 2403, label: '40:03', title: 'Abertura de empresa — etapas e prazos definidos no sistema', desc: 'Tarefa complexa com viabilidade, junta, CNPJ etc. — cada etapa com responsável e prazo', tag: 'util' },
+    { time: 2521, label: '42:01', title: 'FGTS e guias — geração e disponibilização ao cliente', desc: 'Fluxo de guias: gerar, disponibilizar e registrar entrega dentro do Gestta', tag: 'util' },
+    { time: 2645, label: '44:05', title: 'Definindo prazos por etapa dentro de uma tarefa', desc: 'Cada etapa tem seu prazo independente — controle granular do processo', tag: 'util' },
+    { time: 2766, label: '46:06', title: 'Concluindo etapas em lote', desc: 'Como concluir várias tarefas ao mesmo tempo — recurso de produtividade', tag: 'util' },
+    { time: 2880, label: '48:00', title: 'Concluindo atividade com status atualizado em tempo real', desc: 'Demonstração: tarefa concluída e status atualizado instantaneamente no dashboard', tag: 'essencial' },
+    { time: 3002, label: '50:02', title: 'Concluir em lote — fechar várias tarefas de uma vez', desc: 'Recurso para finalizar múltiplas tarefas simultaneamente — economiza tempo', tag: 'util' },
+    { time: 3124, label: '52:04', title: '💬 PERGUNTAS E RESPOSTAS — dúvidas da equipe ao vivo', desc: 'Tarefas recorrentes, regras por regime tributário, dúvidas práticas respondidas', tag: 'util' },
+    { time: 3363, label: '56:03', title: 'Associação automática por regime tributário', desc: 'O Gestta já sabe quais tarefas gerar para cada empresa conforme o regime', tag: 'avancado' },
+    { time: 3480, label: '58:00', title: 'Encerramento e contato para dúvidas', desc: 'Como entrar em contato com suporte para questões não respondidas', tag: 'pule' },
   ]},
   1: { duration: '60 min', chapters: [
-    { time: 0,    label: '00:00', title: 'Apresentação — parceria Domínio + Gestta', desc: 'Por que os dois sistemas foram integrados e o que muda no dia a dia', tag: 'intro' },
-    { time: 360,  label: '06:00', title: 'Como funciona a integração entre os sistemas', desc: 'Dados que trafegam automaticamente — sem redigitação entre Domínio e Gestta', tag: 'essencial' },
-    { time: 600,  label: '10:00', title: 'Configuração inicial — o que o gestor precisa fazer', desc: 'Antes de liberar para a equipe: configurações obrigatórias', tag: 'gestor' },
-    { time: 720,  label: '12:00', title: 'Criando usuários e definindo permissões', desc: 'Como cadastrar cada colaborador e o que cada um pode ver e fazer', tag: 'gestor' },
-    { time: 840,  label: '14:00', title: 'Organizando departamentos no Gestta', desc: 'Fiscal, contábil, pessoal, administrativo — estrutura da equipe', tag: 'gestor' },
-    { time: 960,  label: '16:00', title: 'Importando clientes do Domínio automaticamente', desc: 'Sincronização da base de clientes — sem cadastro manual', tag: 'essencial' },
-    { time: 1080, label: '18:00', title: 'Vinculando obrigações fiscais aos clientes', desc: 'Como o sistema sabe quais tarefas gerar para cada cliente automaticamente', tag: 'essencial' },
-    { time: 1200, label: '20:00', title: '▶ COMO VER SUAS TAREFAS DO DIA', desc: 'Tela principal: filtrar por responsável, ver prazos e organizar sua fila', tag: 'essencial' },
-    { time: 1320, label: '22:00', title: 'Priorização — o que fazer primeiro', desc: 'Lógica de prioridade por data de vencimento: como não perder prazo', tag: 'essencial' },
-    { time: 1440, label: '24:00', title: 'Abrindo uma tarefa e registrando início', desc: 'Como sinalizar que você começou a trabalhar em uma tarefa', tag: 'essencial' },
-    { time: 1560, label: '26:00', title: 'Adicionando comentários e observações', desc: 'Como comunicar andamento para colegas e gestores sem sair do sistema', tag: 'essencial' },
-    { time: 1680, label: '28:00', title: 'Impedimentos — o que fazer quando a tarefa trava', desc: 'Como registrar bloqueio e o motivo para o gestor tomar providência', tag: 'util' },
-    { time: 1800, label: '30:00', title: '▶ FLUXO COMPLETO — do início à conclusão', desc: 'Demonstração real passo a passo: tarefa abrindo, avançando e sendo concluída', tag: 'essencial' },
-    { time: 1980, label: '33:00', title: 'Conclusão manual vs. automática', desc: 'Quando o sistema fecha sozinho e quando você precisa fechar na mão', tag: 'essencial' },
-    { time: 2100, label: '35:00', title: 'Erros comuns — o que NÃO fazer', desc: 'Status errado, tarefa esquecida aberta, duplicidade — como evitar', tag: 'essencial' },
-    { time: 2280, label: '38:00', title: 'Recebendo documentos dos clientes no portal', desc: 'Como o cliente envia e como a tarefa é atualizada automaticamente', tag: 'util' },
-    { time: 2400, label: '40:00', title: 'Notificações de prazo que chegam por e-mail', desc: 'Alertas automáticos de vencimento que o sistema envia para você', tag: 'util' },
-    { time: 2520, label: '42:00', title: 'Dashboard do gestor — acompanhamento em tempo real', desc: 'Quem está atrasado, quem concluiu, taxa de produtividade da equipe', tag: 'gestor' },
-    { time: 2700, label: '45:00', title: 'Relatório de produtividade por colaborador', desc: 'Como gerar relatório de tarefas por pessoa e por período', tag: 'gestor' },
-    { time: 2880, label: '48:00', title: 'Tarefas vencidas — como cobrar a equipe com dados', desc: 'Quem está atrasado e há quantos dias — tela de cobrança com evidência', tag: 'gestor' },
-    { time: 3060, label: '51:00', title: '💬 Perguntas e respostas ao vivo', desc: 'Dúvidas da equipe respondidas na hora — muito prático', tag: 'util' },
+    { time: 5,    label: '00:05', title: 'Boas-vindas — Masterclass Gestta Processos', desc: 'Semana de aprendizado das soluções Domínio. Apresentação da equipe e do cliente Josimar', tag: 'intro' },
+    { time: 367,  label: '06:07', title: 'Setup inicial do Gestta — primeiros passos de configuração', desc: 'O que fazer antes de liberar o sistema para a equipe usar', tag: 'gestor' },
+    { time: 481,  label: '08:01', title: 'Exemplo real: tarefa de Folha Mensal e suas etapas', desc: 'Dentro da folha mensal: cálculo, FGTS, INSS — cada um como subtarefa', tag: 'essencial' },
+    { time: 604,  label: '10:04', title: 'Competência da tarefa — como definir o mês de referência', desc: 'Configurar competência 11/2022: vinculação correta do período à tarefa', tag: 'essencial' },
+    { time: 722,  label: '12:02', title: 'Notificações automáticas para clientes ao concluir tarefas', desc: 'Ao concluir, o sistema envia e-mail automático para todos os clientes vinculados', tag: 'util' },
+    { time: 840,  label: '14:00', title: '⭐ Conclusão de tarefa dentro do Gestta — como o sistema processa', desc: 'O que acontece quando uma tarefa é concluída: status, histórico e notificações', tag: 'essencial' },
+    { time: 961,  label: '16:01', title: 'Gestão de documentos: como o Gestta organiza o que chega do cliente', desc: 'Ao receber documento, o sistema direciona automaticamente para a tarefa correta', tag: 'essencial' },
+    { time: 1085, label: '18:05', title: 'Caso real: 28 contratos em um mês — como o sistema suportou', desc: 'Depoimento do escritório Josimar: volume alto de clientes e como o Gestta organizou', tag: 'essencial' },
+    { time: 1206, label: '20:06', title: 'Tarefa concluída com todos os documentos — exemplo ao vivo', desc: 'Demonstração completa: tarefa contábil com documentos inseridos e conclusão', tag: 'essencial' },
+    { time: 1327, label: '22:07', title: 'Gestta Express — leitura automática de documentos', desc: 'O Express lê o documento e já direciona para o campo correto sem digitação', tag: 'avancado' },
+    { time: 1445, label: '24:05', title: 'Tarefas específicas que não têm integração automática', desc: 'Situações onde a tarefa não se vincula automaticamente — como tratar manualmente', tag: 'util' },
+    { time: 1563, label: '26:03', title: 'Ação de documento novo dentro do sistema', desc: 'Como registrar chegada de documento diretamente no Gestta para reconhecimento automático', tag: 'essencial' },
+    { time: 1684, label: '28:04', title: 'Atualizando tarefa aberta — o que muda ao dar refresh', desc: 'Demonstração: tarefa que estava aberta sendo atualizada com novo documento recebido', tag: 'essencial' },
+    { time: 1808, label: '30:08', title: '⭐ Leitura automática de documentos — reconhecimento e direcionamento', desc: 'Tudo que foi reconhecido no documento é direcionado automaticamente para a tarefa correta', tag: 'essencial' },
+    { time: 1922, label: '32:02', title: 'Conclusão por dentro do Gestta vs. integração automática', desc: 'Diferença entre concluir manualmente dentro do Gestta e a conclusão via integração', tag: 'essencial' },
+    { time: 2044, label: '34:04', title: 'Templates pré-definidos do Gestta Express', desc: 'O Express já vem com templates prontos — menos configuração para o escritório', tag: 'avancado' },
+    { time: 2165, label: '36:05', title: 'Resultado: zero multas por atraso em obrigações acessórias', desc: 'Depoimento real do escritório: desde que usa o Gestta, não perdeu mais prazo de entrega', tag: 'essencial' },
+    { time: 2281, label: '38:01', title: 'Padrão de envio de documentos para o cliente dentro da tarefa', desc: 'Como definir um padrão de envio de documentos vinculados a cada tarefa recorrente', tag: 'util' },
+    { time: 2403, label: '40:03', title: 'Cobrança automática de documentos — e-mail 5 dias antes', desc: 'Configurar para o sistema cobrar o cliente automaticamente antes do vencimento', tag: 'essencial' },
+    { time: 2528, label: '42:08', title: 'Extrato bancário — datas pré-fixadas para clientes', desc: 'Configurar cobrança de extrato com datas fixas para cada cliente', tag: 'util' },
+    { time: 2642, label: '44:02', title: 'Escritório real: como envia documentos para clientes com fluxo de caixa apertado', desc: 'Prática do escritório Josimar: comunicação proativa para clientes em situação delicada', tag: 'util' },
+    { time: 2760, label: '46:00', title: 'Visões do sistema: administrador, operador e cliente', desc: 'Três perfis com acesso diferente — o que cada um vê e pode fazer no Gestta', tag: 'gestor' },
+    { time: 2886, label: '48:06', title: 'Log de e-mails — rastreando entrega para o cliente', desc: 'Como verificar se o e-mail foi entregue ao cliente e o que fazer se não chegou', tag: 'util' },
+    { time: 3001, label: '50:01', title: 'Novidades chegando ainda naquele mês', desc: 'Funcionalidades novas em desenvolvimento e previsão de lançamento', tag: 'pule' },
+    { time: 3120, label: '52:00', title: '💬 PERGUNTAS — controle geral das tarefas do escritório', desc: 'Dashboard como ferramenta de controle total — dúvidas respondidas ao vivo', tag: 'util' },
+    { time: 3241, label: '54:01', title: 'Dashboard para controle e visualização centralizada', desc: 'Como usar o dashboard para ter uma visão geral de toda a operação do escritório', tag: 'gestor' },
+    { time: 3365, label: '56:05', title: 'Novo dashboard — funcionalidades em desenvolvimento', desc: 'Próximas atualizações: novos gráficos, filtros e melhorias visuais previstas', tag: 'pule' },
+    { time: 3482, label: '58:02', title: 'Diversificação de status — mais opções de controle', desc: 'Novos status disponíveis para controle mais granular das tarefas', tag: 'avancado' },
   ]},
   2: { duration: '8 min', chapters: [
     { time: 0,   label: '00:00', title: 'O que são tarefas recorrentes', desc: 'Conceito: tarefas que se repetem automaticamente todo mês, trimestre ou ano', tag: 'essencial' },
     { time: 45,  label: '00:45', title: 'Caminho no sistema: Menu → Configure → Tarefas Recorrentes → Novo', desc: 'Onde criar e editar — clique em "Novo" para começar', tag: 'essencial' },
     { time: 90,  label: '01:30', title: 'Campo NOME — como nomear corretamente', desc: 'Use o nome da obrigação: ex. "SPED Fiscal", "IRPJ Trimestral", "Folha de Pagamento"', tag: 'essencial' },
-    { time: 135, label: '02:15', title: 'Campo ESFERA — federal, estadual ou municipal', desc: 'Classificação da obrigação fiscal — define filtros e relatórios do sistema', tag: 'essencial' },
+    { time: 135, label: '02:15', title: 'Campo ESFERA — federal, estadual ou municipal', desc: 'Classificação da obrigação — define filtros e relatórios do sistema', tag: 'essencial' },
     { time: 180, label: '03:00', title: 'Campo FREQUÊNCIA — mensal, trimestral, anual', desc: 'Com que frequência a tarefa se repete. "Mensal" é o mais comum na contabilidade', tag: 'essencial' },
     { time: 225, label: '03:45', title: 'Campo DIA ÚTIL — contagem em dias úteis', desc: 'Se marcado: "5" significa 5º dia útil do mês, não o dia 5 do calendário', tag: 'essencial' },
-    { time: 270, label: '04:30', title: '⭐ CONCLUIR AO INSERIR DOCUMENTO — mais importante do vídeo', desc: 'Com esta opção ativa, ao anexar o arquivo a tarefa fecha sozinha automaticamente', tag: 'essencial' },
+    { time: 270, label: '04:30', title: '⭐ CONCLUIR AO INSERIR DOCUMENTO — o mais importante', desc: 'Com esta opção ativa, ao anexar o arquivo a tarefa fecha sozinha automaticamente', tag: 'essencial' },
     { time: 330, label: '05:30', title: 'DATA META vs. DATA LEGAL — diferença crítica', desc: 'Data meta = entrega interna planejada. Data legal = vencimento oficial. Use os dois', tag: 'essencial' },
     { time: 390, label: '06:30', title: 'POSTERGAR — como tratar fins de semana e feriados', desc: 'Postergar ativo: sábado vai para segunda. Sem postergar: vai para sexta anterior', tag: 'util' },
     { time: 435, label: '07:15', title: 'Notificar cliente e Gerar multa', desc: 'E-mail automático ao cliente e flag de tarefa com penalidade por atraso', tag: 'avancado' },
     { time: 465, label: '07:45', title: 'Salvar e conferir a tarefa criada', desc: 'Como verificar se a tarefa recorrente foi criada corretamente no sistema', tag: 'essencial' },
   ]},
-  3: { duration: '45 min', chapters: [
-    { time: 0,    label: '00:00', title: 'Abertura — novidades da versão atual do Gestta', desc: 'O que mudou no sistema recentemente e como afeta o uso diário', tag: 'intro' },
-    { time: 300,  label: '05:00', title: 'Nova interface — diferenças visuais e de navegação', desc: 'O que mudou nas telas em relação à versão anterior', tag: 'util' },
-    { time: 480,  label: '08:00', title: '▶ NOVO FLUXO DE CONCLUSÃO — como funciona agora', desc: 'Passo a passo atualizado para concluir uma tarefa corretamente', tag: 'essencial' },
-    { time: 600,  label: '10:00', title: 'Conclusão manual — quando e como usar', desc: 'Situações onde você precisa concluir na mão e o caminho exato no sistema', tag: 'essencial' },
-    { time: 720,  label: '12:00', title: 'Conclusão automática com documento — como ativar', desc: 'Configuração que fecha a tarefa automaticamente ao anexar o arquivo correto', tag: 'essencial' },
-    { time: 840,  label: '14:00', title: 'Impacto do status errado — por que é grave', desc: 'Tarefa concluída com status aberto: relatórios errados, cobrança errada, retrabalho', tag: 'essencial' },
-    { time: 960,  label: '16:00', title: '▶ VERIFICAÇÃO DE STATUS em tempo real', desc: 'Como acompanhar o andamento de tarefas sem precisar perguntar para colegas', tag: 'essencial' },
-    { time: 1080, label: '18:00', title: 'Histórico da tarefa — rastreabilidade completa', desc: 'Tudo que aconteceu numa tarefa fica gravado: quem fez, quando, o quê', tag: 'util' },
-    { time: 1200, label: '20:00', title: 'Notificações internas entre colaboradores', desc: 'Como avisar um colega sobre uma tarefa diretamente no sistema', tag: 'util' },
-    { time: 1380, label: '23:00', title: 'Painel de tarefas atrasadas — novo visual', desc: 'Visão consolidada de tudo vencido — por colaborador e por cliente', tag: 'gestor' },
-    { time: 1500, label: '25:00', title: 'Integração Domínio → Gestta — sincronização automática', desc: 'Obrigações geradas no Domínio viram tarefas no Gestta sem lançamento manual', tag: 'avancado' },
-    { time: 1680, label: '28:00', title: 'Integração Gestta → Onvio — envio de documentos', desc: 'Documentos concluídos no Gestta sincronizando com o portal Onvio do cliente', tag: 'avancado' },
-    { time: 1860, label: '31:00', title: 'Eliminando retrabalho com as integrações', desc: 'Antes: 3 sistemas separados. Agora: um fluxo único sem digitação dupla', tag: 'avancado' },
-    { time: 2100, label: '35:00', title: '💬 PERGUNTAS — casos reais do dia a dia', desc: 'Tarefa duplicada, prazo errado, documento no lugar errado — como resolver', tag: 'util' },
-    { time: 2400, label: '40:00', title: 'Como abrir chamado de suporte no Gestta', desc: 'Canal oficial de suporte e como descrever o problema corretamente', tag: 'util' },
-    { time: 2580, label: '43:00', title: 'Próximas funcionalidades previstas', desc: 'O que vem por aí no Gestta — roadmap de atualizações', tag: 'pule' },
+  3: { duration: '58 min', chapters: [
+    { time: 7,    label: '00:07', title: 'Boas-vindas — Webinar novidades do Gestta', desc: 'Apresentação: Felipe Brandão e Roger da Thomson Reuters. Demonstração + novidades', tag: 'intro' },
+    { time: 240,  label: '04:00', title: 'Demonstração ao vivo — novidades do primeiro trimestre', desc: 'O que foi lançado recentemente e o que está sendo preparado para as próximas semanas', tag: 'essencial' },
+    { time: 363,  label: '06:03', title: '▶ NOVIDADE: cadastrar mais de um cliente com mesmo CNPJ/CPF', desc: 'Permissão de múltiplos cadastros com o mesmo identificador — muito pedida pelos escritórios', tag: 'essencial' },
+    { time: 480,  label: '08:00', title: 'Perfis prontos — configurar padrões por tipo de cliente', desc: 'Criar perfis de tarefas que se aplicam automaticamente ao cadastrar novo cliente', tag: 'essencial' },
+    { time: 605,  label: '10:05', title: 'Vinculando 4 tarefas a um grupo de clientes de uma vez', desc: 'Selecionar agrupador e vincular múltiplas tarefas a todos os clientes do grupo simultaneamente', tag: 'essencial' },
+    { time: 725,  label: '12:05', title: 'Agrupador Lucro Presumido — vinculando na tela de clientes', desc: 'Como usar o agrupador para aplicar tarefas padronizadas por regime tributário', tag: 'essencial' },
+    { time: 844,  label: '14:04', title: 'Encaixando mais informações por dentro do cliente', desc: 'Dados adicionais que podem ser registrados diretamente na ficha do cliente', tag: 'util' },
+    { time: 965,  label: '16:05', title: 'Cenários específicos — tarefas para clientes com regras únicas', desc: 'Como criar perfis especiais para os poucos clientes que têm situações atípicas', tag: 'util' },
+    { time: 1083, label: '18:03', title: 'Removendo agrupador — como fazer corretamente', desc: 'Quando parar de usar um agrupador: como remover de todas as empresas de forma segura', tag: 'util' },
+    { time: 1200, label: '20:00', title: 'Remoção de tarefa — processo linear e como executar', desc: 'Passo a passo para remover uma tarefa de forma correta sem deixar pendências', tag: 'util' },
+    { time: 1324, label: '22:04', title: 'Alterações futuras no agrupador — o que afeta e o que não afeta', desc: 'Mudanças feitas no agrupador só afetam tarefas futuras, não as já criadas', tag: 'util' },
+    { time: 1444, label: '24:04', title: 'Geração de tarefas — aguardando o dia 20 para o Gestta processar', desc: 'Como funciona o ciclo de geração: o sistema gera na data configurada automaticamente', tag: 'essencial' },
+    { time: 1566, label: '26:06', title: 'Escolhendo o mês de geração de uma tarefa recorrente', desc: 'Configurar em qual mês específico uma tarefa deve ser gerada pelo sistema', tag: 'util' },
+    { time: 1683, label: '28:03', title: 'Limitação: um vínculo por cliente por tarefa', desc: 'O sistema não permite dois vínculos da mesma tarefa para o mesmo cliente', tag: 'util' },
+    { time: 1803, label: '30:03', title: 'Códigos únicos por empresa no Domínio — regra de cadastro', desc: 'Cada empresa precisa de código único no Domínio — não pode repetir', tag: 'avancado' },
+    { time: 1923, label: '32:03', title: '▶ NOVO DASHBOARD — em fase final de desenvolvimento', desc: 'Preview do novo dashboard: alteração visual, novos gráficos e filtros avançados', tag: 'essencial' },
+    { time: 2044, label: '34:04', title: 'Controle de documentos enviados — cliente ainda não baixou', desc: 'Como saber quais clientes receberam mas ainda não acessaram o documento', tag: 'essencial' },
+    { time: 2166, label: '36:06', title: 'Tarefas concluídas em atraso — como descontar da métrica', desc: 'Tarefa atrasada mas entregue: como marcar para não prejudicar o indicador do escritório', tag: 'gestor' },
+    { time: 2284, label: '38:04', title: 'Resumo das alterações de layout do dashboard atual', desc: 'O que mudou visualmente no dashboard existente antes do novo ser lançado', tag: 'util' },
+    { time: 2404, label: '40:04', title: 'Filtros combinados — dois agrupadores na mesma busca', desc: 'Como combinar filtros de agrupadores sem somar indevidamente os resultados', tag: 'util' },
+    { time: 2526, label: '42:06', title: '▶ Filtros salvos — aplicar visualização personalizada com um clique', desc: 'Salvar configuração de filtro e reaplicar rapidamente sem precisar reconfigurar', tag: 'essencial' },
+    { time: 2640, label: '44:00', title: 'Nova barra lateral do sistema', desc: 'Mudança de layout: itens movidos para barra lateral — como se adaptar', tag: 'util' },
+    { time: 2761, label: '46:01', title: 'Dois departamentos por tarefa — como aparece no dashboard', desc: 'Tarefa com dois departamentos vinculados: cada departamento aparece separado na tela', tag: 'util' },
+    { time: 2880, label: '48:00', title: 'Dashboard antigo: área inutilizável que foi reformulada', desc: 'Parte inferior do dashboard antigo era inútil — novo dashboard resolve isso', tag: 'util' },
+    { time: 3006, label: '50:06', title: 'Nova visualização para controle ágil das tarefas', desc: 'Como o novo layout traz mais velocidade e clareza para o gestor', tag: 'gestor' },
+    { time: 3120, label: '52:00', title: 'Colhendo feedbacks — o que ainda pode melhorar', desc: 'A equipe Gestta pede feedbacks sobre o novo dashboard para melhorias', tag: 'pule' },
+    { time: 3246, label: '54:06', title: 'Tarefas com vencimento nos próximos 30 dias — visão de risco', desc: 'Como filtrar o que vence em breve: nome do responsável, prazo e status', tag: 'gestor' },
+    { time: 3362, label: '56:02', title: 'Por que o novo dashboard foi desenvolvido — motivação', desc: 'Os motivos que levaram a equipe a redesenhar completamente o dashboard', tag: 'util' },
+    { time: 3481, label: '58:01', title: 'Portal + Gestta — abertura de ordem de serviço', desc: 'Integração entre portal do cliente e Gestta: ordem de serviço aberta pelo portal', tag: 'avancado' },
   ]},
-  4: { duration: '50 min', chapters: [
-    { time: 0,    label: '00:00', title: 'Abertura — pauta do webinar', desc: 'Pode pular se quiser ir direto ao conteúdo', tag: 'pule' },
-    { time: 360,  label: '06:00', title: 'Por que escritórios falham na adoção do Gestta', desc: 'Os 3 erros mais comuns: falta de padrão, uso paralelo e falta de cobrança', tag: 'essencial' },
-    { time: 540,  label: '09:00', title: 'O que diferencia escritórios que usam bem', desc: 'Boas práticas observadas — o que quem tem alta adoção faz diferente', tag: 'essencial' },
-    { time: 600,  label: '10:00', title: '▶ PADRONIZAÇÃO — criando regras para a equipe', desc: 'Como definir o que é obrigatório, o que é proibido e como cobrar cumprimento', tag: 'essencial' },
-    { time: 780,  label: '13:00', title: 'Mapeando os processos do escritório no Gestta', desc: 'Como transformar cada serviço prestado em uma tarefa recorrente padronizada', tag: 'essencial' },
-    { time: 960,  label: '16:00', title: 'Nomeação padrão das tarefas — por que importa', desc: 'Quando todos nomeiam igual, os filtros e relatórios funcionam corretamente', tag: 'util' },
-    { time: 1080, label: '18:00', title: 'Como treinar a equipe que resiste ao sistema', desc: 'Estratégia para engajar colaboradores que ainda usam planilha ou caderno', tag: 'essencial' },
-    { time: 1200, label: '20:00', title: '▶ CONTROLE DE DOCUMENTOS — portal como canal único', desc: 'Por que centralizar 100% do recebimento de documentos dos clientes pelo portal', tag: 'essencial' },
-    { time: 1380, label: '23:00', title: 'Protocolo de transição — migrando clientes para o portal', desc: 'Como migrar gradualmente clientes que ainda enviam por e-mail e WhatsApp', tag: 'essencial' },
-    { time: 1500, label: '25:00', title: 'Estrutura de pastas por cliente no Gestta', desc: 'Organização recomendada para facilitar localização e evitar duplicidade', tag: 'util' },
-    { time: 1680, label: '28:00', title: 'Permissões do cliente no portal', desc: 'O que o cliente consegue ver, enviar e baixar — como configurar por perfil', tag: 'avancado' },
-    { time: 1800, label: '30:00', title: '▶ DASHBOARD DO GESTOR — visão completa', desc: 'O que monitorar: produtividade, atrasos, volume de tarefas por colaborador', tag: 'gestor' },
-    { time: 1980, label: '33:00', title: 'Como cobrar a equipe usando dados do sistema', desc: 'Usando relatórios do Gestta para embasar conversas de performance com evidência', tag: 'gestor' },
-    { time: 2160, label: '36:00', title: 'Rotina de acompanhamento semanal — o que o gestor faz', desc: 'Quais relatórios verificar toda semana e o que fazer com as informações', tag: 'gestor' },
-    { time: 2400, label: '40:00', title: '▶ BOAS PRÁTICAS — lista consolidada', desc: 'O que os melhores escritórios fazem: práticas que aumentam produtividade e reduzem retrabalho', tag: 'essencial' },
-    { time: 2580, label: '43:00', title: 'Métricas de sucesso — como saber se está funcionando', desc: 'Indicadores: % de conclusão no prazo, taxa de atraso, tempo médio por tarefa', tag: 'gestor' },
-    { time: 2760, label: '46:00', title: '💬 Perguntas e casos reais', desc: 'Situações específicas de escritórios — muito prático e aplicável', tag: 'util' },
-    { time: 2940, label: '49:00', title: 'Encerramento e recursos de suporte', desc: 'Documentação, suporte e próximos passos', tag: 'pule' },
+  4: { duration: '48 min', chapters: [
+    { time: 7,    label: '00:07', title: 'Boas-vindas — Webinar Conheça as Novidades do Gestta', desc: 'Apresentação: Leandro Brambilla (gerente de produto), Felipe Brandão e Afonso', tag: 'intro' },
+    { time: 240,  label: '04:00', title: 'Gestta 2.0 — grande reformulação visual em andamento', desc: 'O Gestta está sendo totalmente reformulado: nova identidade visual, dashboard, kanban e calendário', tag: 'essencial' },
+    { time: 364,  label: '06:04', title: 'Agrupador de clientes — função nova e como usar', desc: 'Novo recurso: agrupar clientes por modelo de negócio e salvar buscas personalizadas', tag: 'essencial' },
+    { time: 481,  label: '08:01', title: 'Alterações de interface — sem mudança de funcionalidade', desc: 'O que mudou visualmente no sistema sem alterar como as coisas funcionam', tag: 'util' },
+    { time: 600,  label: '10:00', title: '▶ DADO DA TAREFA — agora puxa informação de todos os usos', desc: 'Campo da tarefa passou a capturar dados em todos os contextos de uso, não só em um', tag: 'essencial' },
+    { time: 723,  label: '12:03', title: 'Controle de documentos — cliente não baixou ainda', desc: 'Como identificar quais clientes receberam o documento mas ainda não fizeram o download', tag: 'essencial' },
+    { time: 844,  label: '14:04', title: 'Tarefas com cobrança de documento e filtros de situação', desc: 'Filtrar tarefas abertas com cobrança pendente de documento do cliente', tag: 'essencial' },
+    { time: 965,  label: '16:05', title: 'Status de impedimento, atraso e multa — visualização conjunta', desc: 'Ver todas as tarefas problemáticas juntas: independente do status, tudo que precisa atenção', tag: 'essencial' },
+    { time: 1084, label: '18:04', title: 'Filtros de período: mês atual, anterior, hoje, próximos 7 dias', desc: 'Atalhos de período para filtrar o dashboard rapidamente sem digitar datas', tag: 'essencial' },
+    { time: 1203, label: '20:03', title: 'Dashboard — gama de controles disponíveis para o gestor', desc: 'Tudo que o gestor pode monitorar: produtividade, atrasos, documentos, prazos', tag: 'gestor' },
+    { time: 1321, label: '22:01', title: '▶ Salvar filtro — aplicar visualização salva com um clique', desc: 'Vem aqui no "salvar filtro" e o dashboard inteiro se ajusta para aquela configuração', tag: 'essencial' },
+    { time: 1441, label: '24:01', title: 'Nova visão de relatórios dentro do dashboard', desc: 'Clicando em relatórios: quantidade de tarefas por status, por departamento e por período', tag: 'gestor' },
+    { time: 1563, label: '26:03', title: 'Quantidade de tarefas por status — leitura dos indicadores', desc: 'Como interpretar: quantas tarefas estão em cada status para o mês atual', tag: 'gestor' },
+    { time: 1686, label: '28:06', title: 'Busca rápida de tarefa específica — como usar', desc: 'A busca serve para localizar uma tarefa específica: folha, dados de um cliente etc.', tag: 'util' },
+    { time: 1803, label: '30:03', title: 'Virando o mês — dashboard se atualiza automaticamente', desc: 'Ao mudar de mês (ex: julho → agosto) o dashboard traz automaticamente os dados novos', tag: 'essencial' },
+    { time: 1923, label: '32:03', title: 'Tarefas do mês — independente de departamento', desc: 'Como ver todas as tarefas do mês sem filtrar por departamento específico', tag: 'util' },
+    { time: 2041, label: '34:01', title: '💬 PERGUNTAS — abertas para a equipe', desc: 'Início das perguntas: feriados, integrações, funcionalidades não disponíveis', tag: 'util' },
+    { time: 2160, label: '36:00', title: 'Feriados no Gestta — como funciona atualmente', desc: 'Feriados não são tratados nativamente hoje — como contornar essa limitação', tag: 'util' },
+    { time: 2285, label: '38:05', title: 'Solicitação de melhoria — como a equipe avalia', desc: 'Como o time de produto avalia e prioriza solicitações dos usuários', tag: 'pule' },
+    { time: 2401, label: '40:01', title: 'Funcionalidades em roadmap — o que ainda não está disponível', desc: 'O que está planejado mas ainda não foi lançado — mudanças previstas', tag: 'pule' },
+    { time: 2520, label: '42:00', title: 'Dados da tela principal e de relatórios — como funcionam juntos', desc: 'Relação entre dashboard principal e tela de relatórios: complementares, não duplicados', tag: 'util' },
+    { time: 2646, label: '44:06', title: 'Nova visão visual: cinza e laranja — nova identidade do Gestta', desc: 'Prévia da nova identidade visual do sistema: paleta cinza e laranja', tag: 'util' },
+    { time: 2763, label: '46:03', title: 'Funcionalidades futuras que podem ser lançadas em breve', desc: 'O time compartilha o que está sendo avaliado para os próximos lançamentos', tag: 'pule' },
   ]}
 };
-// ══════════════════════════════════════════════
-// STATE
-// ══════════════════════════════════════════════
-let currentUser = null;
-let currentModIdx = 0;
-let storage = {};
-
-function loadStorage() {
-  try { storage = JSON.parse(localStorage.getItem('gaideski_lms') || '{}'); } catch(e) { storage = {}; }
-}
-function saveStorage() {
-  localStorage.setItem('gaideski_lms', JSON.stringify(storage));
-}
-function getUserData(username) {
-  if (!storage[username]) storage[username] = { completed:[], quizScores:{}, doubts:[], lastSeen: new Date().toISOString(), quizAce:false };
-  return storage[username];
-}
 
 // ══════════════════════════════════════════════
 // AUTH
@@ -1347,12 +1356,10 @@ function renderChapters(idx, videoId) {
 }
 
 function seekVideo(seconds) {
-  // Abre a aba completa e pula para o tempo
-  switchTab('full');
   const iframe = document.getElementById('vv-iframe');
   const m = MODULES[currentModIdx];
   iframe.src = `https://www.youtube.com/embed/${m.videoId}?rel=0&start=${seconds}&autoplay=1`;
-  setTimeout(() => { iframe.scrollIntoView({ behavior:'smooth', block:'center' }); }, 200);
+  setTimeout(() => { iframe.scrollIntoView({ behavior:'smooth', block:'start' }); }, 150);
 }
 
 
