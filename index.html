@@ -1,0 +1,1484 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gaideski Academy — Plataforma de Treinamento</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,600;12..96,700;12..96,800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --red: #A61C23; --red2: #C8232C; --red-glow: rgba(166,28,35,.18);
+  --navy: #1E3A5F; --navy2: #254a7a; --navy-glow: rgba(30,58,95,.2);
+  --gold: #C9931A; --gold2: #e6a820;
+  --bg: #0d0f14; --bg2: #13161d; --bg3: #1a1e28;
+  --surface: #1e2230; --surface2: #252a3a; --surface3: #2d3347;
+  --border: rgba(255,255,255,.07); --border2: rgba(255,255,255,.12);
+  --text: #f0f2f7; --text2: #9aa3b8; --text3: #5c6480;
+  --green: #22c55e; --green-bg: rgba(34,197,94,.1);
+  --radius: 14px; --radius-sm: 8px;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+body { font-family:'Bricolage Grotesque',sans-serif; background:var(--bg); color:var(--text); min-height:100vh; overflow-x:hidden; }
+
+/* ─── NOISE TEXTURE ─── */
+body::before {
+  content:''; position:fixed; inset:0; pointer-events:none; z-index:0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  opacity:.4;
+}
+
+/* ─── PAGES ─── */
+.page { display:none; min-height:100vh; position:relative; z-index:1; }
+.page.active { display:flex; flex-direction:column; }
+
+/* ═══════════════════════════════
+   LOGIN PAGE
+═══════════════════════════════ */
+#page-login {
+  align-items:center; justify-content:center;
+  background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(166,28,35,.12) 0%, transparent 60%),
+              radial-gradient(ellipse 60% 40% at 80% 100%, rgba(30,58,95,.15) 0%, transparent 60%),
+              var(--bg);
+}
+.login-wrap { width:100%; max-width:420px; padding:24px; }
+.login-logo {
+  text-align:center; margin-bottom:40px;
+}
+.login-logo .badge {
+  display:inline-flex; align-items:center; justify-content:center;
+  width:64px; height:64px; border-radius:16px;
+  background:linear-gradient(135deg,var(--red),var(--red2));
+  font-size:26px; font-weight:800; color:#fff;
+  margin-bottom:16px;
+  box-shadow: 0 0 40px var(--red-glow);
+}
+.login-logo h1 { font-size:22px; font-weight:800; letter-spacing:-.5px; }
+.login-logo p { color:var(--text2); font-size:13px; margin-top:4px; }
+.login-card {
+  background:var(--surface); border:1px solid var(--border2);
+  border-radius:var(--radius); padding:32px;
+  box-shadow: 0 24px 80px rgba(0,0,0,.4);
+}
+.login-card h2 { font-size:18px; font-weight:700; margin-bottom:6px; }
+.login-card p { color:var(--text2); font-size:13px; margin-bottom:28px; }
+.field { margin-bottom:16px; }
+.field label { display:block; font-size:12px; font-weight:600; color:var(--text2); letter-spacing:.5px; text-transform:uppercase; margin-bottom:6px; }
+.field input, .field select {
+  width:100%; background:var(--bg2); border:1px solid var(--border2);
+  border-radius:var(--radius-sm); padding:12px 14px;
+  color:var(--text); font-size:14px; font-family:inherit;
+  outline:none; transition:.2s;
+}
+.field input:focus, .field select:focus { border-color:var(--red); box-shadow:0 0 0 3px var(--red-glow); }
+.btn-primary {
+  width:100%; padding:14px; border:none; border-radius:var(--radius-sm);
+  background:linear-gradient(135deg,var(--red),var(--red2));
+  color:#fff; font-size:15px; font-weight:700; font-family:inherit;
+  cursor:pointer; transition:.2s; letter-spacing:-.2px;
+  box-shadow:0 4px 20px var(--red-glow);
+}
+.btn-primary:hover { transform:translateY(-1px); box-shadow:0 8px 30px var(--red-glow); }
+.btn-primary:active { transform:translateY(0); }
+.login-divider { text-align:center; color:var(--text3); font-size:12px; margin:20px 0; }
+.btn-admin {
+  width:100%; padding:12px; border:1px solid var(--border2); border-radius:var(--radius-sm);
+  background:transparent; color:var(--text2); font-size:13px; font-weight:600;
+  font-family:inherit; cursor:pointer; transition:.2s;
+}
+.btn-admin:hover { border-color:var(--navy2); color:var(--text); background:var(--surface2); }
+.error-msg { background:rgba(166,28,35,.15); border:1px solid rgba(166,28,35,.3); border-radius:var(--radius-sm); padding:10px 14px; color:#ff8080; font-size:13px; margin-top:16px; display:none; }
+
+/* ═══════════════════════════════
+   ADMIN PAGE
+═══════════════════════════════ */
+#page-admin { background:var(--bg); }
+.admin-header {
+  background:var(--surface); border-bottom:1px solid var(--border);
+  padding:0 32px; display:flex; align-items:center; gap:16px; height:60px;
+  position:sticky; top:0; z-index:50;
+}
+.admin-header .logo-sm { font-size:13px; font-weight:700; color:var(--red); }
+.admin-header h2 { font-size:15px; font-weight:600; flex:1; }
+.btn-sm {
+  padding:7px 14px; border-radius:6px; font-size:12px; font-weight:600;
+  font-family:inherit; cursor:pointer; transition:.2s; border:none;
+}
+.btn-sm.ghost { background:transparent; border:1px solid var(--border2); color:var(--text2); }
+.btn-sm.ghost:hover { border-color:var(--border2); background:var(--surface2); color:var(--text); }
+.btn-sm.danger { background:rgba(166,28,35,.15); color:#ff8080; border:1px solid rgba(166,28,35,.3); }
+.admin-body { max-width:1200px; margin:0 auto; padding:32px 24px; }
+.admin-kpis { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-bottom:32px; }
+.kpi-card {
+  background:var(--surface); border:1px solid var(--border); border-radius:var(--radius);
+  padding:20px; position:relative; overflow:hidden;
+}
+.kpi-card::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:2px;
+  background:linear-gradient(90deg,var(--red),var(--gold));
+}
+.kpi-num { font-size:32px; font-weight:800; font-family:'JetBrains Mono',monospace; color:var(--text); line-height:1; }
+.kpi-label { font-size:12px; color:var(--text2); margin-top:6px; }
+.admin-section { margin-bottom:32px; }
+.admin-section h3 { font-size:15px; font-weight:700; margin-bottom:16px; display:flex; align-items:center; gap:8px; }
+.admin-section h3::after { content:''; flex:1; height:1px; background:var(--border); }
+.admin-table { width:100%; border-collapse:collapse; }
+.admin-table th {
+  text-align:left; padding:10px 14px; font-size:11px; font-weight:600;
+  color:var(--text3); letter-spacing:.8px; text-transform:uppercase;
+  border-bottom:1px solid var(--border);
+}
+.admin-table td {
+  padding:12px 14px; font-size:13px; border-bottom:1px solid var(--border);
+  vertical-align:middle;
+}
+.admin-table tr:hover td { background:var(--surface2); }
+.progress-mini { display:flex; align-items:center; gap:8px; }
+.mini-bar { flex:1; height:6px; background:var(--bg3); border-radius:99px; overflow:hidden; max-width:100px; }
+.mini-fill { height:100%; border-radius:99px; background:linear-gradient(90deg,var(--red),var(--gold)); transition:width .4s; }
+.badge-status {
+  display:inline-flex; align-items:center; gap:4px;
+  padding:3px 8px; border-radius:20px; font-size:11px; font-weight:600;
+}
+.badge-status.done { background:var(--green-bg); color:var(--green); }
+.badge-status.partial { background:rgba(201,147,26,.12); color:var(--gold); }
+.badge-status.none { background:rgba(255,255,255,.05); color:var(--text3); }
+.doubts-list { display:flex; flex-direction:column; gap:12px; }
+.doubt-card {
+  background:var(--surface); border:1px solid var(--border); border-radius:var(--radius);
+  padding:16px 20px;
+}
+.doubt-meta { display:flex; align-items:center; gap:10px; margin-bottom:8px; }
+.doubt-user { font-size:12px; font-weight:700; color:var(--gold); }
+.doubt-mod { font-size:11px; color:var(--text3); background:var(--bg3); padding:2px 8px; border-radius:20px; }
+.doubt-time { font-size:11px; color:var(--text3); margin-left:auto; }
+.doubt-q { font-size:14px; color:var(--text); margin-bottom:10px; }
+.doubt-answer {
+  background:var(--bg2); border-radius:var(--radius-sm); padding:12px 14px;
+  font-size:13px; color:var(--text2); line-height:1.6; display:none;
+}
+.doubt-answer.visible { display:block; }
+.doubt-answer-area {
+  display:none; margin-top:10px; gap:8px; flex-direction:column;
+}
+.doubt-answer-area.visible { display:flex; }
+.doubt-answer-area textarea {
+  background:var(--bg2); border:1px solid var(--border2); border-radius:var(--radius-sm);
+  padding:10px 12px; color:var(--text); font-size:13px; font-family:inherit;
+  resize:vertical; min-height:80px; outline:none;
+}
+.doubt-answer-area textarea:focus { border-color:var(--navy2); }
+.btn-reply {
+  padding:8px 16px; background:var(--navy); color:#fff; border:none;
+  border-radius:6px; font-size:12px; font-weight:600; font-family:inherit; cursor:pointer;
+  align-self:flex-end; transition:.2s;
+}
+.btn-reply:hover { background:var(--navy2); }
+.btn-toggle-reply {
+  font-size:12px; color:var(--text2); background:none; border:1px solid var(--border);
+  padding:5px 12px; border-radius:6px; cursor:pointer; font-family:inherit;
+  transition:.2s; margin-top:8px;
+}
+.btn-toggle-reply:hover { border-color:var(--navy2); color:var(--text); }
+.tag-unanswered { background:rgba(166,28,35,.15); color:#ff8080; font-size:10px; font-weight:700; padding:2px 7px; border-radius:4px; letter-spacing:.5px; }
+.tag-answered { background:var(--green-bg); color:var(--green); font-size:10px; font-weight:700; padding:2px 7px; border-radius:4px; letter-spacing:.5px; }
+
+/* ═══════════════════════════════
+   STUDENT PLATFORM
+═══════════════════════════════ */
+#page-student { background:var(--bg); flex-direction:row; }
+
+/* SIDEBAR */
+.sidebar {
+  width:260px; min-height:100vh; background:var(--surface);
+  border-right:1px solid var(--border); display:flex; flex-direction:column;
+  position:sticky; top:0; height:100vh; overflow-y:auto; flex-shrink:0;
+}
+.sidebar-logo {
+  padding:24px 20px 20px; border-bottom:1px solid var(--border);
+}
+.sidebar-logo .logo-badge {
+  width:36px; height:36px; border-radius:8px;
+  background:linear-gradient(135deg,var(--red),var(--red2));
+  display:inline-flex; align-items:center; justify-content:center;
+  font-size:14px; font-weight:800; color:#fff; margin-bottom:10px;
+}
+.sidebar-logo h2 { font-size:14px; font-weight:700; line-height:1.2; }
+.sidebar-logo p { font-size:11px; color:var(--text3); margin-top:2px; }
+.sidebar-user {
+  padding:14px 20px; border-bottom:1px solid var(--border);
+  display:flex; align-items:center; gap:10px;
+}
+.user-avatar {
+  width:32px; height:32px; border-radius:50%;
+  background:linear-gradient(135deg,var(--navy),var(--navy2));
+  display:flex; align-items:center; justify-content:center;
+  font-size:13px; font-weight:700; color:#fff; flex-shrink:0;
+}
+.user-info { flex:1; min-width:0; }
+.user-info strong { display:block; font-size:13px; font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.user-info span { font-size:11px; color:var(--text3); }
+.sidebar-progress { padding:16px 20px; border-bottom:1px solid var(--border); }
+.sidebar-progress p { font-size:11px; color:var(--text3); margin-bottom:6px; }
+.sidebar-progress .bar-track { height:4px; background:var(--bg3); border-radius:99px; overflow:hidden; }
+.sidebar-progress .bar-fill { height:100%; background:linear-gradient(90deg,var(--red),var(--gold)); border-radius:99px; transition:width .4s; }
+.sidebar-progress .bar-pct { font-size:12px; font-weight:700; color:var(--gold); margin-top:4px; font-family:'JetBrains Mono',monospace; }
+.sidebar-nav { flex:1; padding:12px 12px; }
+.nav-section-label { font-size:10px; font-weight:700; color:var(--text3); letter-spacing:1px; text-transform:uppercase; padding:8px 8px 4px; }
+.nav-item {
+  display:flex; align-items:center; gap:10px; padding:9px 10px;
+  border-radius:var(--radius-sm); cursor:pointer; transition:.15s;
+  margin-bottom:2px; position:relative;
+}
+.nav-item:hover { background:var(--surface2); }
+.nav-item.active { background:var(--red-glow); }
+.nav-item.active::before { content:''; position:absolute; left:0; top:50%; transform:translateY(-50%); width:3px; height:20px; background:var(--red); border-radius:0 3px 3px 0; }
+.nav-item .ni-icon { font-size:15px; width:20px; text-align:center; flex-shrink:0; }
+.nav-item .ni-text { flex:1; font-size:13px; font-weight:500; }
+.nav-item .ni-badge { font-size:10px; padding:2px 6px; border-radius:99px; font-weight:700; }
+.ni-badge.done { background:var(--green-bg); color:var(--green); }
+.ni-badge.locked { background:var(--bg3); color:var(--text3); }
+.ni-badge.new { background:rgba(201,147,26,.15); color:var(--gold); }
+.sidebar-footer { padding:16px 20px; border-top:1px solid var(--border); }
+.btn-logout {
+  width:100%; padding:9px; background:transparent; border:1px solid var(--border);
+  color:var(--text3); border-radius:var(--radius-sm); font-size:12px; font-weight:600;
+  font-family:inherit; cursor:pointer; transition:.2s;
+}
+.btn-logout:hover { border-color:rgba(166,28,35,.4); color:#ff8080; }
+
+/* MAIN CONTENT */
+.main-content { flex:1; min-width:0; overflow-y:auto; }
+.content-header {
+  padding:28px 36px 0; display:flex; align-items:flex-start; justify-content:space-between; gap:16px;
+}
+.content-header h1 { font-size:24px; font-weight:800; letter-spacing:-.5px; }
+.content-header p { color:var(--text2); font-size:14px; margin-top:4px; }
+.content-body { padding:24px 36px 48px; }
+
+/* ─── VIEWS ─── */
+.view { display:none; }
+.view.active { display:block; }
+
+/* MÓDULOS GRID */
+.modules-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:18px; margin-top:8px; }
+.mod-card {
+  background:var(--surface); border:1px solid var(--border); border-radius:var(--radius);
+  overflow:hidden; cursor:pointer; transition:.2s; position:relative;
+}
+.mod-card:hover { border-color:var(--border2); transform:translateY(-2px); box-shadow:0 12px 40px rgba(0,0,0,.3); }
+.mod-card.locked { opacity:.5; pointer-events:none; cursor:default; }
+.mod-card.completed { border-color:rgba(34,197,94,.25); }
+.mod-card-top { padding:20px 20px 16px; }
+.mod-num-label { font-size:10px; font-weight:700; color:var(--text3); letter-spacing:1px; text-transform:uppercase; margin-bottom:8px; display:flex; align-items:center; justify-content:space-between; }
+.mod-card h3 { font-size:15px; font-weight:700; line-height:1.3; margin-bottom:6px; }
+.mod-card p { font-size:12px; color:var(--text2); line-height:1.5; }
+.mod-card-footer { padding:12px 20px; background:var(--bg2); display:flex; align-items:center; justify-content:space-between; }
+.mod-meta { font-size:11px; color:var(--text3); }
+.btn-watch {
+  padding:7px 16px; border-radius:6px; font-size:12px; font-weight:700;
+  font-family:inherit; cursor:pointer; border:none; transition:.2s;
+}
+.btn-watch.primary { background:var(--red); color:#fff; }
+.btn-watch.primary:hover { background:var(--red2); }
+.btn-watch.done { background:var(--green-bg); color:var(--green); border:1px solid rgba(34,197,94,.3); }
+.btn-watch.done:hover { background:rgba(34,197,94,.15); }
+.completed-ribbon {
+  position:absolute; top:12px; right:12px;
+  background:var(--green); color:#fff; font-size:10px; font-weight:700;
+  width:24px; height:24px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+}
+
+/* VIDEO VIEW */
+.video-view-wrap { max-width:900px; }
+.breadcrumb { font-size:12px; color:var(--text3); margin-bottom:16px; display:flex; align-items:center; gap:6px; }
+.breadcrumb span { cursor:pointer; color:var(--text2); transition:.2s; }
+.breadcrumb span:hover { color:var(--red); }
+.breadcrumb .sep { color:var(--text3); }
+.video-player-box {
+  background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; margin-bottom:20px;
+}
+.video-header { padding:18px 22px 14px; border-bottom:1px solid var(--border); display:flex; align-items:center; justify-content:space-between; }
+.video-header h2 { font-size:17px; font-weight:700; }
+.video-header .mod-tag { font-size:11px; color:var(--text3); background:var(--bg3); padding:3px 10px; border-radius:20px; }
+.video-embed { position:relative; padding-bottom:56.25%; background:#000; overflow:hidden; }
+.video-embed iframe { position:absolute; inset:0; width:100%; height:100%; border:none; }
+.video-embed video { position:absolute; inset:0; width:100%; height:100%; border:none; object-fit:contain; background:#000; }
+.video-footer { padding:16px 22px; display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
+.btn-complete {
+  padding:11px 22px; background:var(--green); color:#fff; border:none;
+  border-radius:var(--radius-sm); font-size:14px; font-weight:700; font-family:inherit;
+  cursor:pointer; transition:.2s; display:flex; align-items:center; gap:6px;
+}
+.btn-complete:hover { background:#16a34a; }
+.btn-complete:disabled { background:var(--text3); cursor:default; opacity:.6; }
+.btn-next-mod {
+  padding:11px 22px; background:var(--surface2); color:var(--text); border:1px solid var(--border2);
+  border-radius:var(--radius-sm); font-size:13px; font-weight:600; font-family:inherit;
+  cursor:pointer; transition:.2s;
+}
+.btn-next-mod:hover { background:var(--surface3); }
+
+/* QUIZ */
+.quiz-box {
+  background:var(--surface); border:1px solid var(--border); border-radius:var(--radius);
+  padding:24px; margin-top:20px;
+}
+.quiz-box h3 { font-size:16px; font-weight:700; margin-bottom:4px; display:flex; align-items:center; gap:8px; }
+.quiz-box > p { font-size:13px; color:var(--text2); margin-bottom:20px; }
+.quiz-q { margin-bottom:20px; }
+.quiz-q p { font-size:14px; font-weight:600; margin-bottom:10px; }
+.quiz-options { display:flex; flex-direction:column; gap:8px; }
+.quiz-opt {
+  display:flex; align-items:center; gap:10px; padding:10px 14px;
+  background:var(--bg2); border:1px solid var(--border); border-radius:var(--radius-sm);
+  cursor:pointer; transition:.2s;
+}
+.quiz-opt:hover { border-color:var(--border2); background:var(--surface2); }
+.quiz-opt.selected { border-color:var(--navy2); background:var(--navy-glow); }
+.quiz-opt.correct { border-color:var(--green); background:var(--green-bg); }
+.quiz-opt.wrong { border-color:var(--red); background:var(--red-glow); }
+.quiz-opt input[type=radio] { accent-color:var(--red); flex-shrink:0; }
+.quiz-opt label { font-size:13px; cursor:pointer; }
+.quiz-submit {
+  margin-top:16px; padding:12px 28px; background:var(--navy); color:#fff;
+  border:none; border-radius:var(--radius-sm); font-size:14px; font-weight:700;
+  font-family:inherit; cursor:pointer; transition:.2s;
+}
+.quiz-submit:hover { background:var(--navy2); }
+.quiz-result {
+  margin-top:16px; padding:16px; border-radius:var(--radius-sm); display:none;
+  font-size:14px; font-weight:600;
+}
+.quiz-result.pass { background:var(--green-bg); border:1px solid rgba(34,197,94,.3); color:var(--green); }
+.quiz-result.fail { background:var(--red-glow); border:1px solid rgba(166,28,35,.3); color:#ff8080; }
+
+/* ROTEIRO */
+.roteiro-box {
+  background:var(--bg2); border:1px solid var(--border); border-left:3px solid var(--red);
+  border-radius:var(--radius); padding:20px 22px; margin-top:20px;
+}
+.roteiro-box h4 { font-size:11px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:var(--red); margin-bottom:10px; }
+.roteiro-text { font-size:13px; line-height:1.8; color:var(--text2); white-space:pre-line; font-style:italic; }
+
+/* VIDEO TABS */
+.vid-tabs {
+  display:flex; gap:0; margin-bottom:0; border-bottom:1px solid var(--border);
+  background:var(--surface); padding:0 22px;
+}
+.vid-tab {
+  padding:12px 18px; font-size:13px; font-weight:600; cursor:pointer;
+  color:var(--text3); border-bottom:2px solid transparent; transition:.2s;
+  font-family:inherit; background:none; border-top:none; border-left:none; border-right:none;
+}
+.vid-tab:hover { color:var(--text2); }
+.vid-tab.active { color:var(--text); border-bottom-color:var(--red); }
+.vid-tab-panel { display:none; }
+.vid-tab-panel.active { display:block; }
+
+/* CHAPTERS */
+.chapters-box {
+  background:var(--bg2); border:1px solid var(--border); border-radius:var(--radius);
+  overflow:hidden; margin-top:20px;
+}
+.chapters-header {
+  padding:14px 20px; border-bottom:1px solid var(--border);
+  display:flex; align-items:center; justify-content:space-between;
+}
+.chapters-header h4 { font-size:12px; font-weight:700; letter-spacing:.8px; text-transform:uppercase; color:var(--text2); display:flex; align-items:center; gap:8px; }
+.chapters-tip { font-size:11px; color:var(--text3); font-style:italic; }
+.chapter-item {
+  display:flex; align-items:flex-start; gap:14px; padding:14px 20px;
+  border-bottom:1px solid var(--border); cursor:pointer; transition:.15s;
+  text-decoration:none;
+}
+.chapter-item:last-child { border-bottom:none; }
+.chapter-item:hover { background:var(--surface2); }
+.chapter-item:hover .ch-time { color:var(--red); }
+.ch-time {
+  font-family:'JetBrains Mono',monospace; font-size:13px; font-weight:600;
+  color:var(--red2); flex-shrink:0; padding:3px 10px;
+  background:rgba(166,28,35,.1); border-radius:6px; transition:.15s;
+  border:1px solid rgba(166,28,35,.2); min-width:58px; text-align:center;
+  cursor:pointer;
+}
+.ch-content { flex:1; }
+.ch-title { font-size:14px; font-weight:600; color:var(--text); margin-bottom:3px; }
+.ch-desc { font-size:12px; color:var(--text2); line-height:1.4; }
+.ch-tag {
+  display:inline-flex; align-items:center; margin-top:5px;
+  font-size:10px; font-weight:700; letter-spacing:.5px; padding:2px 8px;
+  border-radius:20px; text-transform:uppercase;
+}
+.ch-tag.essencial { background:rgba(166,28,35,.12); color:#ff8888; }
+.ch-tag.util { background:rgba(30,58,95,.15); color:#7cb3e8; }
+.ch-tag.intro { background:rgba(255,255,255,.06); color:var(--text3); }
+.ch-tag.avancado { background:rgba(201,147,26,.12); color:var(--gold); }
+.ch-tag.gestor { background:rgba(30,58,95,.2); color:#90b8e8; }
+.ch-tag.pule { background:rgba(255,255,255,.04); color:var(--text3); }
+.ch-arrow { color:var(--text3); font-size:12px; margin-top:2px; flex-shrink:0; transition:.15s; }
+.chapter-item:hover .ch-arrow { color:var(--red); transform:translateX(2px); }
+
+/* QUICK SUMMARY (aba versão rápida) */
+.quick-summary {
+  background:var(--bg2); border:1px solid var(--border); border-radius:var(--radius);
+  padding:22px; margin-top:20px;
+}
+.qs-header { display:flex; align-items:center; gap:10px; margin-bottom:18px; }
+.qs-header h4 { font-size:14px; font-weight:700; }
+.qs-badge { background:var(--red); color:#fff; font-size:10px; font-weight:700; padding:3px 8px; border-radius:20px; letter-spacing:.5px; }
+.qs-points { display:flex; flex-direction:column; gap:10px; margin-bottom:20px; }
+.qs-point {
+  display:flex; gap:12px; align-items:flex-start; padding:12px 14px;
+  background:var(--surface); border-radius:var(--radius-sm); border:1px solid var(--border);
+}
+.qs-point .qp-icon { font-size:18px; flex-shrink:0; }
+.qs-point .qp-text strong { display:block; font-size:13px; font-weight:700; margin-bottom:2px; }
+.qs-point .qp-text span { font-size:12px; color:var(--text2); line-height:1.4; }
+.qs-cta {
+  background:rgba(166,28,35,.08); border:1px solid rgba(166,28,35,.2);
+  border-radius:var(--radius-sm); padding:12px 16px; font-size:13px; color:var(--text2);
+  display:flex; align-items:center; gap:8px;
+}
+.qs-cta span { color:var(--red); font-weight:700; cursor:pointer; }
+.qs-cta span:hover { text-decoration:underline; }
+
+/* DÚVIDAS VIEW */
+.doubts-view { max-width:720px; }
+.doubt-form-card {
+  background:var(--surface); border:1px solid var(--border); border-radius:var(--radius);
+  padding:24px; margin-bottom:28px;
+}
+.doubt-form-card h3 { font-size:15px; font-weight:700; margin-bottom:16px; display:flex; align-items:center; gap:8px; }
+.field-inline { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+.doubt-form-card textarea {
+  width:100%; background:var(--bg2); border:1px solid var(--border2);
+  border-radius:var(--radius-sm); padding:12px 14px; color:var(--text);
+  font-size:14px; font-family:inherit; resize:vertical; min-height:100px;
+  outline:none; transition:.2s; margin-top:4px;
+}
+.doubt-form-card textarea:focus { border-color:var(--navy2); box-shadow:0 0 0 3px var(--navy-glow); }
+.btn-send-doubt {
+  margin-top:12px; padding:11px 24px; background:var(--navy); color:#fff;
+  border:none; border-radius:var(--radius-sm); font-size:14px; font-weight:700;
+  font-family:inherit; cursor:pointer; transition:.2s;
+}
+.btn-send-doubt:hover { background:var(--navy2); }
+.ai-answer-box {
+  background:linear-gradient(135deg,rgba(30,58,95,.13),rgba(30,58,95,.06));
+  border:1px solid rgba(30,58,95,.3); border-left:3px solid var(--navy2);
+  border-radius:var(--radius); padding:18px 20px; margin-top:16px; display:none;
+}
+.ai-answer-box .ai-label { font-size:11px; font-weight:700; color:var(--navy2); letter-spacing:.5px; text-transform:uppercase; margin-bottom:12px; display:flex; align-items:center; gap:6px; padding-bottom:10px; border-bottom:1px solid rgba(30,58,95,.2); }
+.ai-answer-box .ai-text { font-size:13.5px; color:var(--text); line-height:1.75; }
+.ai-answer-box .ai-text p { margin:0 0 10px; }
+.ai-answer-box .ai-text p:last-child { margin-bottom:0; }
+.ai-answer-box .ai-text strong { color:var(--text); font-weight:700; }
+.ai-answer-box .ai-text h2,.ai-answer-box .ai-text h3,.ai-answer-box .ai-text h4 { color:var(--text); }
+.typing-dots { display:inline-flex; gap:3px; }
+.typing-dots span { width:5px; height:5px; background:var(--navy2); border-radius:50%; animation:dot .8s infinite; }
+.typing-dots span:nth-child(2) { animation-delay:.15s; }
+.typing-dots span:nth-child(3) { animation-delay:.3s; }
+@keyframes dot { 0%,80%,100%{transform:scale(.8);opacity:.4} 40%{transform:scale(1);opacity:1} }
+
+.my-doubts-list { display:flex; flex-direction:column; gap:14px; }
+.my-doubt-card {
+  background:var(--surface); border:1px solid var(--border); border-radius:var(--radius);
+  padding:16px 20px;
+}
+.my-doubt-card .dq { font-size:14px; color:var(--text); margin-bottom:8px; }
+.my-doubt-card .dm { font-size:11px; color:var(--text3); display:flex; gap:10px; margin-bottom:8px; }
+.official-answer {
+  background:rgba(30,58,95,.15); border:1px solid rgba(30,58,95,.25); border-radius:var(--radius-sm);
+  padding:12px 14px;
+}
+.official-answer .oa-label { font-size:11px; font-weight:700; color:var(--navy2); margin-bottom:4px; }
+.official-answer p { font-size:13px; color:var(--text2); line-height:1.6; }
+.pending-answer { font-size:12px; color:var(--text3); font-style:italic; }
+
+/* CONQUISTAS */
+.achievements-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(160px,1fr)); gap:14px; margin-top:8px; }
+.ach-card {
+  background:var(--surface); border:1px solid var(--border); border-radius:var(--radius);
+  padding:20px 16px; text-align:center; transition:.2s;
+}
+.ach-card.unlocked { border-color:rgba(201,147,26,.3); }
+.ach-card.locked { opacity:.4; }
+.ach-icon { font-size:32px; margin-bottom:10px; display:block; }
+.ach-card h4 { font-size:13px; font-weight:700; margin-bottom:4px; }
+.ach-card p { font-size:11px; color:var(--text2); }
+
+/* LOADING SPINNER */
+.spinner {
+  width:20px; height:20px; border:2px solid rgba(255,255,255,.2);
+  border-top-color:#fff; border-radius:50%; animation:spin .7s linear infinite; display:inline-block;
+}
+@keyframes spin { to{transform:rotate(360deg)} }
+
+/* TOAST */
+.toast {
+  position:fixed; bottom:24px; right:24px; z-index:999;
+  background:var(--surface2); border:1px solid var(--border2); border-radius:var(--radius);
+  padding:14px 20px; font-size:13px; font-weight:600; max-width:320px;
+  box-shadow:0 8px 32px rgba(0,0,0,.4); transform:translateY(100px); opacity:0;
+  transition:.3s; display:flex; align-items:center; gap:10px;
+}
+.toast.show { transform:translateY(0); opacity:1; }
+.toast.success { border-color:rgba(34,197,94,.4); }
+.toast.error { border-color:rgba(166,28,35,.4); }
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .sidebar{ width:100%; min-height:auto; height:auto; position:relative; flex-direction:row; flex-wrap:wrap; border-right:none; border-bottom:1px solid var(--border); }
+  #page-student{ flex-direction:column; }
+  .admin-kpis{ grid-template-columns:1fr 1fr; }
+  .content-header, .content-body { padding-left:20px; padding-right:20px; }
+  .field-inline { grid-template-columns:1fr; }
+}
+
+/* GLOW PULSE ANIMATION */
+@keyframes glow-pulse { 0%,100%{box-shadow:0 0 20px var(--red-glow)} 50%{box-shadow:0 0 40px rgba(166,28,35,.3)} }
+.mod-card.active-now { animation:glow-pulse 2s infinite; border-color:rgba(166,28,35,.4); }
+</style>
+</head>
+<body>
+
+<!-- ═══ LOGIN PAGE ═══ -->
+<div id="page-login" class="page active">
+  <div class="login-wrap">
+    <div class="login-logo">
+      <div class="badge">G</div>
+      <h1>Gaideski Academy</h1>
+      <p>Plataforma de Treinamento Interno</p>
+    </div>
+    <div class="login-card">
+      <h2>Entrar na plataforma</h2>
+      <p>Acesse com seu usuário e senha fornecidos pelo escritório.</p>
+      <div class="field">
+        <label>Usuário</label>
+        <input type="text" id="login-user" placeholder="seu.nome" autocomplete="username">
+      </div>
+      <div class="field">
+        <label>Senha</label>
+        <input type="password" id="login-pass" placeholder="••••••••" autocomplete="current-password">
+      </div>
+      <button class="btn-primary" onclick="doLogin()">Entrar →</button>
+      <div class="error-msg" id="login-error">Usuário ou senha incorretos. Fale com o gestor.</div>
+      <div class="login-divider">— ou —</div>
+      <button class="btn-admin" onclick="doAdminLogin()">🔐 Acesso Administrador</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ ADMIN PAGE ═══ -->
+<div id="page-admin" class="page">
+  <div class="admin-header">
+    <span class="logo-sm">⬡ GAIDESKI ACADEMY</span>
+    <h2>Painel do Gestor</h2>
+    <button class="btn-sm ghost" onclick="exportCSV()">📥 Exportar CSV</button>
+    <button class="btn-sm ghost" onclick="goLogin()">← Sair</button>
+  </div>
+  <div class="admin-body">
+    <div class="admin-kpis" id="admin-kpis"></div>
+    <div class="admin-section">
+      <h3>👥 Progresso por Colaborador</h3>
+      <table class="admin-table" id="admin-user-table">
+        <thead><tr>
+          <th>Colaborador</th><th>Progresso</th><th>Módulos</th><th>Quiz</th><th>Último acesso</th><th>Status</th>
+        </tr></thead>
+        <tbody id="admin-user-body"></tbody>
+      </table>
+    </div>
+    <div class="admin-section">
+      <h3>💬 Dúvidas Recebidas</h3>
+      <div class="doubts-list" id="admin-doubts-list"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ STUDENT PAGE ═══ -->
+<div id="page-student" class="page">
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <div class="sidebar-logo">
+      <div class="logo-badge">G</div>
+      <h2>Gaideski<br>Academy</h2>
+      <p>Treinamento Gestta</p>
+    </div>
+    <div class="sidebar-user">
+      <div class="user-avatar" id="s-avatar">?</div>
+      <div class="user-info">
+        <strong id="s-name">Colaborador</strong>
+        <span id="s-role">Equipe</span>
+      </div>
+    </div>
+    <div class="sidebar-progress">
+      <p>Progresso geral</p>
+      <div class="bar-track"><div class="bar-fill" id="s-bar" style="width:0%"></div></div>
+      <div class="bar-pct" id="s-pct">0%</div>
+    </div>
+    <div class="sidebar-nav">
+      <div class="nav-section-label">Módulos</div>
+      <div id="sidebar-modules"></div>
+      <div class="nav-section-label" style="margin-top:12px">Área do Aluno</div>
+      <div class="nav-item" onclick="showView('view-doubts')">
+        <span class="ni-icon">💬</span>
+        <span class="ni-text">Minhas Dúvidas</span>
+        <span class="ni-badge new" id="badge-doubts" style="display:none">!</span>
+      </div>
+
+      <div class="nav-item" onclick="showView('view-rules')">
+        <span class="ni-icon">📋</span>
+        <span class="ni-text">Regras do Escritório</span>
+      </div>
+    </div>
+    <div class="sidebar-footer">
+      <button class="btn-logout" onclick="goLogin()">← Sair</button>
+    </div>
+  </div>
+
+  <!-- MAIN -->
+  <div class="main-content">
+    <!-- VIEW: MÓDULOS HOME -->
+    <div id="view-home" class="view active">
+      <div class="content-header">
+        <div>
+          <h1>Bem-vindo(a), <span id="welcome-name">!</span></h1>
+          <p>Continue seu treinamento de onde parou. Cada módulo tem vídeo + avaliação.</p>
+        </div>
+      </div>
+      <div class="content-body">
+        <div id="home-alert" style="display:none; background:rgba(201,147,26,.1); border:1px solid rgba(201,147,26,.3); border-radius:var(--radius); padding:14px 18px; margin-bottom:20px; font-size:13px; color:var(--gold);">
+          📌 Você tem dúvidas respondidas! <a href="#" onclick="showView('view-doubts')" style="color:var(--gold);font-weight:700;">Ver respostas →</a>
+        </div>
+        <div class="modules-grid" id="modules-grid-home"></div>
+      </div>
+    </div>
+
+    <!-- VIEW: VIDEO PLAYER -->
+    <div id="view-video" class="view">
+      <div class="content-header">
+        <div>
+          <div class="breadcrumb">
+            <span onclick="showView('view-home')">Módulos</span>
+            <span class="sep">›</span>
+            <span id="vv-breadcrumb">Módulo</span>
+          </div>
+          <h1 id="vv-title">Título</h1>
+          <p id="vv-desc">Descrição</p>
+        </div>
+      </div>
+      <div class="content-body">
+        <div class="video-view-wrap">
+          <!-- TABS: Versão Rápida / Versão Completa -->
+          <div class="video-player-box">
+            <div class="video-header">
+              <h2 id="vv-h2">Título do Vídeo</h2>
+              <span class="mod-tag" id="vv-tag">Módulo 01</span>
+            </div>
+            <div class="video-embed">
+              <iframe id="vv-iframe" src="" allowfullscreen style="display:none"></iframe>
+              <video id="vv-video" controls style="display:none;width:100%;height:100%;background:#000;"></video>
+            </div>
+            <!-- CHAPTERS -->
+            <div class="chapters-box" id="chapters-box">
+              <div class="chapters-header">
+                <h4>📍 Índice do vídeo — clique no tempo para pular direto ao tema</h4>
+                <span class="chapters-tip">⭐ Essencial = assista este trecho</span>
+              </div>
+              <div id="chapters-list"><!-- preenchido via JS --></div>
+            </div>
+            <div class="video-footer">
+              <button class="btn-complete" id="btn-complete-mod" onclick="completeModule()">✓ Marcar como concluído</button>
+              <button class="btn-next-mod" onclick="goNextModule()">Próximo módulo →</button>
+            </div>
+          </div>
+
+          <div class="roteiro-box">
+            <h4>🎤 Roteiro do Vídeo</h4>
+            <div class="roteiro-text" id="vv-roteiro"></div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- VIEW: DÚVIDAS -->
+    <div id="view-doubts" class="view">
+      <div class="content-header">
+        <div><h1>💬 Minhas Dúvidas</h1><p>Pergunte sobre qualquer módulo. A IA responde na hora e o gestor pode complementar.</p></div>
+      </div>
+      <div class="content-body">
+        <div class="doubts-view">
+          <div class="doubt-form-card">
+            <h3>📤 Enviar nova dúvida</h3>
+            <div class="field-inline">
+              <div class="field">
+                <label>Módulo relacionado</label>
+                <select id="doubt-module">
+                  <option value="Módulo 01">Módulo 01 — Tarefas: configuração, conclusão e notificações</option>
+                  <option value="Módulo 02">Módulo 02 — Dashboard, integração e rotina</option>
+                  <option value="Módulo 03">Módulo 03 — Configurações, novidades e usabilidade</option>
+                  <option value="Geral">Dúvida geral</option>
+                </select>
+              </div>
+              <div style="display:flex;align-items:flex-end">
+                <button class="btn-send-doubt" style="width:100%" onclick="sendDoubt()">Enviar dúvida →</button>
+              </div>
+            </div>
+            <div class="field" style="margin-top:12px">
+              <label>Sua dúvida</label>
+              <textarea id="doubt-text" placeholder="Descreva sua dúvida com detalhes..."></textarea>
+            </div>
+            <div class="ai-answer-box" id="ai-answer-box">
+              <div class="ai-label">🤖 Resposta da IA <span class="typing-dots" id="typing-dots"><span></span><span></span><span></span></span></div>
+              <div class="ai-text" id="ai-text"></div>
+            </div>
+          </div>
+          <h3 style="font-size:15px;font-weight:700;margin-bottom:14px;color:var(--text2)">Histórico de dúvidas</h3>
+          <div class="my-doubts-list" id="my-doubts-list">
+            <p style="color:var(--text3);font-size:13px">Nenhuma dúvida enviada ainda.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VIEW: REGRAS -->
+    <div id="view-rules" class="view">
+      <div class="content-header"><div><h1>📋 Regras do Escritório</h1><p>Diretrizes obrigatórias para uso do Gestta na Gaideski Contabilidade.</p></div></div>
+      <div class="content-body" style="max-width:720px">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px" id="rules-grid"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ══════════════════════════════════════════════
+// CONFIG — EDITE AQUI PARA PERSONALIZAR
+// ══════════════════════════════════════════════
+
+// USUÁRIOS DA EQUIPE — adicione/remova conforme necessário
+// formato: { user: 'login', pass: 'senha', name: 'Nome Completo', role: 'Cargo' }
+const USERS = [
+  { user: 'jorge',   pass: 'gaideski2026', name: 'Jorge Fernando Doná', role: 'Gerente Comercial' },
+  { user: 'robson',  pass: 'gaideski2026', name: 'Robson Gaideski',     role: 'Diretor' },
+  { user: 'simone',  pass: 'gestta123',    name: 'Simone',              role: 'Operações / Financeiro' },
+  { user: 'maiara',  pass: 'gestta123',    name: 'Maiara',              role: 'Financeiro / Administrativo' },
+  { user: 'marte',   pass: 'gestta123',    name: 'Marte',               role: 'Marketing' },
+  { user: 'antonio', pass: 'gestta123',    name: 'Antônio',             role: 'Operações Planicom' },
+  // Adicione mais colaboradores aqui
+  // { user: 'nome', pass: 'senha123', name: 'Nome Completo', role: 'Cargo' },
+];
+
+// ADMIN
+const ADMIN = { user: 'admin', pass: 'GaideskiAdmin2026!' };
+
+// MÓDULOS DE TREINAMENTO
+const MODULES = [
+  {
+    id: 0,
+    title: 'Tarefas: configuração, conclusão e notificações',
+    desc: 'Tipos de tarefas, criação passo a passo, conclusão por integração/manual/Express, notificações e geração em lote.',
+    tag: 'Módulo 01 · Tarefas e Conclusão',
+    videoFile: 'https://github.com/donatfp-eng/gaideski-academy/releases/download/videos/Video.gestta.processo.1.mp4',
+    duration: '1h 24min',
+    roteiro: `Treinamento focado nas tarefas do Domínio Processos.
+
+Você vai aprender:
+→ Diferença entre Tarefas Recorrentes e Ordens de Serviço
+→ Como configurar campos: Data Legal, Data Meta, Postergar, Dia Útil
+→ Como concluir atividades pelo sistema Domínio, manualmente e via Express
+→ Notificações ao cliente por e-mail e WhatsApp
+→ Como resolver erros comuns de template e e-mail
+→ Geração e exclusão de tarefas em lote
+
+Use o índice abaixo para pular direto ao tema que precisa.`
+  },
+  {
+    id: 1,
+    title: 'Domínio Processos: integração, dashboard e rotina',
+    desc: 'O que é o Domínio Processos, integração com Domínio, dashboard, calendário e conclusão de atividades na prática.',
+    tag: 'Módulo 02 · Dashboard e Rotina',
+    videoFile: 'https://github.com/donatfp-eng/gaideski-academy/releases/download/videos/Video.gestta.processos.2.mp4',
+    duration: '1h 27min',
+    roteiro: `Treinamento completo sobre integração e rotina diária no Domínio Processos.
+
+Você vai aprender:
+→ O que é o Domínio Processos e qual o objetivo
+→ Como funciona a integração com o sistema Domínio
+→ Como usar o dashboard, filtros e calendário
+→ Diferença entre Data Meta e Data Legal
+→ Como concluir atividades com e sem anexo na prática
+→ Configuração de notificações por e-mail e WhatsApp
+→ Status de integração e como resolver erros
+
+Use o índice abaixo para pular direto ao tema que precisa.`
+  },
+  {
+    id: 2,
+    title: 'Configurações, novidades e usabilidade do sistema',
+    desc: 'Treinamento para iniciantes: novidades de 2025, configuração de tarefas, checklist, Express e fluxo completo de uso.',
+    tag: 'Módulo 03 · Configurações e Novidades',
+    videoFile: 'https://github.com/donatfp-eng/gaideski-academy/releases/download/videos/Video.gestta.processo.3.mp4',
+    duration: '2h 08min',
+    roteiro: `Treinamento para quem está começando ou quer se atualizar.
+
+Você vai aprender:
+→ Novidade: tarefas vinculadas automaticamente pelo regime federal
+→ Novidade: botão de novas funcionalidades no dashboard
+→ Visão do dashboard por perfil: admin, gerente e usuário
+→ Como usar filtros, calendário e lista detalhada
+→ Checklist dentro das tarefas — como configurar
+→ Como desconsiderar tarefa sem movimentação
+→ Express: upload em lote e configuração de templates
+→ Rotinas automáticas para concluir atividades em lote
+
+Use o índice abaixo para pular direto ao tema que precisa.`
+  }
+];
+
+const RULES = [
+  { type:'do', icon:'✅', title:'DEVE fazer', text:'Registrar toda tarefa no Gestta antes de executar' },
+  { type:'dont', icon:'❌', title:'NÃO deve fazer', text:'Controlar tarefas em planilha paralela ou caderno' },
+  { type:'do', icon:'✅', title:'DEVE fazer', text:'Começar o dia abrindo o Gestta e verificando tarefas' },
+  { type:'dont', icon:'❌', title:'NÃO deve fazer', text:'Deixar tarefa sem atualização por mais de 1 dia' },
+  { type:'do', icon:'✅', title:'DEVE fazer', text:'Atualizar status sempre que houver qualquer progresso' },
+  { type:'dont', icon:'❌', title:'NÃO deve fazer', text:'Fazer tarefa sem registrar no sistema' },
+  { type:'do', icon:'✅', title:'DEVE fazer', text:'Concluir a tarefa no sistema ao finalizá-la' },
+  { type:'dont', icon:'❌', title:'NÃO deve fazer', text:'Receber documentos de clientes fora do portal' },
+];
+
+const ACHIEVEMENTS = [
+  { id:'first_login', icon:'🚀', title:'Primeiro acesso', desc:'Entrou na plataforma pela primeira vez', cond: u => true },
+  { id:'mod1', icon:'📖', title:'Módulo 1 concluído', desc:'Assistiu o primeiro módulo completo', cond: u => u.completed.includes(0) },
+  { id:'all_mods', icon:'🎓', title:'Treinamento completo', desc:'Concluiu os 3 módulos', cond: u => u.completed.length >= 3 },
+  { id:'first_doubt', icon:'💬', title:'Curioso(a)', desc:'Enviou sua primeira dúvida', cond: u => u.doubts && u.doubts.length > 0 },
+];
+
+// CHAPTERS baseados nas transcrições reais dos 3 vídeos oficiais
+const CHAPTERS = {
+  0: { duration: '1h 24min', chapters: [
+    { time: 188,  label: '03:08', title: 'Boas-vindas e o que será visto no treinamento', desc: 'Foco em tarefas: recorrentes, ordens de serviço, conclusão, notificações, Express e geração em lote', tag: 'intro' },
+    { time: 452,  label: '07:32', title: '⭐ Tipos de tarefas: Recorrente vs. Ordem de Serviço', desc: 'Recorrente = repete todo mês automaticamente. Ordem de serviço = tarefa pontual criada manualmente', tag: 'essencial' },
+    { time: 684,  label: '11:24', title: 'Formas de concluir: integração com Domínio, manual e Express', desc: 'Tarefa conclui automaticamente ao concluir todas as atividades dentro dela. Três formas de conclusão', tag: 'essencial' },
+    { time: 816,  label: '13:36', title: 'Notificação ao cliente: e-mail e WhatsApp', desc: 'Ao concluir a tarefa, o cliente recebe e-mail automático. WhatsApp exige Messenger contratado', tag: 'essencial' },
+    { time: 895,  label: '14:55', title: 'Possíveis erros de e-mail e como corrigir', desc: 'Dois erros comuns: e-mail caindo em spam no cliente, ou e-mail digitado errado no cadastro', tag: 'util' },
+    { time: 1275, label: '21:15', title: '▶ PRÁTICA: Criação de Tarefa Recorrente', desc: 'Configure → Tarefas Recorrentes → verifica se já existe antes de criar. Cria clicando em Novo', tag: 'essencial' },
+    { time: 1383, label: '23:03', title: 'Campo: Nome, Conclusão Automática e Esfera', desc: 'Deixar "conclusão automática" marcada → tarefa fecha sozinha ao concluir todas as atividades', tag: 'essencial' },
+    { time: 1433, label: '23:53', title: 'Campo: Frequência — diária, semanal, mensal, anual', desc: 'Define de quanto em quanto tempo a tarefa se repete. Cada frequência abre campos específicos', tag: 'essencial' },
+    { time: 1483, label: '24:43', title: '⭐ Data Legal vs Data Meta vs Dia Útil vs Postergar', desc: 'Data Legal = vencimento do cliente. Data Meta = prazo interno. Postergar = move para próximo dia útil se cair no final de semana', tag: 'essencial' },
+    { time: 1646, label: '27:26', title: 'Campos: Departamento, Competência e Agrupadores', desc: 'Competência -1 = mês anterior. Agrupador vincula todas as tarefas do grupo ao cliente automaticamente', tag: 'essencial' },
+    { time: 1769, label: '29:29', title: 'Notificação do cliente e flag Gerar Multa', desc: 'Gerar multa = tarefa aparece roxa no dashboard quando passa do prazo. Obrigatório marcar para tarefas com penalidade', tag: 'util' },
+    { time: 1925, label: '32:05', title: 'Vinculando clientes e definindo responsável — obrigatório', desc: 'Sem responsável definido, a tarefa não é concluída. Cada empresa pode ter um responsável diferente', tag: 'essencial' },
+    { time: 2085, label: '34:45', title: 'Atividades com e sem anexo dentro da tarefa', desc: 'Com anexo = relatório/guia do sistema. Sem anexo = ação feita sem gerar documento (ex: cálculo da folha)', tag: 'essencial' },
+    { time: 2264, label: '37:44', title: 'Checklist e cobrança de documentos do cliente', desc: 'Checklist define passos obrigatórios. Cobrança de doc envia e-mail ao cliente pedindo o arquivo com X dias de antecedência', tag: 'util' },
+    { time: 2410, label: '40:10', title: '▶ PRÁTICA: Criação de Ordem de Serviço (tarefa pontual)', desc: 'Para tarefas que ocorrem uma ou poucas vezes. Usa template livre ou template salvo previamente', tag: 'essencial' },
+    { time: 2629, label: '43:49', title: 'Parcelando uma Ordem de Serviço em meses', desc: 'É possível dividir em 2, 3 ou mais meses com datas e metas diferentes por parcela', tag: 'util' },
+    { time: 2660, label: '44:20', title: '▶ PRÁTICA: Conclusão via integração com Domínio', desc: 'Abre o sistema Domínio → executa a atividade → clica "Concluir atividade" → vai automaticamente para o Processos', tag: 'essencial' },
+    { time: 2927, label: '48:47', title: 'Concluindo atividade SEM ANEXO: exemplo do cálculo da folha', desc: 'Folha → Cálculo → Concluir atividade → Sim. Chequinho aparece no Processos imediatamente', tag: 'essencial' },
+    { time: 2987, label: '49:47', title: 'Concluindo atividade COM ANEXO: relatório com maletinha', desc: 'Emite relatório → clica na maleta → Concluir atividade → vai pro portal do cliente → depois pro Processos', tag: 'essencial' },
+    { time: 3330, label: '55:30', title: 'Atenção: relatório com anexo só conclui de dentro do relatório', desc: 'Mensagem "Para atividades que emitem relatórios, conclua dentro da janela de emissão" é normal — não é erro', tag: 'essencial' },
+    { time: 3414, label: '56:54', title: '▶ PRÁTICA: Conclusão via Express — upload em lote', desc: 'Express → arrasta vários documentos → ele valida automaticamente. Verde = tarefa encontrada → confirma', tag: 'essencial' },
+    { time: 3705, label: '01:01:45', title: 'Erro no Express: template não configurado — como resolver', desc: 'Detalhes mostram "não encontrado". Configure → Templates → cria template com as regras do documento', tag: 'util' },
+    { time: 3914, label: '01:05:14', title: 'Configurando template para o Express: passo a passo', desc: 'Abre o documento → copia frase única → cria regra no template → sobe modelo para validar → salva', tag: 'util' },
+    { time: 4052, label: '01:07:32', title: '▶ Geração e exclusão de tarefas em lote', desc: 'Configure → Geração de tarefas. Troca o dia 20, gera manualmente ou exclui tarefas em lote por departamento', tag: 'util' },
+    { time: 4303, label: '01:11:43', title: 'Como ver todas as tarefas por empresa', desc: 'Dashboard → Lista detalhada → filtra por empresa. Ou abre cadastro do cliente e vê tarefas vinculadas', tag: 'util' },
+  ]},
+  1: { duration: '1h 27min', chapters: [
+    { time: 180,  label: '03:00', title: 'Boas-vindas — foco em integração e prática', desc: 'Treinamento mostra configuração inicial, integração com Domínio e exemplos de conclusão de atividades', tag: 'intro' },
+    { time: 288,  label: '04:48', title: '⭐ O que é o Domínio Processos: gerenciador de tarefas do escritório', desc: 'Módulo adicional integrado ao sistema Domínio. Objetivo: centralizar e controlar todas as tarefas em um lugar', tag: 'essencial' },
+    { time: 620,  label: '10:20', title: 'Atualização: aviso de funcionário inativo com tarefas abertas', desc: 'Novo popup no dashboard quando funcionário é inativado mas ainda tem tarefas. Como transferir a responsabilidade', tag: 'util' },
+    { time: 1023, label: '17:03', title: '▶ Integração com Domínio: atividades COM e SEM anexo na prática', desc: 'Com anexo = maletinha no relatório. Sem anexo = botão "Concluir atividade" sem gerar documento', tag: 'essencial' },
+    { time: 1265, label: '21:05', title: 'Acessando o Domínio Processos: onboard e primeiras configurações', desc: 'Ao contratar, passa por onboard. Após configurar, tarefas são geradas automaticamente todo dia 20', tag: 'essencial' },
+    { time: 1401, label: '23:21', title: '⭐ Dashboard: pontos de atenção diários', desc: 'Vencendo hoje, prioridade (multas), pendentes de aprovação, atrasadas e falhas de e-mail — visíveis no dashboard', tag: 'essencial' },
+    { time: 1503, label: '25:03', title: 'Filtros do dashboard: como salvar e reutilizar', desc: 'Filtra por mês, usuário, departamento, agrupador de clientes. Salva o filtro para aplicar com um clique', tag: 'essencial' },
+    { time: 1843, label: '30:43', title: 'Calendário: visão mensal e semanal das tarefas', desc: 'Visualiza tarefas por dia separadas por departamento. Clica no dia para ver quais vencem', tag: 'util' },
+    { time: 1966, label: '32:46', title: '⭐ Data Meta vs Data Legal — diferença crítica', desc: 'Data Meta = prazo interno do escritório. Data Legal = vencimento do cliente. Aparecem em dias diferentes no calendário', tag: 'essencial' },
+    { time: 2140, label: '35:40', title: 'Abrindo uma tarefa: o que analisar', desc: 'Veja: empresa, data meta, competência, atividades com e sem anexo — tudo que define o que fazer e quando', tag: 'essencial' },
+    { time: 2468, label: '41:08', title: 'Apontamento de tempo por colaborador', desc: 'Ao começar, inicia o apontamento. Sistema registra quanto tempo o funcionário ficou em cada tarefa', tag: 'util' },
+    { time: 2642, label: '44:02', title: 'Usuários de cliente: como funciona a vinculação automática', desc: 'Usuário criado no portal do cliente (Onvio) → fica ativo → aparece automaticamente nas tarefas do Processos', tag: 'essencial' },
+    { time: 2821, label: '47:01', title: '⭐ Geração automática: dia 20 — como configurar', desc: 'Padrão: dia 20 gera as tarefas do próximo mês. Administrador pode trocar em Configure → Geração de tarefas', tag: 'essencial' },
+    { time: 2973, label: '49:33', title: '▶ PRÁTICA: Concluindo atividade SEM ANEXO no Domínio', desc: 'Folha → Cálculo → Concluir atividade → confirma. Chequinho aparece no Processos imediatamente', tag: 'essencial' },
+    { time: 3096, label: '51:36', title: '▶ PRÁTICA: Concluindo atividade COM ANEXO — resumo da folha', desc: 'Emite relatório → maleta → Concluir atividade → vai pro portal do cliente → depois pro Processos', tag: 'essencial' },
+    { time: 3121, label: '52:01', title: 'Rotinas automáticas: envio em lote sem ação manual', desc: 'Arquivo → Rotinas → cadastra rotina que gera e envia documentos automaticamente para o Processos', tag: 'avancado' },
+    { time: 3600, label: '01:00:00', title: 'Status de integração: diagnosticar documento que não entrou', desc: 'Menu lateral → Status integração. Mostra o erro e permite vincular o documento manualmente', tag: 'util' },
+    { time: 3669, label: '01:01:09', title: 'Resolvendo erro de template: anota o código e configura', desc: 'Copia código do erro (ex: 729) → Configure → Templates → localiza ou cria o template com esse código', tag: 'util' },
+    { time: 4224, label: '01:10:24', title: 'Configuração do WhatsApp — habilitando notificação por cliente', desc: 'Messenger → Habilitar clientes → edita cliente → marca "permitir notificações de tarefas via Messenger"', tag: 'util' },
+    { time: 4341, label: '01:12:21', title: 'Notificação WhatsApp dentro da tarefa', desc: 'Na tarefa → notificações → marca "via WhatsApp". Não dá selecionar só WhatsApp — e-mail é obrigatório', tag: 'util' },
+    { time: 5366, label: '01:22:46', title: 'Template de e-mail personalizado para clientes', desc: 'Configure → E-mail templates → cria com variáveis: nome do cliente, tarefa, data, link do documento', tag: 'util' },
+    { time: 5457, label: '01:24:17', title: 'Desativar notificação para clientes específicos', desc: 'No cadastro do cliente → desmarca a opção de notificação → aquele cliente não recebe e-mail ao concluir', tag: 'util' },
+  ]},
+  2: { duration: '2h 08min', chapters: [
+    { time: 68,   label: '01:08', title: 'Boas-vindas — treinamento para iniciantes com novidades de 2025', desc: 'Foco em quem está começando. Duas novidades serão apresentadas antes do conteúdo principal', tag: 'intro' },
+    { time: 482,  label: '08:02', title: '▶ NOVIDADE 1: Tarefas vinculadas automaticamente pelo regime federal', desc: 'Ao cadastrar cliente com regime federal, as tarefas do agrupador são vinculadas AUTOMATICAMENTE — sem ação manual', tag: 'essencial' },
+    { time: 624,  label: '10:24', title: 'Como configurar: Configure → Regimes → aba Automação', desc: 'Na aba Automação de cada regime federal, seleciona quais agrupadores de tarefas pertencem a ele', tag: 'essencial' },
+    { time: 793,  label: '13:13', title: 'Aviso quando cliente muda de regime tributário', desc: 'Sistema detecta mudança (ex: Simples → Lucro Presumido) e mostra popup para conferir os vínculos das tarefas', tag: 'util' },
+    { time: 899,  label: '14:59', title: '▶ NOVIDADE 2: Botão de novas funcionalidades no dashboard', desc: 'Toda atualização aparece como botão "Novas funcionalidades" → abre Central de Soluções com o que foi lançado em 2025', tag: 'util' },
+    { time: 1398, label: '23:18', title: '⭐ Dashboard: visão por perfil — admin, gerente e usuário', desc: 'Admin vê tudo. Gerente vê só os departamentos que gerencia. Usuário vê só suas próprias tarefas', tag: 'essencial' },
+    { time: 1503, label: '25:03', title: 'Filtros do dashboard e como salvar filtros favoritos', desc: 'Filtra por período, usuário, departamento, agrupador. Salva o filtro para aplicar rapidamente sempre que precisar', tag: 'essencial' },
+    { time: 1843, label: '30:43', title: 'Calendário: visão mensal e semanal das tarefas', desc: 'Calendário mostra tarefas por dia separadas por departamento. Clica no quadradinho para ver as tarefas daquele dia', tag: 'util' },
+    { time: 1966, label: '32:46', title: '⭐ Data Meta vs Data Legal — quando usar cada uma', desc: 'Data Meta = escritório tem que entregar. Data Legal = cliente tem que pagar. Aparecem em dias diferentes no calendário', tag: 'essencial' },
+    { time: 2236, label: '37:16', title: 'Checklist dentro da tarefa: configuração e obrigatoriedade', desc: 'Pode colocar link da Central de Soluções no checklist. Obrigatório = tarefa não conclui sem dar o cheque', tag: 'essencial' },
+    { time: 2376, label: '39:36', title: 'Desconsiderar tarefa — cliente sem movimentação no mês', desc: 'Clica em "Desconsiderado" → coloca justificativa. No próximo mês a tarefa é gerada normalmente de novo', tag: 'util' },
+    { time: 2952, label: '49:12', title: '▶ PRÁTICA: Concluindo atividade SEM ANEXO no Domínio', desc: 'Cálculo da folha → Concluir atividade → Sim. Chequinho aparece no Processos imediatamente', tag: 'essencial' },
+    { time: 3064, label: '51:04', title: '▶ PRÁTICA: Concluindo atividade COM ANEXO — resumo da folha', desc: 'Emite relatório → Concluir atividade → vai pro portal do cliente → depois aparece no Processos', tag: 'essencial' },
+    { time: 3482, label: '58:02', title: 'Tarefa concluída: log com documentos, e-mails e WhatsApp', desc: 'No log da tarefa: doc foi adicionado, e-mail enviado/entregue, mensagem WhatsApp enviada/entregue', tag: 'util' },
+    { time: 3600, label: '01:00:00', title: 'Status de integração: diagnosticar documento que não entrou', desc: 'Status integração mostra o erro: tarefa não gerada ou template não configurado. Vincula manualmente se necessário', tag: 'util' },
+    { time: 3663, label: '01:01:03', title: 'Resolvendo erro de template: copia código e configura', desc: 'Copia código do erro → Configure → Templates → localiza o template → cola o código → salva', tag: 'util' },
+    { time: 4140, label: '01:09:00', title: 'Configuração do WhatsApp para notificação de clientes', desc: 'Messenger → Habilitar clientes → edita → marca opção. Na tarefa → seleciona via WhatsApp também', tag: 'util' },
+    { time: 4389, label: '01:13:09', title: '▶ Configuração detalhada de tarefas recorrentes', desc: 'Frequência, data legal, dia útil, postergar, data meta, departamento, competência, notificação e multa — campo a campo', tag: 'essencial' },
+    { time: 4896, label: '01:21:36', title: 'Express: subindo documentos externos em lote', desc: 'Arrasta documentos → Express valida CNPJ + tarefa + template. Verde = encontrou → confirma', tag: 'essencial' },
+    { time: 5097, label: '01:24:57', title: 'Criando template para o Express passo a passo', desc: 'Cria regras com texto único do documento + formato de data → sobe modelo para validar → verde = correto', tag: 'util' },
+    { time: 5538, label: '01:32:18', title: 'Rotinas automáticas: concluindo atividades da folha em lote', desc: 'Arquivo → Rotinas → ONV Processos: configura quais relatórios serão enviados automaticamente ao Processos', tag: 'avancado' },
+    { time: 7440, label: '02:04:00', title: 'Encerramento: links de treinamentos na Central de Soluções', desc: 'Treinamentos de tarefas, fluxo de tarefas e WhatsApp disponíveis na Central de Soluções da Thomson Reuters', tag: 'pule' },
+  ]},
+  3: { duration: '45 min', chapters: [
+    { time: 0,    label: '00:00', title: 'Apresentação das novidades do Gestta', desc: 'O que mudou no sistema e como afeta o dia a dia', tag: 'intro' },
+    { time: 480,  label: '08:00', title: 'Novo fluxo de conclusão de tarefas', desc: 'Como concluir manualmente e automaticamente com documentos', tag: 'essencial' },
+    { time: 900,  label: '15:00', title: 'Verificação de status em tempo real', desc: 'Como acompanhar andamento sem perguntar para colegas', tag: 'essencial' },
+    { time: 1500, label: '25:00', title: 'Integração Domínio e Onvio', desc: 'Sincronização automática entre sistemas', tag: 'avancado' },
+    { time: 2100, label: '35:00', title: 'Perguntas e respostas ao vivo', desc: 'Dúvidas práticas da equipe respondidas', tag: 'util' },
+  ]},
+  4: { duration: '50 min', chapters: [
+    { time: 0,    label: '00:00', title: 'Abertura', desc: 'Pode pular se quiser ir direto ao conteúdo', tag: 'pule' },
+    { time: 600,  label: '10:00', title: 'Padronização de processos', desc: 'Como criar regras para a equipe seguir', tag: 'essencial' },
+    { time: 1200, label: '20:00', title: 'Controle de documentos', desc: 'Organização de arquivos no sistema', tag: 'essencial' },
+    { time: 1800, label: '30:00', title: 'Dashboard do gestor', desc: 'O que o gestor monitora diariamente', tag: 'gestor' },
+    { time: 2400, label: '40:00', title: 'Boas práticas consolidadas', desc: 'O que escritórios de sucesso fazem diferente', tag: 'essencial' },
+  ]}
+};
+
+// ══════════════════════════════════════════════
+// STATE
+// ══════════════════════════════════════════════
+let currentUser = null;
+let currentModIdx = 0;
+let storage = {};
+
+function loadStorage() {
+  try { storage = JSON.parse(localStorage.getItem('gaideski_lms') || '{}'); } catch(e) { storage = {}; }
+}
+function saveStorage() {
+  try { localStorage.setItem('gaideski_lms', JSON.stringify(storage)); } catch(e) {}
+}
+function getUserData(username) {
+  if (!storage[username]) storage[username] = { completed:[], quizScores:{}, doubts:[], lastSeen: new Date().toISOString(), quizAce:false };
+  return storage[username];
+}
+
+// ══════════════════════════════════════════════
+// AUTH
+// ══════════════════════════════════════════════
+function doLogin() {
+  const u = document.getElementById('login-user').value.trim().toLowerCase();
+  const p = document.getElementById('login-pass').value;
+  const found = USERS.find(x => x.user === u && x.pass === p);
+  if (!found) { document.getElementById('login-error').style.display='block'; return; }
+  currentUser = found;
+  loadStorage();
+  const ud = getUserData(u);
+  ud.lastSeen = new Date().toISOString();
+  ud.name = found.name;
+  saveStorage();
+  initStudent();
+}
+function doAdminLogin() {
+  const u = prompt('Usuário admin:');
+  const p = prompt('Senha admin:');
+  if (u === ADMIN.user && p === ADMIN.pass) {
+    loadStorage();
+    initAdmin();
+  } else { showToast('Acesso negado','error'); }
+}
+function goLogin() {
+  showPage('page-login');
+  document.getElementById('login-user').value='';
+  document.getElementById('login-pass').value='';
+  document.getElementById('login-error').style.display='none';
+}
+document.getElementById('login-pass').addEventListener('keypress', e => { if(e.key==='Enter') doLogin(); });
+document.getElementById('login-user').addEventListener('keypress', e => { if(e.key==='Enter') doLogin(); });
+
+// ══════════════════════════════════════════════
+// PAGES
+// ══════════════════════════════════════════════
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+// ══════════════════════════════════════════════
+// ADMIN
+// ══════════════════════════════════════════════
+function initAdmin() {
+  showPage('page-admin');
+  renderAdminKPIs();
+  renderAdminUsers();
+  renderAdminDoubts();
+}
+function renderAdminKPIs() {
+  const allDoubts = Object.values(storage).flatMap(u => u.doubts || []);
+  const unanswered = allDoubts.filter(d => !d.officialAnswer).length;
+  const totalUsers = USERS.length;
+  const completedAll = USERS.filter(u => (storage[u.user]?.completed||[]).length >= MODULES.length).length;
+  const avgProgress = USERS.reduce((s,u) => s + (storage[u.user]?.completed||[]).length, 0) / (totalUsers * MODULES.length) * 100;
+
+  document.getElementById('admin-kpis').innerHTML = `
+    <div class="kpi-card"><div class="kpi-num">${totalUsers}</div><div class="kpi-label">Colaboradores cadastrados</div></div>
+    <div class="kpi-card"><div class="kpi-num">${completedAll}</div><div class="kpi-label">Treinamento 100% concluído</div></div>
+    <div class="kpi-card"><div class="kpi-num">${Math.round(avgProgress)}%</div><div class="kpi-label">Progresso médio da equipe</div></div>
+    <div class="kpi-card"><div class="kpi-num" style="color:${unanswered>0?'var(--gold)':'var(--green)'}">${unanswered}</div><div class="kpi-label">Dúvidas sem resposta</div></div>
+  `;
+}
+function renderAdminUsers() {
+  const tbody = document.getElementById('admin-user-body');
+  tbody.innerHTML = USERS.map(u => {
+    const ud = storage[u.user] || { completed:[], quizScores:{} };
+    const pct = Math.round((ud.completed||[]).length / 3 * 100);
+    const quizAvg = Object.values(ud.quizScores||{}).length ? Math.round(Object.values(ud.quizScores).reduce((a,b)=>a+b,0) / Object.values(ud.quizScores).length) : '—';
+    const last = ud.lastSeen ? new Date(ud.lastSeen).toLocaleDateString('pt-BR') : 'Nunca';
+    const statusClass = pct===100?'done':pct>0?'partial':'none';
+    const statusLabel = pct===100?'✓ Concluído':pct>0?'Em progresso':'Não iniciou';
+    return `<tr>
+      <td><strong>${u.name}</strong><br><span style="font-size:11px;color:var(--text3)">${u.role}</span></td>
+      <td><div class="progress-mini"><div class="mini-bar"><div class="mini-fill" style="width:${pct}%"></div></div><span style="font-size:12px;font-family:'JetBrains Mono',monospace;color:var(--text2)">${pct}%</span></div></td>
+      <td style="font-family:'JetBrains Mono',monospace;font-size:13px">${(ud.completed||[]).length}/${MODULES.length}</td>
+      <td style="font-family:'JetBrains Mono',monospace;font-size:13px">${quizAvg}${typeof quizAvg==='number'?'%':''}</td>
+      <td style="font-size:12px;color:var(--text2)">${last}</td>
+      <td><span class="badge-status ${statusClass}">${statusLabel}</span></td>
+    </tr>`;
+  }).join('');
+}
+function renderAdminDoubts() {
+  const container = document.getElementById('admin-doubts-list');
+  const allDoubts = [];
+  USERS.forEach(u => {
+    const ud = storage[u.user] || {};
+    (ud.doubts || []).forEach(d => allDoubts.push({ ...d, userName: u.name, userKey: u.user }));
+  });
+  allDoubts.sort((a,b) => new Date(b.time) - new Date(a.time));
+  if (!allDoubts.length) { container.innerHTML = '<p style="color:var(--text3);font-size:13px">Nenhuma dúvida enviada ainda.</p>'; return; }
+  container.innerHTML = allDoubts.map((d,i) => `
+    <div class="doubt-card" id="adc-${i}">
+      <div class="doubt-meta">
+        <span class="doubt-user">${d.userName}</span>
+        <span class="doubt-mod">${d.module}</span>
+        <span style="margin-left:auto;display:flex;gap:6px;align-items:center">
+          ${d.officialAnswer ? '<span class="tag-answered">RESPONDIDA</span>' : '<span class="tag-unanswered">PENDENTE</span>'}
+          <span class="doubt-time">${new Date(d.time).toLocaleDateString('pt-BR')}</span>
+        </span>
+      </div>
+      <div class="doubt-q">${d.text}</div>
+      ${d.aiAnswer ? `<div style="background:var(--bg2);border-radius:8px;padding:10px 12px;font-size:12px;color:var(--text3);margin-bottom:8px"><strong style="color:var(--navy2)">🤖 IA respondeu:</strong><div style="margin-top:6px;line-height:1.6">${mdToHtml(d.aiAnswer)}</div></div>` : ''}
+      ${d.officialAnswer ? `<div class="doubt-answer visible"><strong style="color:var(--navy2)">👔 Resposta do gestor:</strong> ${d.officialAnswer}</div>` : ''}
+      ${!d.officialAnswer ? `
+        <button class="btn-toggle-reply" onclick="toggleReply(${i})">✏️ Responder</button>
+        <div class="doubt-answer-area" id="reply-area-${i}">
+          <textarea id="reply-text-${i}" placeholder="Digite sua resposta oficial..."></textarea>
+          <button class="btn-reply" onclick="saveReply(${i},'${d.userKey}','${d.id}')">Salvar resposta</button>
+        </div>
+      ` : ''}
+    </div>
+  `).join('');
+}
+function toggleReply(i) {
+  const area = document.getElementById('reply-area-'+i);
+  area.classList.toggle('visible');
+}
+function saveReply(i, userKey, doubtId) {
+  const text = document.getElementById('reply-text-'+i).value.trim();
+  if (!text) return;
+  const ud = storage[userKey];
+  const doubt = ud.doubts.find(d => d.id === doubtId);
+  if (doubt) { doubt.officialAnswer = text; saveStorage(); }
+  showToast('Resposta salva! O colaborador verá na próxima vez que entrar.','success');
+  renderAdminDoubts();
+  renderAdminKPIs();
+}
+function exportCSV() {
+  const rows = [['Colaborador','Cargo','Módulos concluídos','% progresso','Último acesso']];
+  USERS.forEach(u => {
+    const ud = storage[u.user] || { completed:[] };
+    const pct = Math.round((ud.completed||[]).length / 3 * 100);
+    rows.push([u.name, u.role, (ud.completed||[]).length, pct+'%', ud.lastSeen ? new Date(ud.lastSeen).toLocaleDateString('pt-BR') : 'Nunca']);
+  });
+  const csv = rows.map(r => r.map(c => `"${c}"`).join(',')).join('\n');
+  const blob = new Blob([csv], {type:'text/csv'});
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
+  a.download = `gaideski_treinamento_${new Date().toISOString().slice(0,10)}.csv`; a.click();
+}
+
+// ══════════════════════════════════════════════
+// STUDENT PLATFORM
+// ══════════════════════════════════════════════
+function initStudent() {
+  showPage('page-student');
+  const ud = getUserData(currentUser.user);
+
+  // sidebar user
+  document.getElementById('s-avatar').textContent = currentUser.name.charAt(0).toUpperCase();
+  document.getElementById('s-name').textContent = currentUser.name;
+  document.getElementById('s-role').textContent = currentUser.role;
+  document.getElementById('welcome-name').textContent = currentUser.name.split(' ')[0] + '! 👋';
+
+  // check for answered doubts
+  const hasAnswered = (ud.doubts||[]).some(d => d.officialAnswer && !d.seenAnswer);
+  document.getElementById('home-alert').style.display = hasAnswered ? 'block' : 'none';
+  document.getElementById('badge-doubts').style.display = hasAnswered ? 'inline-flex' : 'none';
+
+  renderSidebar();
+  renderModulesGrid();
+  renderAchievements();
+  renderRules();
+  renderMyDoubts();
+  updateProgress();
+  showView('view-home');
+}
+
+function updateProgress() {
+  const ud = getUserData(currentUser.user);
+  const pct = Math.round(ud.completed.length / 3 * 100);
+  document.getElementById('s-bar').style.width = pct + '%';
+  document.getElementById('s-pct').textContent = pct + '%';
+}
+
+function renderSidebar() {
+  const ud = getUserData(currentUser.user);
+  document.getElementById('sidebar-modules').innerHTML = MODULES.map(m => {
+    const done = ud.completed.includes(m.id);
+    const modNum = m.tag.split('·')[0].trim();
+    const modCat = m.tag.split('·')[1] ? m.tag.split('·')[1].trim() : '';
+    return `<div class="nav-item" style="flex-direction:column;align-items:flex-start;padding:10px 10px;gap:2px" onclick="openModule(${m.id})">
+      <div style="display:flex;align-items:center;gap:8px;width:100%">
+        <span class="ni-icon" style="font-size:13px">${done ? '✅' : '▶️'}</span>
+        <span style="font-size:11px;font-weight:700;color:var(--text3);letter-spacing:.5px;text-transform:uppercase">${modNum}</span>
+        ${done ? '<span class="ni-badge done" style="margin-left:auto">✓</span>' : ''}
+      </div>
+      <div style="padding-left:21px">
+        <div style="font-size:12px;font-weight:600;color:var(--text);line-height:1.3;margin-bottom:2px">${m.title}</div>
+        <div style="font-size:11px;color:var(--text3)">${modCat}</div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function renderModulesGrid() {
+  const ud = getUserData(currentUser.user);
+  document.getElementById('modules-grid-home').innerHTML = MODULES.map(m => {
+    const done = ud.completed.includes(m.id);
+    return `<div class="mod-card ${done?'completed':''}" onclick="openModule(${m.id})">
+      ${done ? '<div class="completed-ribbon">✓</div>' : ''}
+      <div class="mod-card-top">
+        <div class="mod-num-label">
+          <span>${m.tag}</span>
+          ${done ? '<span style="color:var(--green);font-size:11px">CONCLUÍDO</span>' : ''}
+        </div>
+        <h3>${m.title}</h3>
+        <p>${m.desc}</p>
+      </div>
+      <div class="mod-card-footer">
+        <span class="mod-meta">⏱ ${m.duration}</span>
+        <button class="btn-watch ${done?'done':'primary'}">${done ? '✓ Rever' : '▶ Assistir'}</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function openModule(idx) {
+  currentModIdx = idx;
+  const m = MODULES[idx];
+  const ud = getUserData(currentUser.user);
+  const done = ud.completed.includes(idx);
+
+  document.getElementById('vv-breadcrumb').textContent = m.tag;
+  document.getElementById('vv-title').textContent = m.title;
+  document.getElementById('vv-desc').textContent = m.desc;
+  document.getElementById('vv-h2').textContent = m.title;
+  document.getElementById('vv-tag').textContent = m.tag;
+  const iframe = document.getElementById('vv-iframe');
+  const video  = document.getElementById('vv-video');
+
+  if (m.videoFile) {
+    iframe.style.display = 'none';
+    iframe.src = '';
+    video.style.display = 'block';
+    video.src = '';
+    video.poster = '';
+    // Resolve o redirect do GitHub Releases para pegar a URL direta do CDN
+    fetch(m.videoFile, { method: 'HEAD', redirect: 'follow' })
+      .then(r => { video.src = r.url; video.load(); })
+      .catch(() => { video.src = m.videoFile; video.load(); });
+  } else {
+    video.style.display = 'none';
+    video.src = '';
+    iframe.style.display = 'block';
+    iframe.src = `https://www.youtube.com/embed/${m.videoId}?rel=0&enablejsapi=1`;
+  }
+
+  document.getElementById('vv-roteiro').textContent = m.roteiro;
+
+  // Render chapters
+  renderChapters(idx, m.videoId);
+
+  // Render quick summary
+
+  // Default: abrir na versão rápida
+
+  const btnComp = document.getElementById('btn-complete-mod');
+  btnComp.disabled = done;
+  btnComp.textContent = done ? '✓ Já concluído' : '✓ Marcar como concluído';
+
+
+
+  showView('view-video');
+  document.querySelector('.main-content').scrollTop = 0;
+}
+
+
+function renderChapters(idx, videoId) {
+  const data = CHAPTERS[idx];
+  if (!data) return;
+  const list = document.getElementById('chapters-list');
+  const tagLabels = {
+    essencial: { label:'⭐ Essencial — assista este', cls:'essencial' },
+    util:      { label:'💡 Útil', cls:'util' },
+    intro:     { label:'Introdução', cls:'intro' },
+    avancado:  { label:'Avançado', cls:'avancado' },
+    gestor:    { label:'👔 Para gestores', cls:'gestor' },
+    pule:      { label:'Pode pular', cls:'pule' },
+  };
+  list.innerHTML = data.chapters.map(ch => {
+    const tl = tagLabels[ch.tag] || { label: ch.tag, cls: 'intro' };
+    return `<div class="chapter-item" onclick="seekVideo(${ch.time})">
+      <div class="ch-time" title="Clique para pular para este momento">${ch.label}</div>
+      <div class="ch-content">
+        <div class="ch-title">${ch.title}</div>
+        <div class="ch-desc">${ch.desc}</div>
+        <span class="ch-tag ${tl.cls}">${tl.label}</span>
+      </div>
+      <div class="ch-arrow">▶</div>
+    </div>`;
+  }).join('');
+}
+
+function seekVideo(seconds) {
+  const m = MODULES[currentModIdx];
+  if (m.videoFile) {
+    const video = document.getElementById('vv-video');
+    video.currentTime = seconds;
+    video.play();
+    setTimeout(() => { video.scrollIntoView({ behavior:'smooth', block:'start' }); }, 150);
+  } else {
+    const iframe = document.getElementById('vv-iframe');
+    iframe.src = `https://www.youtube.com/embed/${m.videoId}?rel=0&start=${seconds}&autoplay=1`;
+    setTimeout(() => { iframe.scrollIntoView({ behavior:'smooth', block:'start' }); }, 150);
+  }
+}
+
+
+function renderQuiz(questions) {
+  document.getElementById('quiz-questions').innerHTML = questions.map((q,qi) => `
+    <div class="quiz-q">
+      <p>${qi+1}. ${q.q}</p>
+      <div class="quiz-options">
+        ${q.opts.map((o,oi) => `
+          <label class="quiz-opt" id="qopt-${qi}-${oi}">
+            <input type="radio" name="q${qi}" value="${oi}">
+            <label>${o}</label>
+          </label>
+        `).join('')}
+      </div>
+    </div>
+  `).join('');
+}
+
+function submitQuiz() {
+  const m = MODULES[currentModIdx];
+  let correct = 0;
+  m.quiz.forEach((q,qi) => {
+    const sel = document.querySelector(`input[name="q${qi}"]:checked`);
+    const opts = document.querySelectorAll(`[id^="qopt-${qi}-"]`);
+    opts.forEach(o => o.classList.remove('selected'));
+    if (sel) {
+      const val = parseInt(sel.value);
+      document.getElementById(`qopt-${qi}-${val}`).classList.add(val===q.ans?'correct':'wrong');
+      if (val===q.ans) {correct++;document.getElementById(`qopt-${qi}-${val}`).classList.add('correct');}
+      else {document.getElementById(`qopt-${qi}-${q.ans}`).classList.add('correct');}
+      if (val!==q.ans) document.getElementById(`qopt-${qi}-${val}`).classList.add('wrong');
+    } else {
+      document.getElementById(`qopt-${qi}-${q.ans}`).classList.add('correct');
+    }
+  });
+  const pct = Math.round(correct / m.quiz.length * 100);
+  const ud = getUserData(currentUser.user);
+  ud.quizScores[currentModIdx] = pct;
+  if (pct===100) ud.quizAce = true;
+  saveStorage();
+  const res = document.getElementById('quiz-result');
+  res.style.display = 'block';
+  if (pct >= 50) {
+    res.className = 'quiz-result pass';
+    res.innerHTML = `🎉 <strong>Parabéns!</strong> Você acertou ${correct}/${m.quiz.length} (${pct}%). Agora marque o módulo como concluído acima.`;
+  } else {
+    res.className = 'quiz-result fail';
+    res.innerHTML = `❌ Você acertou ${correct}/${m.quiz.length} (${pct}%). Veja as respostas corretas acima e revise o vídeo.`;
+  }
+}
+
+function completeModule() {
+  const ud = getUserData(currentUser.user);
+  if (!ud.completed.includes(currentModIdx)) ud.completed.push(currentModIdx);
+  saveStorage();
+  document.getElementById('btn-complete-mod').disabled = true;
+  document.getElementById('btn-complete-mod').textContent = '✓ Já concluído';
+  renderSidebar();
+  renderModulesGrid();
+  renderAchievements();
+  updateProgress();
+  showToast(`✅ Módulo concluído! Ótimo trabalho.`, 'success');
+}
+
+function goNextModule() {
+  const next = currentModIdx + 1;
+  if (next < 3) openModule(next);
+  else { showView('view-home'); showToast('🎓 Você completou todos os módulos!','success'); }
+}
+
+// ── VIEWS ──
+function showView(id) {
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  if (id==='view-doubts') renderMyDoubts();
+  document.querySelector('.main-content').scrollTop = 0;
+}
+
+// ── DÚVIDAS ──
+function mdToHtml(text) {
+  return text
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/^### (.+)$/gm,'<h4 style="font-size:13px;font-weight:700;margin:14px 0 4px;color:var(--text)">$1</h4>')
+    .replace(/^## (.+)$/gm,'<h3 style="font-size:14px;font-weight:700;margin:16px 0 6px;color:var(--text)">$1</h3>')
+    .replace(/^# (.+)$/gm,'<h2 style="font-size:15px;font-weight:700;margin:16px 0 6px;color:var(--text)">$1</h2>')
+    .replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>')
+    .replace(/\*(.+?)\*/g,'<em>$1</em>')
+    .replace(/^[-•] (.+)$/gm,'<li style="margin:4px 0 4px 16px;list-style:disc">$1</li>')
+    .replace(/^(\d+)\. (.+)$/gm,'<li style="margin:4px 0 4px 16px;list-style:decimal">$2</li>')
+    .replace(/\n{2,}/g,'</p><p style="margin:8px 0">')
+    .replace(/\n/g,'<br>')
+    .replace(/^/,'<p style="margin:0 0 8px">')
+    .replace(/$/,'</p>');
+}
+
+async function sendDoubt() {
+  const text = document.getElementById('doubt-text').value.trim();
+  const mod = document.getElementById('doubt-module').value;
+  if (!text) { showToast('Escreva sua dúvida antes de enviar.','error'); return; }
+
+  const ud = getUserData(currentUser.user);
+  const doubt = { id: Date.now().toString(), module: mod, text, time: new Date().toISOString(), aiAnswer: null, officialAnswer: null };
+  ud.doubts = ud.doubts || [];
+  ud.doubts.push(doubt);
+  saveStorage();
+
+  // Show AI answer box
+  const aiBox = document.getElementById('ai-answer-box');
+  const aiText = document.getElementById('ai-text');
+  const typingDots = document.getElementById('typing-dots');
+  aiBox.style.display = 'block';
+  aiText.textContent = '';
+  typingDots.style.display = 'inline-flex';
+
+  try {
+    const systemPrompt = `Você é um assistente especializado no Gestta (sistema de gestão de tarefas para escritórios de contabilidade) e nas práticas da Gaideski Contabilidade, localizada em Santa Felicidade, Curitiba, PR. Responda dúvidas dos colaboradores sobre o uso do Gestta de forma clara, prática e direta, em português. Mantenha respostas em 2-4 parágrafos. Se não souber a resposta exata, oriente o colaborador a registrar a dúvida para o gestor responder pessoalmente.`;
+
+    const resp = await fetch('/api/chat', {
+      method:'POST',
+      headers:{ 'Content-Type':'application/json' },
+      body: JSON.stringify({ module: mod, text })
+    });
+    const data = await resp.json();
+    const answer = data.answer || 'Não foi possível gerar resposta automática. Aguarde a resposta do gestor.';
+    typingDots.style.display = 'none';
+    aiText.innerHTML = mdToHtml(answer);
+    doubt.aiAnswer = answer;
+    saveStorage();
+    showToast('Dúvida enviada! IA respondeu. O gestor também pode complementar.','success');
+  } catch(e) {
+    typingDots.style.display = 'none';
+    aiText.textContent = 'Resposta automática indisponível no momento. O gestor responderá em breve.';
+  }
+
+  document.getElementById('doubt-text').value = '';
+  renderMyDoubts();
+}
+
+function renderMyDoubts() {
+  const ud = getUserData(currentUser.user);
+  const list = document.getElementById('my-doubts-list');
+  if (!ud.doubts || !ud.doubts.length) {
+    list.innerHTML = '<p style="color:var(--text3);font-size:13px">Nenhuma dúvida enviada ainda.</p>';
+    return;
+  }
+  const sorted = [...ud.doubts].sort((a,b) => new Date(b.time)-new Date(a.time));
+  list.innerHTML = sorted.map(d => `
+    <div class="my-doubt-card">
+      <div class="dm">
+        <span>📁 ${d.module}</span>
+        <span>🕐 ${new Date(d.time).toLocaleDateString('pt-BR')}</span>
+        ${d.officialAnswer ? '<span style="color:var(--green)">✓ Respondida pelo gestor</span>' : d.aiAnswer ? '<span style="color:var(--navy2)">🤖 IA respondeu</span>' : '<span style="color:var(--text3)">⏳ Aguardando</span>'}
+      </div>
+      <div class="dq">${d.text}</div>
+      ${d.aiAnswer ? `<div class="official-answer" style="margin-bottom:8px;border-color:rgba(30,58,95,.25);background:rgba(30,58,95,.1)"><div class="oa-label" style="color:var(--navy2)">🤖 Resposta da IA</div><div style="font-size:13px;color:var(--text2);line-height:1.6">${mdToHtml(d.aiAnswer)}</div></div>` : ''}
+      ${d.officialAnswer ? `<div class="official-answer"><div class="oa-label">👔 Resposta do Gestor</div><p>${d.officialAnswer}</p></div>` : '<p class="pending-answer">O gestor pode adicionar uma resposta oficial em breve.</p>'}
+    </div>
+  `).join('');
+  // mark as seen
+  sorted.forEach(d => { if(d.officialAnswer) d.seenAnswer = true; });
+  saveStorage();
+}
+
+// ── CONQUISTAS ──
+function renderAchievements() {
+  const ud = getUserData(currentUser.user);
+  document.getElementById('ach-grid').innerHTML = ACHIEVEMENTS.map(a => {
+    const unlocked = a.cond(ud);
+    return `<div class="ach-card ${unlocked?'unlocked':'locked'}">
+      <span class="ach-icon">${a.icon}</span>
+      <h4>${a.title}</h4>
+      <p>${a.desc}</p>
+      ${unlocked ? '<div style="margin-top:8px;font-size:10px;color:var(--green);font-weight:700">DESBLOQUEADA ✓</div>' : '<div style="margin-top:8px;font-size:10px;color:var(--text3)">Bloqueada</div>'}
+    </div>`;
+  }).join('');
+}
+
+// ── REGRAS ──
+function renderRules() {
+  document.getElementById('rules-grid').innerHTML = RULES.map(r => `
+    <div style="background:var(--surface);border:1px solid ${r.type==='do'?'rgba(34,197,94,.2)':'rgba(166,28,35,.2)'};border-radius:var(--radius);padding:18px 20px;display:flex;gap:12px;align-items:flex-start">
+      <span style="font-size:22px">${r.icon}</span>
+      <div>
+        <h4 style="font-size:13px;font-weight:700;color:${r.type==='do'?'var(--green)':'#ff8080'};margin-bottom:4px">${r.title}</h4>
+        <p style="font-size:13px;color:var(--text2);line-height:1.5">${r.text}</p>
+      </div>
+    </div>
+  `).join('');
+}
+
+// ── TOAST ──
+function showToast(msg, type='success') {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.className = 'toast show ' + type;
+  setTimeout(() => t.classList.remove('show'), 3500);
+}
+
+// Init
+loadStorage();
+</script>
+</body>
+</html>
